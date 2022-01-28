@@ -1,0 +1,73 @@
+@use "../../../../MAINCSSFORWHOLECOMPONENTS/_IconsForWholeAddressFormPage.scss"
+  as *;
+@use "../../../../MAINCSSFORWHOLECOMPONENTS/_FontColor.module.scss" as *;
+@use "../../../../MAINCSSFORWHOLECOMPONENTS/MainInputsStyles.module" as *;
+@use "../../../../MAINCSSFORWHOLECOMPONENTS/_MainCountersStyles.module.scss" as *;
+
+.safetySeatRow {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  @include margin-top-bottom-for-adressfrom-inputs;
+}
+
+.boosterSeatCounterWrapper,
+.safetySeatCounterWrapper {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+.boosterSeatCounterWrapper {
+  margin-right: 17px;
+  // margin-top: 11px;
+}
+.boosterSeatIconAndTitleContainer,
+.safetySeatIconAndTitleContainer {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+.boosterSeatCounterTitle,
+.safetySeatCounterTitle {
+  @include global_second_title_styles;
+}
+// .passengerCounterTitle {
+// }
+.boosterSeatCounterContainer,
+.safetySeatCounterContainer {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.boosterSeatCounterInputSelf,
+.safetySeatCounterInputSelf {
+  @include counters-input-styles;
+  border-radius: $inputs-border-radius;
+}
+
+.boosterSeatCounterMinusSelf,
+.boosterSeatCounterPlusSelf,
+.safetySeatCounterMinusSelf,
+.safetySeatCounterPlusSelf {
+  @include counters-button-styles;
+  padding: 0;
+}
+
+.boosterSeatCounterMinusSelf,
+.safetySeatCounterMinusSelf {
+  // @include counters-buttons-minus-icon;
+  border: $inputs-border;
+  border-top-left-radius: $inputs-border-radius;
+  border-bottom-left-radius: $inputs-border-radius;
+}
+
+.boosterSeatCounterPlusSelf,
+.safetySeatCounterPlusSelf {
+  // @include counters-buttons-plus-icon;
+  border: $inputs-border;
+  border-top-right-radius: $inputs-border-radius;
+  border-bottom-right-radius: $inputs-border-radius;
+}
