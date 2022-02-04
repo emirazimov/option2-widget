@@ -39,6 +39,11 @@ const PaymentContainerComponent = ({
   total,
   formSummary,
   setPaymentForm,
+  cars,
+  formData,
+  carId,
+  hourlyAndSeatsRedux,
+  gateMeeting,
 }) => {
   const SignupSchema = yup.object().shape({
     // greetClientInfo: yup.object().shape({
@@ -154,6 +159,41 @@ const PaymentContainerComponent = ({
 
   // const toggleAmex = () => setRestrictAmex(!restrictAmex)
 
+  // This section for Preview Component
+
+  const [carModal, setCarModal] = React.useState(null)
+  const selectedCar = cars.find((car) => car.id === carId)
+  const [distance, setDistance] = React.useState(0)
+  const [show, setShow] = React.useState(false)
+  const handleClickOpen = (id) => {
+    setCarModal(true)
+    setShow(true)
+  }
+
+  const handleClickClose = () => {
+    setCarModal(null)
+    setShow(false)
+  }
+  const round = (n, dp) => {
+    const h = +"1".padEnd(dp + 1, "0") // 10 or 100 or 1000 or etc
+    return Math.round(n * h) / h
+  }
+
+  const showCarAmount = () => {
+    if (selectedCar.boosterSeatPrice || selectedCar.safetySeatPrice) {
+      return `$${round(
+        selectedCar.price -
+          selectedCar.boosterSeatPrice -
+          selectedCar.safetySeatPrice,
+        2
+      )}`
+    } else {
+      return `$${round(selectedCar.price, 2)} `
+    }
+  }
+
+  // The end of the section
+
   const [cardType, setCardType] = useState("")
 
   const [creditCardNum, setCreditCardNum] = useState("#### #### #### ####")
@@ -235,6 +275,16 @@ const PaymentContainerComponent = ({
       extractCityId={extractCityId}
       stateName={stateName}
       cityName={cityName}
+      formData={formData}
+      hourlyAndSeatsRedux={hourlyAndSeatsRedux}
+      gateMeeting={gateMeeting}
+      selectedCar={selectedCar}
+      distance={distance}
+      handleClickOpen={handleClickOpen}
+      handleClickClose={handleClickClose}
+      round={round}
+      showCarAmount={showCarAmount}
+      show={show}
     />
   )
 }
@@ -243,6 +293,11 @@ const mapStateToProps = (state) => {
   return {
     total: state.formData.orderSum,
     formSummary: state.formData,
+    cars: state.cars.cars,
+    formData: state.formData,
+    carId: state.formData.carInfo.id,
+    hourlyAndSeatsRedux: state.hourlyAndSeatsRedux.hourlyRedux,
+    gateMeeting: state.gateMeeting.isGateMeeting,
   }
 }
 

@@ -19,3 +19,57 @@ button.rec-dot:focus {
 .Carousel-active-159 {
   color: white;
 } */
+
+.button__bar {
+  display: inline-block;
+  vertical-align: middle;
+  margin: auto;
+  padding: 0;
+  background: rgba(255, 255, 255, 0.3);
+  /* border-radius: 40px; */
+  width: 100%;
+  text-align: center;
+}
+
+.button__bar li {
+  list-style: none;
+  cursor: pointer;
+  display: inline-block;
+  margin: 0 3px;
+  padding: 0;
+}
+
+.button__bar li button {
+  border: none;
+  background: grey;
+  color: transparent;
+  cursor: pointer;
+  display: block;
+  height: 6px;
+  width: 6px;
+  border-radius: 30px;
+}
+
+.button__bar li.slick-active button {
+  border: none;
+  background-color: white;
+  color: transparent;
+  cursor: pointer;
+  display: block;
+  height: 6px;
+  width: 6px;
+  border-radius: 30px;
+}
+
+.button__bar li button:hover,
+.button__bar li button:focus {
+  outline: 0;
+  border: none;
+  background: rgba(134, 197, 255, 0.8);
+  color: transparent;
+  cursor: pointer;
+  display: block;
+  height: 6px;
+  width: 6px;
+  border-radius: 30px;
+}

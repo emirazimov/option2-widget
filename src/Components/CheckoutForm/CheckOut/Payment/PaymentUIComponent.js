@@ -10,6 +10,7 @@ import styles from "./Payment.module.scss"
 import { Switch } from "../../../Helpers/Switch/Switch"
 import ThemeContext from "../../../../context"
 import Autocomplete from "@mui/material/Autocomplete"
+import PreviewReusableUIComponent from "../Preview/PreviewReusableUIComponent"
 
 const PaymentUIComponent = ({
   next,
@@ -56,6 +57,16 @@ const PaymentUIComponent = ({
   extractCityId,
   stateName,
   cityName,
+  formData,
+  hourlyAndSeatsRedux,
+  gateMeeting,
+  selectedCar,
+  distance,
+  handleClickOpen,
+  handleClickClose,
+  round,
+  showCarAmount,
+  show,
 }) => {
   const inputStyle = {
     WebkitBoxShadow: "0 0 0 1000px transparent inset",
@@ -96,483 +107,527 @@ const PaymentUIComponent = ({
                 Payment
               </span>
             </div>
-            <div className={styles.isPassengerCardholderContainer}>
-              <div className={styles.isPassengerCardholderTitleContainer}>
-                <span
-                  className={
-                    riderDetails
-                      ? styles.isPassengerCardholderTitleWhiteSelf
-                      : styles.isPassengerCardholderTitleGreySelf
-                  }
-                  style={{
-                    color: fontColor,
-                    opacity: riderDetails ? "1" : "0.3",
-                  }}
-                >
-                  Is passenger a cardholder?
-                </span>
-              </div>
-              <div className={styles.isPassengerCardholderSwitchContainer}>
-                <Switch
-                  checked={riderDetails}
-                  onClick={() => setRiderDetails(!riderDetails)}
-                  numberToIdentify={4}
-                />
-              </div>
-            </div>
-            {!riderDetails && (
-              <div className={styles.passengerDetailWrapper}>
-                <div className={styles.passengerDetailTitleContainer}>
-                  <span
-                    className={styles.passengerDetailTitleSelf}
-                    style={{ color: fontColor }}
-                  >
-                    Passenger Detail
-                  </span>
-                </div>
-                <div className={styles.cardholderInformationInputsWrapper}>
-                  <div
-                    className={
-                      styles.cardholderInformationInputSelfContainerJustForFirstAndLastName
-                    }
-                  >
-                    <input
-                      name="greetClientInfo.firstName"
-                      autoComplete="off"
-                      placeholder="First Name"
-                      defaultValue={formSummary.greetClientInfo.firstName}
-                      className={styles.cardholderInformationInputSelfFirstName}
+            <div className={styles.paymentRowWithPreview}>
+              <div className={styles.paymentFormWrapper}>
+                <div className={styles.isPassengerCardholderContainer}>
+                  <div className={styles.isPassengerCardholderTitleContainer}>
+                    <span
+                      className={
+                        riderDetails
+                          ? styles.isPassengerCardholderTitleWhiteSelf
+                          : styles.isPassengerCardholderTitleGreySelf
+                      }
                       style={{
-                        color: inputsFontColor,
-                        border: `1px solid ${borderColorForInnerElements}`,
-                        background: inputsBackground,
+                        color: fontColor,
+                        opacity: riderDetails ? "1" : "0.3",
                       }}
-                      ref={register}
-                    />
+                    >
+                      Is passenger a cardholder?
+                    </span>
                   </div>
-                  <div
-                    className={styles.cardholderInformationInputSelfContainer2}
-                  >
-                    <input
-                      name="greetClientInfo.lastName"
-                      autoComplete="off"
-                      defaultValue={formSummary.greetClientInfo.lastName}
-                      placeholder="Last Name"
-                      className={styles.cardholderInformationInputSelfLastName}
-                      style={{
-                        color: inputsFontColor,
-                        border: `1px solid ${borderColorForInnerElements}`,
-                        background: inputsBackground,
-                      }}
-                      ref={register}
+                  <div className={styles.isPassengerCardholderSwitchContainer}>
+                    <Switch
+                      checked={riderDetails}
+                      onClick={() => setRiderDetails(!riderDetails)}
+                      numberToIdentify={4}
                     />
                   </div>
                 </div>
-                <div className={styles.cardholderInformationInputsWrapper}>
-                  <div
-                    className={styles.cardholderInformationInputSelfContainer1}
-                  >
-                    <input
-                      name="greetClientInfo.email"
-                      autoComplete="off"
-                      placeholder="Email"
-                      defaultValue={formSummary.greetClientInfo.email}
-                      className={styles.cardholderInformationInputSelf}
-                      style={{
-                        color: inputsFontColor,
-                        border: `1px solid ${borderColorForInnerElements}`,
-                        background: inputsBackground,
-                      }}
-                      ref={register}
-                    />
-                  </div>
-                  <div
-                    className={styles.cardholderInformationInputSelfContainer2}
-                  >
-                    <input
-                      name="greetClientInfo.phoneNumber"
-                      autoComplete="off"
-                      defaultValue={formSummary.greetClientInfo.phoneNumber}
-                      placeholder="Phone Number"
-                      className={styles.cardholderInformationInputSelf}
-                      style={{
-                        color: inputsFontColor,
-                        border: `1px solid ${borderColorForInnerElements}`,
-                        background: inputsBackground,
-                      }}
-                      ref={register}
-                    />
-                  </div>
-                </div>
-              </div>
-            )}
-            <div className={styles.cardholderInformationWrapper}>
-              <div className={styles.cardholderInformationTitleContainer}>
-                <span
-                  className={styles.cardholderInformationTitleSelf}
-                  style={{ color: fontColor }}
-                >
-                  Cardholder Information
-                </span>
-              </div>
-              <div className={styles.cardholderInformationInputsWrapper}>
-                <div
-                  className={styles.cardholderInformationInputSelfContainer}
-                  style={{ width: "50%" }}
-                >
-                  <div
-                    className={
-                      styles.cardholderInformationInputSelfContainerJustForFirstAndLastName
-                    }
-                    style={{ width: "100%" }}
-                  >
-                    <input
-                      name="client.firstName"
-                      autoComplete="off"
-                      defaultValue={formSummary.client.firstName}
-                      placeholder="First Name"
-                      error={errors.client?.firstName ? true : false}
-                      className={styles.cardholderInformationInputSelfFirstName}
-                      ref={register}
-                      style={{
-                        width: "100%",
-                        color: inputsFontColor,
-                        border: `1px solid ${borderColorForInnerElements}`,
-                        background: inputsBackground,
-                      }}
-                    />
-                  </div>
-                  {errors.client?.firstName && (
-                    <p className={styles.errorInputs}>
-                      {errors.client?.firstName.message}
-                    </p>
-                  )}
-                </div>
-                <div
-                  className={styles.cardholderInformationInputSelfContainer}
-                  style={{ width: "50%" }}
-                >
-                  <input
-                    name="client.lastName"
-                    autoComplete="off"
-                    placeholder="Last Name"
-                    defaultValue={formSummary.client.lastName}
-                    error={errors.client?.lastName ? true : false}
-                    className={styles.cardholderInformationInputSelfLastName}
-                    ref={register}
-                    style={{
-                      width: "100%",
-                      color: inputsFontColor,
-                      border: `1px solid ${borderColorForInnerElements}`,
-                      background: inputsBackground,
-                    }}
-                  />
-                  {errors.client?.lastName && (
-                    <p className={styles.errorInputs}>
-                      {errors.client?.lastName.message}
-                    </p>
-                  )}
-                </div>
-              </div>
-
-              <div className={styles.cardholderInformationInputsWrapper}>
-                <div
-                  className={styles.cardholderInformationInputSelfContainer1}
-                >
-                  <input
-                    name="client.email"
-                    autoComplete="off"
-                    placeholder="Email"
-                    defaultValue={formSummary.client.email}
-                    error={errors.client?.email ? true : false}
-                    className={styles.cardholderInformationInputSelf}
-                    style={{
-                      color: inputsFontColor,
-                      border: `1px solid ${borderColorForInnerElements}`,
-                      background: inputsBackground,
-                    }}
-                    ref={register}
-                  />
-                  {errors.client?.email && (
-                    <p className={styles.errorInputs}>
-                      {errors.client?.email.message}
-                    </p>
-                  )}
-                </div>
-                <div
-                  className={styles.cardholderInformationInputSelfContainer2}
-                >
-                  <input
-                    name="client.phoneNumber"
-                    autoComplete="off"
-                    defaultValue={formSummary.client.phoneNumber}
-                    placeholder="Phone Number"
-                    error={errors.client?.phoneNumber ? true : false}
-                    className={styles.cardholderInformationInputSelf}
-                    style={{
-                      color: inputsFontColor,
-                      border: `1px solid ${borderColorForInnerElements}`,
-                      background: inputsBackground,
-                    }}
-                    ref={register}
-                  />
-                  {errors.client?.phoneNumber && (
-                    <p className={styles.errorInputs}>
-                      {errors.client?.phoneNumber.message}
-                    </p>
-                  )}
-                </div>
-              </div>
-              <div className={styles.cardholderInformationInputsWrapper}>
-                <div
-                  className={
-                    styles.cardholderInformationInputsContainerForPositionErrorMessage
-                  }
-                >
-                  <input
-                    name="client.address"
-                    autoComplete="off"
-                    placeholder="Address"
-                    defaultValue={formSummary.client.address}
-                    ref={register}
-                    error={errors.client?.address ? true : false}
-                    className={
-                      styles.cardholderInformationInputWithFullWidthSelf
-                    }
-                    style={{
-                      width: "100%",
-                      paddingRight: "0",
-                      color: inputsFontColor,
-                      border: `1px solid ${borderColorForInnerElements}`,
-                      background: inputsBackground,
-                    }}
-                  />
-                  {errors.client?.address && (
-                    <p className={styles.errorInputs}>
-                      {errors.client?.address.message}
-                    </p>
-                  )}
-                </div>
-              </div>
-
-              <div className={styles.cardholderInformationInputsWrapper}>
-                <div
-                  className={
-                    styles.cardholderInformationInputsContainerForPositionErrorMessageState
-                  }
-                  style={{ color: inputsFontColor }}
-                >
-                  <Autocomplete
-                    disablePortal
-                    onChange={(event, newValue) => {
-                      console.log(newValue)
-                      newValue ? extractStateId(newValue) : setStatesId(null)
-                    }}
-                    options={states.map((state) => state.name)}
-                    renderInput={(params) => (
-                      <div ref={params.InputProps.ref}>
+                {!riderDetails && (
+                  <div className={styles.passengerDetailWrapper}>
+                    <div className={styles.passengerDetailTitleContainer}>
+                      <span
+                        className={styles.passengerDetailTitleSelf}
+                        style={{ color: fontColor }}
+                      >
+                        Passenger Detail
+                      </span>
+                    </div>
+                    <div className={styles.cardholderInformationInputsWrapper}>
+                      <div
+                        className={
+                          styles.cardholderInformationInputSelfContainerJustForFirstAndLastName
+                        }
+                      >
                         <input
-                          type="text"
-                          {...params.inputProps}
-                          placeholder="State"
+                          name="greetClientInfo.firstName"
+                          autoComplete="off"
+                          placeholder="First Name"
+                          defaultValue={formSummary.greetClientInfo.firstName}
                           className={
-                            styles.cardholderInformationInputWithFullWidthSelfState
+                            styles.cardholderInformationInputSelfFirstName
                           }
                           style={{
-                            width: "100%",
-                            paddingRight: "0",
                             color: inputsFontColor,
-                            border: `1px solid ${borderColorForInnerElements}`,
+                            // border: `1px solid ${borderColorForInnerElements}`,
                             background: inputsBackground,
                           }}
+                          ref={register}
                         />
                       </div>
-                    )}
-                  />
-
-                  {statesIdError && (
-                    <p className={styles.errorInputs}>Required</p>
-                  )}
-                </div>
-              </div>
-              <div className={styles.cardholderInformationInputsWrapper}>
-                <div
-                  className={
-                    styles.cardholderInformationInputSelfContainer1City
-                  }
-                  style={{ color: inputsFontColor }}
-                >
-                  <Autocomplete
-                    disablePortal
-                    onChange={(event, newValue) => {
-                      console.log(cities)
-                      newValue ? extractCityId(newValue) : setCitiesId(null)
-                    }}
-                    options={cities.map((city) => city.name)}
-                    renderInput={(params) => (
-                      <div ref={params.InputProps.ref}>
+                      <div
+                        className={
+                          styles.cardholderInformationInputSelfContainer2
+                        }
+                      >
                         <input
-                          type="text"
-                          {...params.inputProps}
+                          name="greetClientInfo.lastName"
+                          autoComplete="off"
+                          defaultValue={formSummary.greetClientInfo.lastName}
+                          placeholder="Last Name"
+                          className={
+                            styles.cardholderInformationInputSelfLastName
+                          }
+                          style={{
+                            color: inputsFontColor,
+                            // border: `1px solid ${borderColorForInnerElements}`,
+                            background: inputsBackground,
+                          }}
+                          ref={register}
+                        />
+                      </div>
+                    </div>
+                    <div className={styles.cardholderInformationInputsWrapper}>
+                      <div
+                        className={
+                          styles.cardholderInformationInputSelfContainer1
+                        }
+                      >
+                        <input
+                          name="greetClientInfo.email"
+                          autoComplete="off"
+                          placeholder="Email"
+                          defaultValue={formSummary.greetClientInfo.email}
                           className={styles.cardholderInformationInputSelf}
-                          placeholder="City"
+                          style={{
+                            color: inputsFontColor,
+                            // border: `1px solid ${borderColorForInnerElements}`,
+                            background: inputsBackground,
+                          }}
+                          ref={register}
+                        />
+                      </div>
+                      <div
+                        className={
+                          styles.cardholderInformationInputSelfContainer2
+                        }
+                      >
+                        <input
+                          name="greetClientInfo.phoneNumber"
+                          autoComplete="off"
+                          defaultValue={formSummary.greetClientInfo.phoneNumber}
+                          placeholder="Phone Number"
+                          className={styles.cardholderInformationInputSelf}
+                          style={{
+                            color: inputsFontColor,
+                            // border: `1px solid ${borderColorForInnerElements}`,
+                            background: inputsBackground,
+                          }}
+                          ref={register}
+                        />
+                      </div>
+                    </div>
+                  </div>
+                )}
+                <div className={styles.cardholderInformationWrapper}>
+                  <div className={styles.cardholderInformationTitleContainer}>
+                    <span
+                      className={styles.cardholderInformationTitleSelf}
+                      style={{ color: fontColor }}
+                    >
+                      Cardholder Information
+                    </span>
+                  </div>
+                  <div className={styles.cardholderInformationInputsWrapper}>
+                    <div
+                      className={styles.cardholderInformationInputSelfContainer}
+                      style={{ width: "50%" }}
+                    >
+                      <div
+                        className={
+                          styles.cardholderInformationInputSelfContainerJustForFirstAndLastName
+                        }
+                        style={{ width: "100%" }}
+                      >
+                        <input
+                          name="client.firstName"
+                          autoComplete="off"
+                          defaultValue={formSummary.client.firstName}
+                          placeholder="First Name"
+                          error={errors.client?.firstName ? true : false}
+                          className={
+                            styles.cardholderInformationInputSelfFirstName
+                          }
+                          ref={register}
                           style={{
                             width: "100%",
-                            paddingRight: "25px",
-                            boxSizing: "border-box",
                             color: inputsFontColor,
-                            border: `1px solid ${borderColorForInnerElements}`,
+                            // border: `1px solid ${borderColorForInnerElements}`,
                             background: inputsBackground,
                           }}
                         />
                       </div>
-                    )}
-                  />
-
-                  {citiesIdError && (
-                    <p className={styles.errorInputs}>Required</p>
-                  )}
-                </div>
-                <div
-                  className={styles.cardholderInformationInputSelfContainer2}
-                >
-                  <input
-                    name="client.zip"
-                    autoComplete="off"
-                    placeholder="ZIP"
-                    ref={register}
-                    defaultValue={formSummary.client.zip}
-                    error={errors.client?.address ? true : false}
-                    className={styles.cardholderInformationInputSelf}
-                    style={{
-                      color: inputsFontColor,
-                      border: `1px solid ${borderColorForInnerElements}`,
-                      background: inputsBackground,
-                    }}
-                  />
-                  {errors.client?.zip && (
-                    <p className={styles.errorInputs}>
-                      {errors.client?.zip.message}
-                    </p>
-                  )}
-                </div>
-              </div>
-            </div>
-            <div className={styles.cardInformationWrapper}>
-              <div className={styles.cardInformationTitleContainer}>
-                <span
-                  className={styles.cardInformationTitleSelf}
-                  style={{ color: fontColor }}
-                >
-                  Card information
-                </span>
-              </div>
-              <div className={styles.cardholderInformationInputsWrapper}>
-                <div
-                  className={
-                    styles.cardholderInformationInputsContainerForPositionErrorMessage
-                  }
-                >
-                  <Cleave
-                    delimiter="-"
-                    options={{
-                      creditCard: true,
-                      onCreditCardTypeChanged: handleType,
-                    }}
-                    name="paymentInfo.cardNumber"
-                    error={errors.paymentInfo?.cardNumber ? true : false}
-                    onChange={handleNum}
-                    placeholder="Card number"
-                    className="credit-card-input-by-bookinglane"
-                    className={
-                      styles.cardholderInformationInputWithFullWidthSelf
-                    }
-                    style={{
-                      color: inputsFontColor,
-                      border: `1px solid ${borderColorForInnerElements}`,
-                      background: inputsBackground,
-                    }}
-                  />
-
-                  {cardForPaymentSubmitError && (
-                    <p className={styles.errorInputs}>Required</p>
-                  )}
-                </div>
-              </div>
-              <div className={styles.cardholderInformationInputsWrapper}>
-                <div
-                  className={styles.cardholderInformationInputSelfContainer1}
-                >
-                  <CustomMaskInput
-                    name="paymentInfo.month"
-                    ref={register}
-                    mask="99/99"
-                    autoComplete="off"
-                    defaultValue={`${formSummary.paymentInfo.month}/${formSummary.paymentInfo.year}`}
-                  >
-                    {() => (
+                      {errors.client?.firstName && (
+                        <p className={styles.errorInputs}>
+                          {errors.client?.firstName.message}
+                        </p>
+                      )}
+                    </div>
+                    <div
+                      className={styles.cardholderInformationInputSelfContainer}
+                      style={{ width: "50%" }}
+                    >
                       <input
-                        placeholder="mm/yy"
+                        name="client.lastName"
                         autoComplete="off"
-                        error={errors.paymentInfo?.month ? true : false}
-                        className={styles.cardholderInformationInputSelf}
+                        placeholder="Last Name"
+                        defaultValue={formSummary.client.lastName}
+                        error={errors.client?.lastName ? true : false}
+                        className={
+                          styles.cardholderInformationInputSelfLastName
+                        }
+                        ref={register}
                         style={{
+                          width: "100%",
                           color: inputsFontColor,
-                          border: `1px solid ${borderColorForInnerElements}`,
+                          // border: `1px solid ${borderColorForInnerElements}`,
                           background: inputsBackground,
                         }}
                       />
-                    )}
-                  </CustomMaskInput>
-                  {errors.paymentInfo?.month && (
-                    <p className={styles.errorInputs}>
-                      {errors.paymentInfo?.month.message}
-                    </p>
-                  )}
-                </div>
-                <div
-                  className={styles.cardholderInformationInputSelfContainer2}
-                >
-                  <CustomMaskInput
-                    name="paymentInfo.cvc"
-                    ref={register}
-                    mask={cardType == "amex" ? "9999" : "999"}
-                    autoComplete="off"
-                    defaultValue={formSummary.paymentInfo.cvc}
-                  >
-                    {() => (
+                      {errors.client?.lastName && (
+                        <p className={styles.errorInputs}>
+                          {errors.client?.lastName.message}
+                        </p>
+                      )}
+                    </div>
+                  </div>
+
+                  <div className={styles.cardholderInformationInputsWrapper}>
+                    <div
+                      className={
+                        styles.cardholderInformationInputSelfContainer1
+                      }
+                    >
                       <input
-                        placeholder="CVV/CVC"
+                        name="client.email"
                         autoComplete="off"
-                        error={errors.paymentInfo?.cvc ? true : false}
+                        placeholder="Email"
+                        defaultValue={formSummary.client.email}
+                        error={errors.client?.email ? true : false}
                         className={styles.cardholderInformationInputSelf}
                         style={{
                           color: inputsFontColor,
-                          border: `1px solid ${borderColorForInnerElements}`,
+                          // border: `1px solid ${borderColorForInnerElements}`,
+                          background: inputsBackground,
+                        }}
+                        ref={register}
+                      />
+                      {errors.client?.email && (
+                        <p className={styles.errorInputs}>
+                          {errors.client?.email.message}
+                        </p>
+                      )}
+                    </div>
+                    <div
+                      className={
+                        styles.cardholderInformationInputSelfContainer2
+                      }
+                    >
+                      <input
+                        name="client.phoneNumber"
+                        autoComplete="off"
+                        defaultValue={formSummary.client.phoneNumber}
+                        placeholder="Phone Number"
+                        error={errors.client?.phoneNumber ? true : false}
+                        className={styles.cardholderInformationInputSelf}
+                        style={{
+                          color: inputsFontColor,
+                          // border: `1px solid ${borderColorForInnerElements}`,
+                          background: inputsBackground,
+                        }}
+                        ref={register}
+                      />
+                      {errors.client?.phoneNumber && (
+                        <p className={styles.errorInputs}>
+                          {errors.client?.phoneNumber.message}
+                        </p>
+                      )}
+                    </div>
+                  </div>
+                  <div className={styles.cardholderInformationInputsWrapper}>
+                    <div
+                      className={
+                        styles.cardholderInformationInputsContainerForPositionErrorMessage
+                      }
+                    >
+                      <input
+                        name="client.address"
+                        autoComplete="off"
+                        placeholder="Address"
+                        defaultValue={formSummary.client.address}
+                        ref={register}
+                        error={errors.client?.address ? true : false}
+                        className={
+                          styles.cardholderInformationInputWithFullWidthSelf
+                        }
+                        style={{
+                          width: "100%",
+                          paddingRight: "0",
+                          color: inputsFontColor,
+                          // border: `1px solid ${borderColorForInnerElements}`,
                           background: inputsBackground,
                         }}
                       />
-                    )}
-                  </CustomMaskInput>
-                  {errors.paymentInfo?.cvc && (
-                    <p className={styles.errorInputs}>
-                      {errors.paymentInfo?.cvc.message}
-                    </p>
-                  )}
+                      {errors.client?.address && (
+                        <p className={styles.errorInputs}>
+                          {errors.client?.address.message}
+                        </p>
+                      )}
+                    </div>
+                  </div>
+
+                  <div className={styles.cardholderInformationInputsWrapper}>
+                    <div
+                      className={
+                        styles.cardholderInformationInputsContainerForPositionErrorMessageState
+                      }
+                      style={{ color: inputsFontColor }}
+                    >
+                      <Autocomplete
+                        disablePortal
+                        onChange={(event, newValue) => {
+                          console.log(newValue)
+                          newValue
+                            ? extractStateId(newValue)
+                            : setStatesId(null)
+                        }}
+                        options={states.map((state) => state.name)}
+                        renderInput={(params) => (
+                          <div ref={params.InputProps.ref}>
+                            <input
+                              type="text"
+                              {...params.inputProps}
+                              placeholder="State"
+                              className={
+                                styles.cardholderInformationInputWithFullWidthSelfState
+                              }
+                              style={{
+                                width: "100%",
+                                paddingRight: "0",
+                                color: inputsFontColor,
+                                // border: `1px solid ${borderColorForInnerElements}`,
+                                background: inputsBackground,
+                              }}
+                            />
+                          </div>
+                        )}
+                      />
+
+                      {statesIdError && (
+                        <p className={styles.errorInputs}>Required</p>
+                      )}
+                    </div>
+                  </div>
+                  <div className={styles.cardholderInformationInputsWrapper}>
+                    <div
+                      className={
+                        styles.cardholderInformationInputSelfContainer1City
+                      }
+                      style={{ color: inputsFontColor }}
+                    >
+                      <Autocomplete
+                        disablePortal
+                        onChange={(event, newValue) => {
+                          console.log(cities)
+                          newValue ? extractCityId(newValue) : setCitiesId(null)
+                        }}
+                        options={cities.map((city) => city.name)}
+                        renderInput={(params) => (
+                          <div ref={params.InputProps.ref}>
+                            <input
+                              type="text"
+                              {...params.inputProps}
+                              className={styles.cardholderInformationInputSelf}
+                              placeholder="City"
+                              style={{
+                                width: "100%",
+                                paddingRight: "25px",
+                                boxSizing: "border-box",
+                                color: inputsFontColor,
+                                // border: `1px solid ${borderColorForInnerElements}`,
+                                background: inputsBackground,
+                              }}
+                            />
+                          </div>
+                        )}
+                      />
+
+                      {citiesIdError && (
+                        <p className={styles.errorInputs}>Required</p>
+                      )}
+                    </div>
+                    <div
+                      className={
+                        styles.cardholderInformationInputSelfContainer2
+                      }
+                    >
+                      <input
+                        name="client.zip"
+                        autoComplete="off"
+                        placeholder="ZIP"
+                        ref={register}
+                        defaultValue={formSummary.client.zip}
+                        error={errors.client?.address ? true : false}
+                        className={styles.cardholderInformationInputSelf}
+                        style={{
+                          color: inputsFontColor,
+                          // border: `1px solid ${borderColorForInnerElements}`,
+                          background: inputsBackground,
+                        }}
+                      />
+                      {errors.client?.zip && (
+                        <p className={styles.errorInputs}>
+                          {errors.client?.zip.message}
+                        </p>
+                      )}
+                    </div>
+                  </div>
+                </div>
+                <div className={styles.cardInformationWrapper}>
+                  <div className={styles.cardInformationTitleContainer}>
+                    <span
+                      className={styles.cardInformationTitleSelf}
+                      style={{ color: fontColor }}
+                    >
+                      Card information
+                    </span>
+                  </div>
+                  <div className={styles.cardholderInformationInputsWrapper}>
+                    <div
+                      className={
+                        styles.cardholderInformationInputsContainerForPositionErrorMessage
+                      }
+                    >
+                      <Cleave
+                        delimiter="-"
+                        options={{
+                          creditCard: true,
+                          onCreditCardTypeChanged: handleType,
+                        }}
+                        name="paymentInfo.cardNumber"
+                        error={errors.paymentInfo?.cardNumber ? true : false}
+                        onChange={handleNum}
+                        placeholder="Card number"
+                        className="credit-card-input-by-bookinglane"
+                        className={
+                          styles.cardholderInformationInputWithFullWidthSelf
+                        }
+                        style={{
+                          color: inputsFontColor,
+                          // border: `1px solid ${borderColorForInnerElements}`,
+                          background: inputsBackground,
+                        }}
+                      />
+
+                      {cardForPaymentSubmitError && (
+                        <p className={styles.errorInputs}>Required</p>
+                      )}
+                    </div>
+                  </div>
+                  <div className={styles.cardholderInformationInputsWrapper}>
+                    <div
+                      className={
+                        styles.cardholderInformationInputSelfContainer1
+                      }
+                    >
+                      <CustomMaskInput
+                        name="paymentInfo.month"
+                        ref={register}
+                        mask="99/99"
+                        autoComplete="off"
+                        defaultValue={`${formSummary.paymentInfo.month}/${formSummary.paymentInfo.year}`}
+                      >
+                        {() => (
+                          <input
+                            placeholder="mm/yy"
+                            autoComplete="off"
+                            error={errors.paymentInfo?.month ? true : false}
+                            className={styles.cardholderInformationInputSelf}
+                            style={{
+                              color: inputsFontColor,
+                              // border: `1px solid ${borderColorForInnerElements}`,
+                              background: inputsBackground,
+                            }}
+                          />
+                        )}
+                      </CustomMaskInput>
+                      {errors.paymentInfo?.month && (
+                        <p className={styles.errorInputs}>
+                          {errors.paymentInfo?.month.message}
+                        </p>
+                      )}
+                    </div>
+                    <div
+                      className={
+                        styles.cardholderInformationInputSelfContainer2
+                      }
+                    >
+                      <CustomMaskInput
+                        name="paymentInfo.cvc"
+                        ref={register}
+                        mask={cardType == "amex" ? "9999" : "999"}
+                        autoComplete="off"
+                        defaultValue={formSummary.paymentInfo.cvc}
+                      >
+                        {() => (
+                          <input
+                            placeholder="CVV/CVC"
+                            autoComplete="off"
+                            error={errors.paymentInfo?.cvc ? true : false}
+                            className={styles.cardholderInformationInputSelf}
+                            style={{
+                              color: inputsFontColor,
+                              // border: `1px solid ${borderColorForInnerElements}`,
+                              background: inputsBackground,
+                            }}
+                          />
+                        )}
+                      </CustomMaskInput>
+                      {errors.paymentInfo?.cvc && (
+                        <p className={styles.errorInputs}>
+                          {errors.paymentInfo?.cvc.message}
+                        </p>
+                      )}
+                    </div>
+                  </div>
+                </div>
+                <div className={styles.checkboxWrapper}>
+                  <CheckboxLabel id="input">
+                    <CheckboxInput
+                      type="checkbox"
+                      onClick={() => setChecked(!checked)}
+                      htmlFor="input"
+                    />
+                    <CheckboxSpan fontColor={fontColor}></CheckboxSpan>
+                  </CheckboxLabel>
+                  <TermsOfUse />
+                  <PrivacyPolicy />
                 </div>
               </div>
-            </div>
-            <div className={styles.checkboxWrapper}>
-              <CheckboxLabel id="input">
-                <CheckboxInput
-                  type="checkbox"
-                  onClick={() => setChecked(!checked)}
-                  htmlFor="input"
+              <div className={styles.paymentPreviewWrapper}>
+                <PreviewReusableUIComponent
+                  formData={formData}
+                  hourlyAndSeatsRedux={hourlyAndSeatsRedux}
+                  gateMeeting={gateMeeting}
+                  selectedCar={selectedCar}
+                  distance={distance}
+                  handleClickOpen={handleClickOpen}
+                  handleClickClose={handleClickClose}
+                  round={round}
+                  showCarAmount={showCarAmount}
+                  show={show}
                 />
-                <CheckboxSpan fontColor={fontColor}></CheckboxSpan>
-              </CheckboxLabel>
-              <TermsOfUse />
-              <PrivacyPolicy />
+              </div>
             </div>
             <div className={styles.buttonGroupBlock}>
               <div className={styles.buttonGroupBlockContainer}>
@@ -583,7 +638,8 @@ const PaymentUIComponent = ({
                   className={styles.buttonBackSelf}
                   style={{
                     background: backAndNextButtonsColor,
-                    color: fontColor,
+                    color: "black",
+                    border: `1px solid ${borderColorForInnerElements}`,
                   }}
                 >
                   Back
@@ -595,7 +651,8 @@ const PaymentUIComponent = ({
                   style={{
                     opacity: !checked ? "0.5" : "1",
                     background: backAndNextButtonsColor,
-                    color: fontColor,
+                    color: "black",
+                    border: `1px solid ${borderColorForInnerElements}`,
                   }}
                 >
                   Pay ${total}

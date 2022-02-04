@@ -138,6 +138,7 @@ const AdressFormwithoutReactMemo = ({
     borderRadiusesForWholeApp,
     borderColorForInnerElements,
     borderColorForOuterApp,
+    BackgroundImage,
   } = useContext(ThemeContext)
 
   const [card, setCard] = useState()
@@ -221,7 +222,9 @@ const AdressFormwithoutReactMemo = ({
   return (
     <div
       className={styles.mainWrapper}
-      style={{ backgroundColor: ThemeProviderAppBackgroundColor }}
+      style={{
+        background: ThemeProviderAppBackgroundColor,
+      }}
     >
       <FormProvider {...methods} style={{ width: "100%" }}>
         <form onSubmit={handleSubmit(onSubmit)} style={{ width: "100%" }}>
@@ -302,7 +305,7 @@ const AdressFormwithoutReactMemo = ({
                                   style={{
                                     width: "100%",
                                     color: inputsFontColor,
-                                    border: `1px solid ${borderColorForInnerElements}`,
+                                    // border: `1px solid ${borderColorForInnerElements}`,
                                     background: inputsBackground,
                                   }}
                                 />
@@ -320,7 +323,7 @@ const AdressFormwithoutReactMemo = ({
                               autoComplete="off"
                               style={{
                                 color: inputsFontColor,
-                                border: `1px solid ${borderColorForInnerElements}`,
+                                // border: `1px solid ${borderColorForInnerElements}`,
                                 background: inputsBackground,
                               }}
                               defaultValue={null}
@@ -351,7 +354,7 @@ const AdressFormwithoutReactMemo = ({
                           style={{
                             color: inputsFontColor,
                             border: !redBorderOnSubmitForDate
-                              ? `1px solid ${borderColorForInnerElements}`
+                              ? `none`
                               : `1px solid red`,
                             background: inputsBackground,
                           }}
@@ -403,7 +406,7 @@ const AdressFormwithoutReactMemo = ({
                                 redBorderOnSubmitForTime5 ||
                                 redBorderOnSubmitForTime6
                                   ? `1px solid red`
-                                  : `1px solid ${borderColorForInnerElements}`,
+                                  : `none`,
                               background: inputsBackground,
                               textAlign: "right",
                               paddingRight: "78px",
@@ -424,7 +427,7 @@ const AdressFormwithoutReactMemo = ({
                                 handleChangeAMPM(e)
                               }}
                               style={{
-                                color: fontColor,
+                                color: inputsFontColor,
                                 background:
                                   AMPM == "AM"
                                     ? `${hoverColor}`
@@ -445,7 +448,7 @@ const AdressFormwithoutReactMemo = ({
                                 handleChangeAMPM(e)
                               }}
                               style={{
-                                color: fontColor,
+                                color: inputsFontColor,
                                 background: "transparent",
                                 background:
                                   AMPM == "PM"
@@ -643,7 +646,7 @@ const AdressFormwithoutReactMemo = ({
               className={styles.buttonNextSelf}
               style={{
                 background: backAndNextButtonsColor,
-                color: fontColor,
+                color: "black",
                 border: `1px solid ${borderColorForInnerElements}`,
               }}
             >

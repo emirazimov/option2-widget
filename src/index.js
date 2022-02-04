@@ -17,15 +17,15 @@ head.innerHTML += `<link
       href="https://bookinglane-widgets.s3.us-east-2.amazonaws.com/Global-widget-files/widget.css"
     />`
 
-var ThemeProviderAppBackgroundColor = "white"
+var ThemeProviderAppBackgroundColor = "black"
 
-var fontColor = "black"
+var fontColor = "white"
 
 var borderRadiusesForInnerElements = window.borderRadiusesForInnerElements
 
 var borderRadiusesForWholeApp = window.borderRadiusesForWholeApp
 
-var borderColorForInnerElements = "black"
+var borderColorForInnerElements = "white"
 
 var borderColorForOuterApp = window.borderColorForOuterApp
 
@@ -45,6 +45,7 @@ var bookNowIconFontAndCircleBorderColor =
   window.bookNowIconFontAndCircleBorderColor
 
 var bookNowIconBackgroundColor = window.bookNowIconBackgroundColor
+var BackgroundImage = window.BackgroundImage
 // font-color-for-customize
 
 function Main() {
@@ -67,6 +68,7 @@ function Main() {
           inputsBackground,
           bookNowIconFontAndCircleBorderColor,
           bookNowIconBackgroundColor,
+          BackgroundImage,
         }}
       >
         <App />

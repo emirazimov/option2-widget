@@ -1,7 +1,7 @@
-@use './_AppBackgroundColor.module.scss' as *;
-@use './_FontColor.module.scss' as *;
-@use './_ColorsForCustomize.module.scss' as *;
-@use './_BorderRadiuses.module.scss' as *;
+@use "./_AppBackgroundColor.module.scss" as *;
+@use "./_FontColor.module.scss" as *;
+@use "./_ColorsForCustomize.module.scss" as *;
+@use "./_BorderRadiuses.module.scss" as *;
 
 $buttons-margin-bottom: 15px;
 
@@ -10,10 +10,11 @@ $buttons-margin-bottom: 15px;
   height: 42px;
   display: flex;
   flex-direction: row;
+  justify-content: center;
 }
 
 @mixin buttonBackSelf {
-  width: 100%;
+  width: 300px;
   height: 100%;
   cursor: pointer;
   background: $back-and-next-buttons-color;
@@ -27,7 +28,7 @@ $buttons-margin-bottom: 15px;
   }
 }
 @mixin buttonNextSelf {
-  width: 100%;
+  width: 300px;
   height: 100%;
   cursor: pointer;
   border: none;

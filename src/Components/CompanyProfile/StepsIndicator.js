@@ -77,7 +77,7 @@ import { setHourlyRedux } from "../../Redux/hourly-reducer"
 //     },
 //   },
 // }))
-const CompanyProfile = ({
+const StepsIndicator = ({
   initializing,
   profile,
   getCompanyProfile,
@@ -123,91 +123,40 @@ const CompanyProfile = ({
   } = useContext(ThemeContext)
 
   return (
-    <>
-      {/* {isMobile ? <> <Grid container direction="row"
-                justify="space-between"
-                alignItems="center"
-                className={classes.companyContainer}>
-                <Grid item>
-                    <img src={profile.companyLogoPath} className={classes.companyLogo} alt='companyLogo' />
-                </Grid>
-                <Grid item xs={5}>
-                    <Typography className={classes.companyName}>{profile.companyName}</Typography>
-                </Grid>
-                <Grid item>
-                    <span style={{ cursor: 'pointer' }} onClick={() => { handleCloseDialog(false); setActiveStep(0) }}>
-                        <CloseWidgetIcon />
-                    </span>
-                </Grid>
-            </Grid>
-                <Divider orientation='horizontal' variant='fullWidth' />
-            </> : */}
-      {initializing ? (
-        <div
-          className={styles.companyProfileColumn}
-          style={{ background: "transparent" }}
-        >
-          <div
-            // container
-            // direction="row"
-            // justify="space-between"
-            // alignItems="center"
-            // wrap="nowrap"
-            // className={classes.companyContainer}
-            className={styles.companyProfileWrapper}
-            style={{ background: "white" }}
-          >
-            <div className={styles.companyProfileImageContainer}>
-              <img
-                src={profile.companyLogoPath}
-                // className={classes.companyLogo}
-                alt="companyLogo"
-                className={styles.companyProfileImageSelf}
-              />
-            </div>
-            <div
-              // item
-              // xs={7}
-              // md={7}
-              // lg={8}
-              // xl={8}
-              className={styles.companyProfileNameContainer}
-            >
-              <span
-                className={styles.companyProfileNameSelf}
-                style={{ color: "black" }}
-              >
-                {profile.companyName}
-              </span>
-            </div>
-            {/* {smallDevices && ( */}
-            {/* <div className={styles.companyProfileCloseIconContainer}>
-              <div
-                // style={{ cursor: "pointer", marginRight: "6px" }}
-                className={styles.companyProfileCloseIconSelf}
-                onClick={() => {
-                  setExpanded()
-                  setActiveStep(0)
-                  setBackgroundScrollStop(false)
-                  setResetWidgetInputs(true)
-                  setGotAddressError(false)
-                  setIsAirportPickupIncluded(false)
-                  setGateMeetingRedux(false)
-
-                  setShowCarsWithSafetySeat(false)
-                  setHourlyRedux(false)
-                }}
-              >
-                
-                <CloseWidgetIcon color={fontColor} />
-                
-              </div>
-            </div> */}
-            {/* )} */}
-          </div>
-        </div>
-      ) : null}
-    </>
+    <div className={styles.stepsIndicators} style={{ background: "white" }}>
+      <span
+        style={{
+          opacity: activeStep == 0 ? "1" : "0.5",
+          color: "black",
+        }}
+      >
+        Price Quote
+      </span>
+      <span
+        style={{
+          opacity: activeStep == 1 ? "1" : "0.5",
+          color: "black",
+        }}
+      >
+        Select Vehicle
+      </span>
+      <span
+        style={{
+          opacity: activeStep == 2 ? "1" : "0.5",
+          color: "black",
+        }}
+      >
+        Preview
+      </span>
+      <span
+        style={{
+          opacity: activeStep == 3 ? "1" : "0.5",
+          color: "black",
+        }}
+      >
+        Payment
+      </span>
+    </div>
   )
 }
 
@@ -218,8 +167,6 @@ const mapStateToProps = (state) => {
   }
 }
 
-const mapDispatchToProps = {}
-
 export default connect(mapStateToProps, {
   getCompanyProfile,
   setResetWidgetInputs,
@@ -228,4 +175,4 @@ export default connect(mapStateToProps, {
   setGateMeetingRedux,
   setShowCarsWithSafetySeat,
   setHourlyRedux,
-})(CompanyProfile)
+})(StepsIndicator)

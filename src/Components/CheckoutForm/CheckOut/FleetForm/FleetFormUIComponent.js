@@ -8,6 +8,32 @@ import IncorrectAddressError from "../../IncorrectAdressError/IncorrectAddressEr
 import styles from "./FleetForm.module.scss"
 import { Modal } from "../../../Helpers/Modal/Modal"
 import ThemeContext from "../../../../context"
+import Slider from "react-slick"
+import "slick-carousel/slick/slick.css"
+import "slick-carousel/slick/slick-theme.css"
+import "./FleetForm.css"
+
+function SampleNextArrow(props) {
+  const { className, style, onClick } = props
+  return (
+    <div
+      className={className}
+      style={{ ...style, display: "block", right: "0", zIndex: "30" }}
+      onClick={onClick}
+    />
+  )
+}
+
+function SamplePrevArrow(props) {
+  const { className, style, onClick } = props
+  return (
+    <div
+      className={className}
+      style={{ ...style, display: "block", left: "0", zIndex: "30" }}
+      onClick={onClick}
+    />
+  )
+}
 
 const FleetForm = ({
   cars,
@@ -37,6 +63,46 @@ const FleetForm = ({
 
   const carTextColor = "white"
   const car = [cars[0], cars[1]]
+
+  const settings = {
+    dots: true,
+    infinite: true,
+    speed: 500,
+    slidesToShow: 1,
+    slidesToScroll: 1,
+    nextArrow: <SampleNextArrow />,
+    prevArrow: <SamplePrevArrow />,
+    appendDots: (dots) => (
+      <div
+        style={{
+          position: "absolute",
+          height: "6px",
+          backgroundColor: "transparent",
+          // borderRadius: "10px",
+          padding: "0",
+          bottom: "10px",
+        }}
+      >
+        <ul style={{ margin: "0px", paddingLeft: "0px", textAlign: "center" }}>
+          {dots}
+        </ul>
+      </div>
+    ),
+    // customPaging: function (i) {
+    //   return (
+    //     <div
+    //     // style={{
+    //     //   width: "3px",
+    //     //   height: "3px",
+    //     //   background: "red",
+
+    //     //   // bottom: "6px",
+    //     // }}
+    //     ></div>
+    //   )
+    // },
+    dotsClass: "button__bar",
+  }
 
   const {
     ThemeProviderAppBackgroundColor,
@@ -126,70 +192,62 @@ const FleetForm = ({
                     }}
                     className={
                       car?.id === carCard
-                        ? styles.carContainerSelected
-                        : styles.carContainer
+                        ? styles.carContainerColumnPosSelected
+                        : styles.carContainerColumnPos
                     }
-                    key={`${car?.id}${car?.name}`}
                     style={{
-                      background: `${backAndNextButtonsColor}`,
+                      background: `${ThemeProviderAppBackgroundColor}`,
                       border: `1px solid ${borderColorForInnerElements}`,
                     }}
                   >
-                    <div className={styles.carImageBlock}>
-                      {car.isBoosterSeatsExist == false &&
-                        car.isBoosterSeatsExist == false &&
-                        formData.showCarsWithSafetySeat == true && (
-                          <span className={styles.safetySeatNotAvailable}>
-                            Safety Seat N/A
-                          </span>
-                        )}
-                      <Carousel
-                        autoPlay={false}
-                        animation="slide"
-                        className={styles.carImageSelf}
-                        style={{ width: "100%" }}
-                        navButtonsProps={{
-                          style: {
-                            width: "13px",
-                            height: "13px",
-                            marginTop: "8px",
-                            zIndex: "20",
-                          },
-                        }}
-                        indicatorIconButtonProps={{
-                          style: {
-                            "&:hover": {
-                              "&$button": {
-                                backgroundColor: "#10B7EC",
-                                filter: "brightness(120%)",
-                                opacity: "0.4",
-                              },
-                            },
-                            width: "5px",
-                            height: "5px",
-                            color: "grey",
-                            margin: "auto 4px",
-                          },
-                        }}
-                        activeIndicatorIconButtonProps={{
-                          style: {
-                            color: "white",
-                          },
-                        }}
-                        indicatorContainerProps={{
-                          style: {
-                            bottom: "5px",
-                            position: "absolute",
-                            zIndex: "10",
-                            justifyContent: "center",
-                            paddingTop: "45px",
-                          },
-                        }}
-                      >
-                        {car?.imageUrls?.length !== 0 ? (
-                          car?.imageUrls?.map((url) => (
+                    <div
+                      className={styles.carContainer}
+                      key={`${car?.id}${car?.name}`}
+                    >
+                      <div className={styles.carImageBlock}>
+                        {car.isBoosterSeatsExist == false &&
+                          car.isBoosterSeatsExist == false &&
+                          formData.showCarsWithSafetySeat == true && (
+                            <span className={styles.safetySeatNotAvailable}>
+                              Safety Seat N/A
+                            </span>
+                          )}
+                        <Slider {...settings}>
+                          {car?.imageUrls?.length !== 0 ? (
+                            car?.imageUrls?.map((url) => (
+                              <span
+                                key={url.id}
+                                // variant="outlined"
+                                // color="primary"
+                                style={{ height: "100%" }}
+                              >
+                                <div
+                                  className={styles.orSimiliar}
+                                  style={{
+                                    background: ThemeProviderAppBackgroundColor,
+                                    color: fontColor,
+                                  }}
+                                >
+                                  or similar
+                                </div>
+                                <img
+                                  src={url?.path}
+                                  key={url?.id}
+                                  alt="car"
+                                  className={styles.carImageSelf}
+                                  onClick={(event) => {
+                                    handleClickOpen(car?.id)
+                                  }}
+                                  style={{
+                                    width: !isMobile ? "100%" : "100%",
+                                    height: !isMobile ? "220px" : "116px",
+                                  }}
+                                />
+                              </span>
+                            ))
+                          ) : (
                             <>
-                              <div
+                              <span
                                 className={styles.orSimiliar}
                                 style={{
                                   background: backAndNextButtonsColor,
@@ -197,258 +255,234 @@ const FleetForm = ({
                                 }}
                               >
                                 or similar
-                              </div>
+                              </span>
+
                               <img
-                                src={url?.path}
-                                key={url?.id}
-                                alt="car"
+                                src={
+                                  "https://fl-1.cdn.flockler.com/embed/not-found.png"
+                                }
                                 className={styles.carImageSelf}
-                                onClick={(event) => {
-                                  handleClickOpen(car?.id)
-                                }}
+                                alt="car"
                               />
                             </>
-                          ))
-                        ) : (
-                          <>
-                            <span
-                              className={styles.orSimiliar}
-                              style={{
-                                background: backAndNextButtonsColor,
-                                color: fontColor,
-                              }}
-                            >
-                              or similar
-                            </span>
-
-                            <img
-                              src={
-                                "https://fl-1.cdn.flockler.com/embed/not-found.png"
-                              }
-                              className={styles.carImageSelf}
-                              alt="car"
-                            />
-                          </>
-                        )}
-                      </Carousel>
-                    </div>
-                    <div className={styles.carDescriptionTextBlock}>
-                      <div className={styles.carDescriptionTextContainer}>
-                        <span
-                          className={styles.carModel}
-                          style={{
-                            color: fontColor,
-                          }}
-                        >
-                          {car?.make} {car?.model}
-                        </span>
-                        <div className={styles.detailedDescription}>
-                          <div
-                            className={styles.detailedDescriptionTitleContainer}
+                          )}
+                        </Slider>
+                      </div>
+                      <div className={styles.carDescriptionTextBlock}>
+                        <div className={styles.carDescriptionTextContainer}>
+                          <span
+                            className={styles.carModel}
+                            style={{
+                              color: fontColor,
+                            }}
                           >
-                            <span
-                              className={styles.detailedDescriptionTitleSelf}
-                              style={{
-                                color: fontColor,
-                              }}
-                            >
-                              Type
-                            </span>
-                          </div>
-                          <div
-                            className={
-                              styles.detailedDescriptionPointedLineContainer
-                            }
-                          >
+                            {car?.make} {car?.model}
+                          </span>
+                          <div className={styles.detailedDescription}>
                             <div
                               className={
-                                styles.detailedDescriptionPointedLineSelf
+                                styles.detailedDescriptionTitleContainer
                               }
-                              style={{
-                                color: fontColor,
-                              }}
-                            />
-                          </div>
-                          <div
-                            className={styles.detailedDescriptionValueContainer}
-                          >
-                            <span
-                              className={styles.detailedDescriptionValueSelf}
-                              style={{
-                                color: fontColor,
-                              }}
                             >
-                              {car?.type}
-                            </span>
-                          </div>
-                        </div>
-
-                        <div className={styles.detailedDescription}>
-                          <div
-                            className={styles.detailedDescriptionTitleContainer}
-                          >
-                            <span
-                              className={styles.detailedDescriptionTitleSelf}
-                              style={{
-                                color: fontColor,
-                              }}
+                              <span
+                                className={styles.detailedDescriptionTitleSelf}
+                                style={{
+                                  color: fontColor,
+                                }}
+                              >
+                                Type
+                              </span>
+                            </div>
+                            {/* <div
+                              className={
+                                styles.detailedDescriptionPointedLineContainer
+                              }
                             >
-                              Capacity
-                            </span>
-                          </div>
-                          <div
-                            className={
-                              styles.detailedDescriptionPointedLineContainer
-                            }
-                          >
+                              <div
+                                className={
+                                  styles.detailedDescriptionPointedLineSelf
+                                }
+                                style={{
+                                  color: fontColor,
+                                }}
+                              />
+                            </div> */}
                             <div
                               className={
-                                styles.detailedDescriptionPointedLineSelf
+                                styles.detailedDescriptionValueContainer
                               }
-                              style={{
-                                color: fontColor,
-                              }}
-                            />
-                          </div>
-                          <div
-                            className={styles.detailedDescriptionValueContainer}
-                          >
-                            <span
-                              className={styles.detailedDescriptionValueSelf}
-                              style={{
-                                color: fontColor,
-                              }}
                             >
-                              {car?.capacity}
-                            </span>
+                              <span
+                                className={styles.detailedDescriptionValueSelf}
+                                style={{
+                                  color: fontColor,
+                                }}
+                              >
+                                {car?.type}
+                              </span>
+                            </div>
                           </div>
-                        </div>
 
-                        <div className={styles.detailedDescription}>
-                          <div
-                            className={styles.detailedDescriptionTitleContainer}
-                          >
-                            <span
-                              className={styles.detailedDescriptionTitleSelf}
-                              style={{
-                                color: fontColor,
-                              }}
-                            >
-                              Color
-                            </span>
-                          </div>
-                          <div
-                            className={
-                              styles.detailedDescriptionPointedLineContainer
-                            }
-                          >
+                          <div className={styles.detailedDescription}>
                             <div
                               className={
-                                styles.detailedDescriptionPointedLineSelf
+                                styles.detailedDescriptionTitleContainer
                               }
-                              style={{
-                                color: fontColor,
-                              }}
-                            />
-                          </div>
-                          <div
-                            className={styles.detailedDescriptionValueContainer}
-                          >
-                            <span
-                              className={styles.detailedDescriptionValueSelf}
-                              style={{
-                                color: fontColor,
-                              }}
                             >
-                              {car?.color}
-                            </span>
-                          </div>
-                        </div>
-
-                        <div className={styles.detailedDescription}>
-                          <div
-                            className={styles.detailedDescriptionTitleContainer}
-                          >
-                            <span
-                              className={styles.detailedDescriptionTitleSelf}
-                              style={{
-                                color: fontColor,
-                              }}
+                              <span
+                                className={styles.detailedDescriptionTitleSelf}
+                                style={{
+                                  color: fontColor,
+                                }}
+                              >
+                                Capacity
+                              </span>
+                            </div>
+                            {/* <div
+                              className={
+                                styles.detailedDescriptionPointedLineContainer
+                              }
                             >
-                              Amount
-                            </span>
-                          </div>
-                          <div
-                            className={
-                              styles.detailedDescriptionPointedLineContainer
-                            }
-                          >
+                              <div
+                                className={
+                                  styles.detailedDescriptionPointedLineSelf
+                                }
+                                style={{
+                                  color: fontColor,
+                                }}
+                              />
+                            </div> */}
                             <div
                               className={
-                                styles.detailedDescriptionPointedLineSelf
+                                styles.detailedDescriptionValueContainer
                               }
-                              style={{
-                                color: fontColor,
-                              }}
-                            />
-                          </div>
-                          <div
-                            className={styles.detailedDescriptionValueContainer}
-                          >
-                            <span
-                              className={
-                                styles.detailedDescriptionValueAmountSelf
-                              }
-                              style={{
-                                color: fontColor,
-                              }}
                             >
-                              {gateMeeting
-                                ? `$${round(car?.price, 2)}`
-                                : `$${round(car?.price, 2)}`}
-                            </span>
+                              <span
+                                className={styles.detailedDescriptionValueSelf}
+                                style={{
+                                  color: fontColor,
+                                }}
+                              >
+                                {car?.capacity}
+                              </span>
+                            </div>
+                          </div>
+
+                          <div className={styles.detailedDescription}>
+                            <div
+                              className={
+                                styles.detailedDescriptionTitleContainer
+                              }
+                            >
+                              <span
+                                className={styles.detailedDescriptionTitleSelf}
+                                style={{
+                                  color: fontColor,
+                                }}
+                              >
+                                Color
+                              </span>
+                            </div>
+                            {/* <div
+                              className={
+                                styles.detailedDescriptionPointedLineContainer
+                              }
+                            >
+                              <div
+                                className={
+                                  styles.detailedDescriptionPointedLineSelf
+                                }
+                                style={{
+                                  color: fontColor,
+                                }}
+                              />
+                            </div> */}
+                            <div
+                              className={
+                                styles.detailedDescriptionValueContainer
+                              }
+                            >
+                              <span
+                                className={styles.detailedDescriptionValueSelf}
+                                style={{
+                                  color: fontColor,
+                                }}
+                              >
+                                {car?.color}
+                              </span>
+                            </div>
+                          </div>
+
+                          <div className={styles.detailedDescription}>
+                            <div
+                              className={
+                                styles.detailedDescriptionTitleContainer
+                              }
+                            >
+                              <span
+                                className={styles.detailedDescriptionTitleSelf}
+                                style={{
+                                  color: fontColor,
+                                }}
+                              >
+                                Amount
+                              </span>
+                            </div>
+                            {/* <div
+                              className={
+                                styles.detailedDescriptionPointedLineContainer
+                              }
+                            >
+                              <div
+                                className={
+                                  styles.detailedDescriptionPointedLineSelf
+                                }
+                                style={{
+                                  color: fontColor,
+                                }}
+                              />
+                            </div> */}
+                            <div
+                              className={
+                                styles.detailedDescriptionValueContainer
+                              }
+                            >
+                              <span
+                                className={
+                                  styles.detailedDescriptionValueAmountSelf
+                                }
+                                style={{
+                                  color: fontColor,
+                                }}
+                              >
+                                {gateMeeting
+                                  ? `$${round(car?.price, 2)}`
+                                  : `$${round(car?.price, 2)}`}
+                              </span>
+                            </div>
                           </div>
                         </div>
                       </div>
                     </div>
+                    {/* <button
+                      className={
+                        car?.id === carCard
+                          ? styles.selectButtonSelected
+                          : styles.selectButton
+                      }
+                    >
+                      Select
+                    </button> */}
                   </div>
                 ))}
                 <Modal onClose={() => handleClickClose()} show={show}>
-                  <Carousel
-                    autoPlay={false}
-                    animation="slide"
-                    swipe={true}
-                    navButtonsAlwaysVisible={true}
-                    navButtonsProps={{
-                      style: {
-                        width: "1em",
-                        height: "1em",
-                      },
+                  <Slider
+                    {...settings}
+                    style={{
+                      width: !isMobile ? "550px" : "239px",
+                      height: !isMobile ? "400px" : "170px",
                     }}
-                    indicatorIconButtonProps={{
-                      style: {
-                        "&:hover": {
-                          "& $button": {
-                            backgroundColor: "#10B7EC",
-                            filter: "brightness(120%)",
-                            opacity: "0.4",
-                          },
-                        },
-                        width: "15px",
-                        height: "15px",
-                        margin: "auto 4px",
-                      },
-                    }}
-                    activeIndicatorIconButtonProps={{
-                      style: {
-                        color: "white",
-                        border: "1px solid grey",
-                        padding: "0",
-                      },
-                    }}
-                    indicatorContainerProps={{
-                      style: { bottom: "10px", position: "absolute" },
-                    }}
+                    // className={styles.modalSlider}
                   >
                     {result?.imageUrls?.map((url) => (
                       <AspectRatio
@@ -466,15 +500,15 @@ const FleetForm = ({
                           src={url?.path}
                           style={{
                             borderRadius: "8px",
-                            maxWidth: "100%",
-                            maxHeight: "100%",
+                            width: !isMobile ? "550px" : "239px",
+                            height: !isMobile ? "400px" : "170px",
                           }}
                           alt="car"
                           key={`${url?.id}${url?.path}`}
                         />
                       </AspectRatio>
                     ))}
-                  </Carousel>
+                  </Slider>
                 </Modal>
                 {Object.keys(cars).length === 0 && (
                   <div
@@ -502,7 +536,8 @@ const FleetForm = ({
                   className={styles.buttonBackSelf}
                   style={{
                     background: backAndNextButtonsColor,
-                    color: fontColor,
+                    color: "black",
+                    border: `1px solid ${borderColorForInnerElements}`,
                   }}
                 >
                   Back
@@ -517,7 +552,8 @@ const FleetForm = ({
                   style={{
                     opacity: carCard ? "1" : "0.5",
                     background: backAndNextButtonsColor,
-                    color: fontColor,
+                    color: "black",
+                    border: `1px solid ${borderColorForInnerElements}`,
                   }}
                 >
                   Next

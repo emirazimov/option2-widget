@@ -398,7 +398,7 @@ const GoogleMap = React.memo(
                                   border:
                                     redBorderOnSubmit || redBorderOnSubmit2
                                       ? `1px solid red`
-                                      : `1px solid ${borderColorForInnerElements}`,
+                                      : `none`,
                                   background: inputsBackground,
                                 }}
                                 placeholder={id === 0 ? "From" : "To"}
@@ -464,6 +464,7 @@ const GoogleMap = React.memo(
                                       key={`${id}${suggestion.description}`}
                                       {...getSuggestionItemProps(suggestion)}
                                       className={styles.itemInsideDropDown}
+                                      style={{ width: "96%" }}
                                     >
                                       {/* <MenuItem
                                         onMouseEnter={(e) => (

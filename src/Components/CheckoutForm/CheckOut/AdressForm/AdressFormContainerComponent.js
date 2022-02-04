@@ -415,7 +415,7 @@ const AdressFormContainerComponent = ({
         backAndNextButtonsColor={backAndNextButtonsColor}
         borderColorForInnerElements={borderColorForInnerElements}
         style={{
-          color: fontColorState,
+          color: "black",
         }}
         //  styles.carouselButtonsActive
       >

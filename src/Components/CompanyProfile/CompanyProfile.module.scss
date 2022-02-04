@@ -5,28 +5,35 @@
 @use "../MAINCSSFORWHOLECOMPONENTS/_BorderRadiuses.module.scss" as *;
 
 .companyProfileColumn {
+  width: 100%;
   display: flex;
   flex-direction: column;
+
   align-items: center;
 }
 
 .companyProfileWrapper {
+  width: 100%;
   display: flex;
   flex-direction: row;
+  justify-content: center;
   align-items: center;
   @include whole-app-background;
   @include side-paddings-for-whole-widget-page;
   padding-top: 10px;
   padding-bottom: 5px;
-  border-bottom: 1px solid grey;
-  border-top-left-radius: $whole-app-border-radius;
-  border-top-right-radius: $whole-app-border-radius;
+  box-shadow: 0px 8px 30px rgba(0, 0, 0, 0.08);
+  // border-bottom: 1px solid grey;
+  // border-top-left-radius: $whole-app-border-radius;
+  // border-top-right-radius: $whole-app-border-radius;
+  border-radius: 15px;
   cursor: all-scroll;
 }
 .companyProfileImageSelf {
   width: 55px;
   height: 55px;
   border-radius: 100px;
+  margin-right: 10px;
   user-select: none;
   -moz-user-select: none;
   -webkit-user-drag: none;
@@ -34,10 +41,10 @@
   -ms-user-select: none;
 }
 .companyProfileImageContainer {
-  flex-basis: 17%;
+  // flex-basis: 17%;
 }
 .companyProfileNameContainer {
-  flex-basis: 78%;
+  // flex-basis: 78%;
 }
 .companyProfileNameSelf {
   @include global-title-styles;
@@ -107,6 +114,24 @@
 .stepsIndicators {
   width: 500px;
   display: flex;
+  align-items: center;
   justify-content: space-between;
   color: grey;
+  height: 60px;
+  padding-left: 20px;
+  padding-right: 20px;
+  border-radius: 15px;
+  box-shadow: 0px 8px 30px rgba(0, 0, 0, 0.08);
+  margin-top: 30px;
+  margin-bottom: 20px;
+  @media (max-width: 867px) {
+    margin-bottom: 30px;
+  }
+  @media (max-width: 569px) {
+    width: 290px;
+    font-size: 13px;
+  }
+
+  // border-bottom: 1px solid grey;
+  // border-top: 1px solid grey;
 }

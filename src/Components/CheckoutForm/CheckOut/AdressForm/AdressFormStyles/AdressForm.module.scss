@@ -26,6 +26,9 @@ $background-position-x-for-date-time-picker: 3%;
   display: flex;
   flex-direction: row;
   align-items: center;
+  @media (max-width: 867px) {
+    flex-direction: column;
+  }
 }
 .mapContainer {
   // @include side-paddings-for-whole-widget-page;
@@ -37,7 +40,14 @@ $background-position-x-for-date-time-picker: 3%;
   width: 50%;
   height: 600px;
   order: 2;
-
+  @media (max-width: 867px) {
+    width: 100%;
+    height: 350px;
+    order: 1;
+  }
+  @media (max-width: 541px) {
+    height: 260px;
+  }
   // z-index: 5;
 }
 .mapContainerForHideMapsTagsPositioning {
@@ -45,6 +55,10 @@ $background-position-x-for-date-time-picker: 3%;
   z-index: 1;
   width: 90%;
   height: 90%;
+  @media (max-width: 867px) {
+    width: 100%;
+    height: 100%;
+  }
   // border-radius: 15px;
 }
 .mapContainerForBorder {
@@ -54,6 +68,9 @@ $background-position-x-for-date-time-picker: 3%;
 
   border-radius: 15px;
   box-shadow: 0px 8px 30px rgba(0, 0, 0, 0.1);
+  @media (max-width: 867px) {
+    padding: 0;
+  }
 }
 .inputsColumnWrapper {
   height: 100%;
@@ -62,6 +79,10 @@ $background-position-x-for-date-time-picker: 3%;
   // flex-direction: column;
   // justify-content: space-between;
   order: 1;
+  @media (max-width: 867px) {
+    width: 100%;
+    order: 2;
+  }
 }
 .underMapOptionsContainerForAirlines {
   width: 100%;
@@ -130,7 +151,7 @@ $background-position-x-for-date-time-picker: 3%;
   @include main-inputs-size-and-background-styles-etc;
   // @include addressform-inputs-with-icons;
   // padding-right: 0;
-  text-indent: 36px;
+  text-indent: 15px;
   background-position-x: $background-position-x-for-date-time-picker;
   background-position-y: 60%;
 }
@@ -217,11 +238,14 @@ $background-position-x-for-date-time-picker: 3%;
   // align-items: center;
   @include margin-top-bottom-for-adressfrom-inputs;
 }
-.safetySeatWrapper,
+
 .hourlyWrapper,
 .meetAndGreetWrapper {
   width: 50%;
   margin-right: 17px;
+}
+.safetySeatWrapper {
+  width: 48.7%;
 }
 .hourlyCounter,
 .luggageCounter {
@@ -393,7 +417,6 @@ $background-position-x-for-date-time-picker: 3%;
 
 .buttonNextSelf {
   @include buttonNextSelf;
-  width: 300px;
 }
 
 // . {

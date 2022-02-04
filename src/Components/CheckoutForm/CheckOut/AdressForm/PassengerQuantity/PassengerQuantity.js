@@ -200,7 +200,7 @@ export default React.memo(function PassengerQuantity({
             className={styles.passengerQuantityInputSelf}
             style={{
               background: backAndNextButtonsColor,
-              border: `1px solid ${borderColorForInnerElements}`,
+              // border: `1px solid ${borderColorForInnerElements}`,
               // borderBottom: `1px solid ${borderColorForInnerElements}`,
               color: inputsFontColor,
             }}

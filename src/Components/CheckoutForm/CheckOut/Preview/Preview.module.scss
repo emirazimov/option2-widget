@@ -7,6 +7,65 @@
 @use "../../../MAINCSSFORWHOLECOMPONENTS/_MainInputsStyles.module.scss" as *;
 
 @include car-descriptions;
+.carContainerColumnPos {
+  width: 100%;
+  padding: 0;
+  margin: 0;
+  opacity: 1;
+}
+.carContainer {
+  border-bottom: 1px solid grey;
+
+  padding-bottom: 22px;
+  margin-bottom: 20px;
+}
+.carImageBlock {
+  width: 50%;
+  margin-left: 20px;
+}
+.carImageSelf {
+  width: 100%;
+  height: 200px;
+  @media (max-width: 1022px) {
+    height: 156px;
+  }
+  @media (max-width: 500px) {
+    height: 116px;
+  }
+}
+.carDescriptionTextBlock {
+  padding-top: 20px;
+  // @media (max-width: 867px) {
+  //   text-align: center;
+  // }
+}
+.detailedDescription {
+  width: 80%;
+}
+.detailedDescriptionTotal {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+.detailedDescriptionValueContainerTotal {
+  // width: 55%;
+}
+.detailedDescriptionWrapper {
+  width: 100%;
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  // padding-left: 150px;
+}
+.detailedDescriptionWrapperTotal {
+  height: 45px;
+  border-top: 1px solid black;
+  margin-top: 0px;
+  margin-bottom: 0px;
+  display: flex;
+  align-items: center;
+}
 .previewWrapper {
   @include whole-app-background;
   @include side-paddings-for-whole-widget-page;
@@ -18,27 +77,75 @@
   //   padding-top: 75px;
   // }
 }
-.carContainer {
-  @include margin-top-bottom-for-adressfrom-inputs;
-  // margin: 0 auto;
-  opacity: 1;
+.reservationDetailsWrapper {
+  width: 50%;
+  margin-right: 20px;
+  order: 1;
+  @media (max-width: 867px) {
+    width: 100%;
+    order: 2;
+    margin-right: 0px;
+  }
 }
+.reservationDetailsContainer {
+  width: 100%;
+  border-radius: 15px;
+  box-shadow: 0px 8px 20px 4px rgba(0, 0, 0, 0.08);
+  padding-top: 20px;
+}
+// .carContainer {
+//   // @include margin-top-bottom-for-adressfrom-inputs;
+//   // margin: 0 auto;
+//   // width: auto;
+//   // height: 100%;
+//   opacity: 1;
+// }
+// .carImageBlock {
+//   height: 100%;
+// }
 
 .previewTitleContainer {
   margin-top: 15px;
-  margin-bottom: 15px;
+  margin-bottom: 35px;
+  text-align: center;
 }
 .previewTitleSelf {
   @include global-title-styles;
 }
+.previewRowPos {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  @media (max-width: 867px) {
+    flex-direction: column;
+  }
+}
 .directionsContainer {
   // padding-bottom: -100px;
   // height: 200px;
-  // position: relative;
+  width: 50%;
+  height: 100%;
   // width: 100%;
   // height: 200px;
+  order: 2;
   z-index: 10;
+  @media (max-width: 867px) {
+    width: 100%;
+    order: 1;
+  }
   // padding-bottom: -40px;
+}
+.directionsSelf {
+  // padding: 15px;
+  padding: 20px;
+
+  border-radius: 15px;
+  box-shadow: 0px 8px 30px rgba(0, 0, 0, 0.1);
+  @media (max-width: 867px) {
+    padding: 10px;
+    border: 1px solid white;
+    margin-bottom: 25px;
+  }
 }
 // .directionsContainerForPositioning {
 //   position: absolute;
@@ -50,13 +157,17 @@
   margin-bottom: 16px;
 }
 .reservationDetailsItemContainer {
+  width: 100%;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
 }
 .reservationDetailsItemTitleContainer {
+  width: 30%;
+  margin-right: 20px;
 }
 .reservationDetailsItemTitleSelf {
+  white-space: nowrap;
   color: $font-color;
 }
 .reservationDetailsItemPointedLineContainer {
@@ -72,14 +183,16 @@
 
 .reservationDetailsItemValueContainer {
   display: inline;
-  max-width: 60%;
-  text-align: right;
+  text-align: left;
+  width: 70%;
+  // text-align: right;
 }
 .reservationDetailsItemValueSelf {
   display: inline;
   // fontSize: "16px",
+
   width: 100%;
-  color: $font-color;
+  color: grey;
 }
 
 .notesTextFieldContainer {
