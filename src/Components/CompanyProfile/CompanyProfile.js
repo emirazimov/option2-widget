@@ -155,7 +155,7 @@ const CompanyProfile = ({
             // wrap="nowrap"
             // className={classes.companyContainer}
             className={styles.companyProfileWrapper}
-            style={{ background: "red" }}
+            style={{ background: "white" }}
           >
             <div className={styles.companyProfileImageContainer}>
               <img
