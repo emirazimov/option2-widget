@@ -315,6 +315,7 @@ export default React.memo(function SafetySeat({
                 onBlur={() => {
                   boosterSeat == '' && setBoosterSeat(0)
                 }}
+                disabled={safetySeat ? false : true}
                 // className="boosterSeat"
                 value={boosterSeat}
                 size='1'
@@ -469,6 +470,7 @@ export default React.memo(function SafetySeat({
                 onBlur={() => {
                   childSafetySeat == '' && setChildSafetySeat(0)
                 }}
+                disabled={safetySeat ? false : true}
                 // className="passenger"
                 value={childSafetySeat}
                 size='1'

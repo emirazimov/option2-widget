@@ -270,6 +270,7 @@ const Luggage = ({ luggage, setLuggage, isGateMeeting }) => {
             onBlur={() => {
               luggage == '' && setLuggage(0)
             }}
+            disabled={isGateMeeting ? false : true}
             value={luggage}
             size='1'
             // style={{

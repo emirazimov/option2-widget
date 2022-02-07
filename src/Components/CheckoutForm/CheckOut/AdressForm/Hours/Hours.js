@@ -157,6 +157,7 @@ const Hours = ({
             onBlur={() => {
               hoursAddressForm == '' && setHoursAddressForm(1)
             }}
+            disabled={hourly ? false : true}
             value={hoursAddressForm}
             size='1'
             // style={{
