@@ -1,14 +1,14 @@
-@use "./Components/MAINCSSFORWHOLECOMPONENTS/_AppBackgroundColor.module.scss" as *;
-@use "./Components/MAINCSSFORWHOLECOMPONENTS/_BookNowIcon.module.scss" as *;
+@use './Components/MAINCSSFORWHOLECOMPONENTS/_AppBackgroundColor.module.scss' as *;
+@use './Components/MAINCSSFORWHOLECOMPONENTS/_BookNowIcon.module.scss' as *;
 
 body,
 html {
-  font-family: "Vazir", sans-serif;
+  font-family: 'Vazir', sans-serif;
 }
 
 .mainBookNowWrapper {
   width: 100%;
-  height: 100vh;
+  height: 100%;
   overflow-x: hidden;
   background: white;
 }
@@ -130,7 +130,7 @@ html {
   left: 11%;
   color: $main-icon-color;
   white-space: nowrap;
-  font-family: "Roboto";
+  font-family: 'Roboto';
 }
 
 .bookNowMobile {
@@ -140,7 +140,7 @@ html {
   left: 11%;
   color: $main-icon-color;
   white-space: nowrap;
-  font-family: "Roboto";
+  font-family: 'Roboto';
 }
 .mainBookNowContainer {
   // width: 104px;
@@ -197,7 +197,7 @@ html {
   padding: 0px;
   border-bottom-left-radius: $whole-app-border-radius;
   border-bottom-right-radius: $whole-app-border-radius;
-
+  padding-bottom: 50px;
   // @include whole-app-background;
   background: transparent;
   &::-webkit-scrollbar {

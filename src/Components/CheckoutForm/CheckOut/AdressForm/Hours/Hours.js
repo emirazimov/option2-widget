@@ -1,21 +1,21 @@
-import { makeStyles } from "@material-ui/core"
+import { makeStyles } from '@material-ui/core'
 // import Grid from "@material-ui/core/Grid"
 // import Typography from "@material-ui/core/Typography"
-import React, { useContext } from "react"
-import { useFormContext } from "react-hook-form"
-import { MinusIcon, PlusIcon } from "../../../../../assets/icons"
-import styles from "./Hours.module.scss"
-import "../../index.css"
-import ThemeContext from "../../../../../context"
-import { HourlyIcon } from "../../../../../assets/icons"
+import React, { useContext } from 'react'
+import { useFormContext } from 'react-hook-form'
+import { MinusIcon, PlusIcon } from '../../../../../assets/icons'
+import styles from './Hours.module.scss'
+import '../../index.css'
+import ThemeContext from '../../../../../context'
+import { HourlyIcon } from '../../../../../assets/icons'
 
 const useStyles = makeStyles((theme) => ({
   mainPlusMinusContainer: {
-    height: "34px",
+    height: '34px',
 
-    borderBottom: "2px solid #AC8159",
-    transition: "200ms",
-    "&:hover": { borderBottom: "2px solid white", transition: "200ms" },
+    borderBottom: '2px solid #AC8159',
+    transition: '200ms',
+    '&:hover': { borderBottom: '2px solid white', transition: '200ms' },
   },
 }))
 
@@ -24,6 +24,7 @@ const Hours = ({
   setHourly,
   hoursAddressForm,
   setHoursAddressForm,
+  hourly,
 }) => {
   const classes = useStyles()
 
@@ -74,6 +75,10 @@ const Hours = ({
       // alignItems="center"
       // style={{ marginTop: "-4px" }}
       className={styles.hoursCounterWrapper}
+      style={{
+        opacity: hourly ? '1' : '0.5',
+        cursor: hourly ? 'auto' : 'no-drop',
+      }}
     >
       <div className={styles.hoursCounterIconAndTitleContainer}>
         {/* <div container direction="row" alignItems="center"> */}
@@ -133,27 +138,27 @@ const Hours = ({
         >
           <input
             ref={register}
-            name="hours"
+            name='hours'
             // className="passenger"
 
             onClick={(event) => {
-              event.currentTarget.type = "text"
+              event.currentTarget.type = 'text'
               const { value } = event.target
               const position = value.length
               event.target.setSelectionRange(position, position)
-              event.currentTarget.type = "number"
+              event.currentTarget.type = 'number'
             }}
             onChange={(e) => {
               setHoursAddressForm(e.target.value)
             }}
             onFocus={(e) => {
-              hoursAddressForm == 1 && setHoursAddressForm("")
+              hoursAddressForm == 1 && setHoursAddressForm('')
             }}
             onBlur={() => {
-              hoursAddressForm == "" && setHoursAddressForm(1)
+              hoursAddressForm == '' && setHoursAddressForm(1)
             }}
             value={hoursAddressForm}
-            size="1"
+            size='1'
             // style={{
             //   // pointerEvents: "none",
             //   minWidth: "34px",
@@ -177,7 +182,7 @@ const Hours = ({
               // borderBottom: `1px solid ${borderColorForInnerElements}`,
               color: inputsFontColor,
             }}
-            type="number"
+            type='number'
             className={styles.hoursCounterInput}
           />
         </div>

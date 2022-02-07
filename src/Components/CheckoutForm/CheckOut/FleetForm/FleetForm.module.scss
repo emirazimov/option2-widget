@@ -1,9 +1,9 @@
-@use "../../../MAINCSSFORWHOLECOMPONENTS/AppBackgroundColor.module" as *;
-@use "../../../MAINCSSFORWHOLECOMPONENTS/FontColor.module" as *;
-@use "../../../MAINCSSFORWHOLECOMPONENTS/SidePaddings.module" as *;
-@use "../../../MAINCSSFORWHOLECOMPONENTS/_ButtonsGroupBackAndNext.module.scss"
+@use '../../../MAINCSSFORWHOLECOMPONENTS/AppBackgroundColor.module' as *;
+@use '../../../MAINCSSFORWHOLECOMPONENTS/FontColor.module' as *;
+@use '../../../MAINCSSFORWHOLECOMPONENTS/SidePaddings.module' as *;
+@use '../../../MAINCSSFORWHOLECOMPONENTS/_ButtonsGroupBackAndNext.module.scss'
   as *;
-@use "../../../MAINCSSFORWHOLECOMPONENTS/_CarDescription.module.scss" as *;
+@use '../../../MAINCSSFORWHOLECOMPONENTS/_CarDescription.module.scss' as *;
 // car-description-model-name
 
 // car-description-specifications
@@ -265,7 +265,7 @@
 }
 
 .carouselModal {
-  width: "100%";
+  width: '100%';
 }
 .bookinglanes_fleet_cars_carousel_dots {
 }

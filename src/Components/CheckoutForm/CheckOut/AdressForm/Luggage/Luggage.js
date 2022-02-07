@@ -1,30 +1,30 @@
-import { makeStyles } from "@material-ui/core"
+import { makeStyles } from '@material-ui/core'
 // import Grid from "@material-ui/core/Grid"
 // import Typography from "@material-ui/core/Typography"
-import React, { useContext } from "react"
-import { useFormContext } from "react-hook-form"
-import { LuggageIcon } from "../../../../../assets/icons"
-import ThemeContext from "../../../../../context"
+import React, { useContext } from 'react'
+import { useFormContext } from 'react-hook-form'
+import { LuggageIcon } from '../../../../../assets/icons'
+import ThemeContext from '../../../../../context'
 import {
   // HourlyIcon,
   // LuggageIcon,
   MinusIcon,
   PlusIcon,
-} from "../../../../../assets/icons"
-import "../../index.css"
-import styles from "./Luggage.module.scss"
+} from '../../../../../assets/icons'
+import '../../index.css'
+import styles from './Luggage.module.scss'
 
 const useStyles = makeStyles((theme) => ({
   mainPlusMinusContainer: {
-    height: "34px",
+    height: '34px',
 
-    borderBottom: "2px solid #AC8159",
-    transition: "200ms",
-    "&:hover": { borderBottom: "2px solid white", transition: "200ms" },
+    borderBottom: '2px solid #AC8159',
+    transition: '200ms',
+    '&:hover': { borderBottom: '2px solid white', transition: '200ms' },
   },
 }))
 
-const Luggage = ({ luggage, setLuggage }) => {
+const Luggage = ({ luggage, setLuggage, isGateMeeting }) => {
   const classes = useStyles()
 
   const { register } = useFormContext()
@@ -169,6 +169,10 @@ const Luggage = ({ luggage, setLuggage }) => {
       // alignItems="center"
       // style={{ marginTop: "13px" }}
       className={styles.luggageQuantityWrapper}
+      style={{
+        opacity: isGateMeeting ? '1' : '0.5',
+        cursor: isGateMeeting ? 'auto' : 'no-drop',
+      }}
     >
       <div
         // item
@@ -248,26 +252,26 @@ const Luggage = ({ luggage, setLuggage }) => {
         >
           <input
             ref={register}
-            name="hours"
+            name='hours'
             // className="luggage"
             onClick={(event) => {
-              event.currentTarget.type = "text"
+              event.currentTarget.type = 'text'
               const { value } = event.target
               const position = value.length
               event.target.setSelectionRange(position, position)
-              event.currentTarget.type = "number"
+              event.currentTarget.type = 'number'
             }}
             onChange={(e) => {
               setLuggage(e.target.value)
             }}
             onFocus={(e) => {
-              luggage == 0 && setLuggage("")
+              luggage == 0 && setLuggage('')
             }}
             onBlur={() => {
-              luggage == "" && setLuggage(0)
+              luggage == '' && setLuggage(0)
             }}
             value={luggage}
-            size="1"
+            size='1'
             // style={{
             //   // pointerEvents: "none",
             //   minWidth: "34px",
@@ -291,7 +295,7 @@ const Luggage = ({ luggage, setLuggage }) => {
               // borderBottom: `1px solid ${borderColorForInnerElements}`,
               color: inputsFontColor,
             }}
-            type="number"
+            type='number'
             className={styles.luggageQuantityInputSelf}
           />
         </div>

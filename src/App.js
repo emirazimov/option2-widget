@@ -3,35 +3,36 @@
 // import AccordionSummary from "@material-ui/core/AccordionSummary"
 // import Card from "@material-ui/core/Card"
 // import CssBaseline from "@material-ui/core/CssBaseline"
-import Slide from "@material-ui/core/Slide"
+import Slide from '@material-ui/core/Slide'
 // import { ThemeProvider } from "@material-ui/styles"
 // import { isMobile } from 'react-device-detect';
-import React, { useContext, useEffect, useState } from "react"
-import Draggable from "react-draggable"
-import { connect } from "react-redux"
+import React, { useContext, useEffect, useState } from 'react'
+import Draggable from 'react-draggable'
+import { connect } from 'react-redux'
 import {
   BookNowIcon,
   BookNowIconForMobile,
   // CloseWidgetIcon,
-} from "./assets/icons"
-import CheckOut from "./Components/CheckoutForm/CheckOut/CheckOut"
-import CompanyProfile from "./Components/CompanyProfile/CompanyProfile"
+} from './assets/icons'
+import CheckOut from './Components/CheckoutForm/CheckOut/CheckOut'
+import CompanyProfile from './Components/CompanyProfile/CompanyProfile'
 import {
   getCompanyProfile,
   initializing,
-} from "./Redux/company-profile-reducer"
-import { getCompanyToken } from "./Redux/company-token-reducer"
+} from './Redux/company-profile-reducer'
+import { getCompanyToken } from './Redux/company-token-reducer'
 // import theme from "./Theme"
 
-import { userScreenHeight, userScreenWidth, useStyles } from "./AppStyles"
-import { AppBar, useMediaQuery } from "@material-ui/core"
-import { useRef } from "react"
+import { userScreenHeight, userScreenWidth, useStyles } from './AppStyles'
+import { AppBar, useMediaQuery } from '@material-ui/core'
+import { useRef } from 'react'
 // import Slide1 from "@mui/material/Slide"
-import { Preloader } from "./Components/Helpers/Preloader/Preloader"
-import styles from "./AppStyles.module.scss"
-import ThemeContext from "./context"
-import styled from "styled-components"
-import StepsIndicator from "./Components/CompanyProfile/StepsIndicator"
+import { Preloader } from './Components/Helpers/Preloader/Preloader'
+import styles from './AppStyles.module.scss'
+import ThemeContext from './context'
+import styled from 'styled-components'
+import StepsIndicator from './Components/CompanyProfile/StepsIndicator'
+import poweredByBookinglane from './assets/PoweredByBookinglane.png'
 // import { DragDropContext, Droppable, Draggable } from "react-beautiful-dnd"
 
 let xOrdinate = 0
@@ -73,7 +74,7 @@ const App = (props) => {
 
   const handleClose = () => {
     setExpanded(false)
-    document.body.style.overflowY = "unset"
+    document.body.style.overflowY = 'unset'
     // position.current.y = 10
 
     if (userScreenWidth - xOrdinate < 500) {
@@ -145,9 +146,9 @@ const App = (props) => {
 
   React.useEffect(() => {
     if (backgroundScrollStop) {
-      document.body.style.overflow = "hidden"
+      document.body.style.overflow = 'hidden'
     } else {
-      document.body.style.overflow = "unset"
+      document.body.style.overflow = 'unset'
     }
   }, [backgroundScrollStop])
 
@@ -179,7 +180,7 @@ const App = (props) => {
   const nextStep = () => setActiveStep((prevActiveStep) => prevActiveStep + 1)
   const backStep = () => setActiveStep((prevActiveStep) => prevActiveStep - 1)
 
-  const jwtToken = localStorage.getItem("Authorization")
+  const jwtToken = localStorage.getItem('Authorization')
 
   // useEffect(() => {
   //   if (jwtToken) {
@@ -190,13 +191,13 @@ const App = (props) => {
   // }, [jwtToken])
 
   const Transition = React.forwardRef(function Transition(props, ref) {
-    return <Slide direction="up" ref={ref} {...props} />
+    return <Slide direction='up' ref={ref} {...props} />
   })
 
-  const isMobile = useMediaQuery("(max-width:530px)")
-  const isiPad = useMediaQuery("(max-width:1024px)")
+  const isMobile = useMediaQuery('(max-width:530px)')
+  const biggerBackgroundImage = useMediaQuery('(max-width:1033px)')
   const forBostonLimousineToDisplayIconOnTheLeft =
-    useMediaQuery("(max-width:500px)")
+    useMediaQuery('(max-width:500px)')
 
   // let stylesForBody = `
   //   z-index: 1000000000;
@@ -312,11 +313,11 @@ const App = (props) => {
           </div>
           <div
             style={{
-              width: "100%",
-              height: "100%",
+              width: '100%',
+              height: '100%',
               background: `url(${BackgroundImage}) center no-repeat`,
-              backgroundPositionY: "0",
-              backgroundSize: "100%",
+              backgroundPositionY: '0',
+              backgroundSize: !biggerBackgroundImage ? '100%' : '390%',
             }}
           >
             <div className={styles.stepsIndicatorContainer}>
@@ -349,6 +350,24 @@ const App = (props) => {
               )}
             </div>
           </div>
+          <div
+            style={{
+              width: '100%',
+              height: '50px',
+              textAlign: 'center',
+              paddingTop: '20px',
+            }}
+          >
+            <a
+              style={{ textDecoration: 'none' }}
+              href='https://bookinglane.com/'
+            >
+              <img
+                src={poweredByBookinglane}
+                style={{ width: '150px', height: '34px' }}
+              ></img>
+            </a>
+          </div>
         </div>
       )}
       {!jwtToken && null}
@@ -373,12 +392,12 @@ export default connect(mapStateToProps, { getCompanyProfile, getCompanyToken })(
 const BookNowIconBlock = styled.div`
   pointer-events: ${(props) => {
     if (props.disabled) {
-      return "none"
+      return 'none'
     }
   }};
   opacity: ${(props) => {
     if (props.disabled) {
-      return " 0.5"
+      return ' 0.5'
     }
   }};
   @keyframes pulse {

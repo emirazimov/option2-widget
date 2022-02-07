@@ -1,24 +1,24 @@
-import { makeStyles, useMediaQuery } from "@material-ui/core"
-import Grid from "@material-ui/core/Grid"
+import { makeStyles, useMediaQuery } from '@material-ui/core'
+import Grid from '@material-ui/core/Grid'
 // import Typography from "@material-ui/core/Typography"
-import React, { useContext } from "react"
-import { useFormContext } from "react-hook-form"
-import ThemeContext from "../../../../../context"
+import React, { useContext } from 'react'
+import { useFormContext } from 'react-hook-form'
+import ThemeContext from '../../../../../context'
 import {
   MinusIcon,
   // NumberOfPassengers,
   // NumberOfPassengersIcon,
   PlusIcon,
-} from "../../../../../assets/icons"
-import "../../index.css"
-import styles from "./SafetySeat.module.scss"
+} from '../../../../../assets/icons'
+import '../../index.css'
+import styles from './SafetySeat.module.scss'
 
 const useStyles = makeStyles((theme) => ({
   mainPlusMinusContainer: {
-    height: "34px",
-    borderBottom: "2px solid #AC8159",
-    transition: "200ms",
-    "&:hover": { borderBottom: "2px solid white", transition: "200ms" },
+    height: '34px',
+    borderBottom: '2px solid #AC8159',
+    transition: '200ms',
+    '&:hover': { borderBottom: '2px solid white', transition: '200ms' },
   },
 }))
 
@@ -29,6 +29,7 @@ export default React.memo(function SafetySeat({
   childSafetySeat,
   isBoosterSeatExistOnBackend,
   isSafetySeatExistOnBackend,
+  safetySeat,
 }) {
   const classes = useStyles()
   const { register } = useFormContext()
@@ -62,8 +63,8 @@ export default React.memo(function SafetySeat({
   //   React.useEffect(() => {
   //     setPassengers(parseInt(passengersqState))
   //   }, [passengersqState])
-  const isMobile = useMediaQuery("(max-width:340px)")
-  const shouldSafetySeatBeColumnDirection = useMediaQuery("(max-width:420px)")
+  const isMobile = useMediaQuery('(max-width:340px)')
+  const shouldSafetySeatBeColumnDirection = useMediaQuery('(max-width:420px)')
 
   const {
     ThemeProviderAppBackgroundColor,
@@ -91,6 +92,10 @@ export default React.memo(function SafetySeat({
       // alignItems={shouldSafetySeatBeColumnDirection ? "flex-start" : "center"}
       // style={{ paddingLeft: "9px" }}
       className={styles.safetySeatRow}
+      style={{
+        opacity: safetySeat ? '1' : '0.5',
+        cursor: safetySeat ? 'auto' : 'no-drop',
+      }}
     >
       {isBoosterSeatExistOnBackend && (
         // <Grid
@@ -293,26 +298,26 @@ export default React.memo(function SafetySeat({
             >
               <input
                 ref={register}
-                name="Youth Booster Seat"
+                name='Youth Booster Seat'
                 onClick={(event) => {
-                  event.currentTarget.type = "text"
+                  event.currentTarget.type = 'text'
                   const { value } = event.target
                   const position = value.length
                   event.target.setSelectionRange(position, position)
-                  event.currentTarget.type = "number"
+                  event.currentTarget.type = 'number'
                 }}
                 onChange={(e) => {
                   setBoosterSeat(e.target.value)
                 }}
                 onFocus={(e) => {
-                  boosterSeat == 0 && setBoosterSeat("")
+                  boosterSeat == 0 && setBoosterSeat('')
                 }}
                 onBlur={() => {
-                  boosterSeat == "" && setBoosterSeat(0)
+                  boosterSeat == '' && setBoosterSeat(0)
                 }}
                 // className="boosterSeat"
                 value={boosterSeat}
-                size="1"
+                size='1'
                 // style={{
                 //   // pointerEvents: "none",
                 //   minWidth: "34px",
@@ -330,7 +335,7 @@ export default React.memo(function SafetySeat({
                 //   fontSize: "14px",
                 //   height: "100%",
                 // }}
-                type="number"
+                type='number'
                 className={styles.boosterSeatCounterInputSelf}
                 style={{
                   background: backAndNextButtonsColor,
@@ -390,7 +395,7 @@ export default React.memo(function SafetySeat({
               className={styles.safetySeatCounterTitle}
               style={{ color: fontColor }}
             >
-              {"Infant & Child Safety Seat"}
+              {'Infant & Child Safety Seat'}
             </span>
             {/* </div> */}
           </div>
@@ -449,24 +454,24 @@ export default React.memo(function SafetySeat({
                 ref={register}
                 name={`Infant & Child Safety Seat`}
                 onClick={(event) => {
-                  event.currentTarget.type = "text"
+                  event.currentTarget.type = 'text'
                   const { value } = event.target
                   const position = value.length
                   event.target.setSelectionRange(position, position)
-                  event.currentTarget.type = "number"
+                  event.currentTarget.type = 'number'
                 }}
                 onChange={(e) => {
                   setChildSafetySeat(e.target.value)
                 }}
                 onFocus={(e) => {
-                  childSafetySeat == 0 && setChildSafetySeat("")
+                  childSafetySeat == 0 && setChildSafetySeat('')
                 }}
                 onBlur={() => {
-                  childSafetySeat == "" && setChildSafetySeat(0)
+                  childSafetySeat == '' && setChildSafetySeat(0)
                 }}
                 // className="passenger"
                 value={childSafetySeat}
-                size="1"
+                size='1'
                 // style={{
                 //   // pointerEvents: "none",
                 //   minWidth: "34px",
@@ -484,7 +489,7 @@ export default React.memo(function SafetySeat({
                 //   fontSize: "14px",
                 //   height: "100%",
                 // }}
-                type="number"
+                type='number'
                 className={styles.safetySeatCounterInputSelf}
                 style={{
                   background: backAndNextButtonsColor,
