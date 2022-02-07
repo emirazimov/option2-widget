@@ -135,8 +135,22 @@ const Hours = ({
             ref={register}
             name="hours"
             // className="passenger"
+
+            onClick={(event) => {
+              event.currentTarget.type = "text"
+              const { value } = event.target
+              const position = value.length
+              event.target.setSelectionRange(position, position)
+              event.currentTarget.type = "number"
+            }}
             onChange={(e) => {
               setHoursAddressForm(e.target.value)
+            }}
+            onFocus={(e) => {
+              hoursAddressForm == 1 && setHoursAddressForm("")
+            }}
+            onBlur={() => {
+              hoursAddressForm == "" && setHoursAddressForm(1)
             }}
             value={hoursAddressForm}
             size="1"

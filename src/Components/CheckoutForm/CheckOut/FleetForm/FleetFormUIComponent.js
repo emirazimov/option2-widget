@@ -198,6 +198,7 @@ const FleetForm = ({
                     style={{
                       background: `${ThemeProviderAppBackgroundColor}`,
                       border: `1px solid ${borderColorForInnerElements}`,
+                      borderRadius: "10px",
                     }}
                   >
                     <div
@@ -286,9 +287,9 @@ const FleetForm = ({
                             >
                               <span
                                 className={styles.detailedDescriptionTitleSelf}
-                                style={{
-                                  color: fontColor,
-                                }}
+                                // style={{
+                                //   color: fontColor,
+                                // }}
                               >
                                 Type
                               </span>
@@ -331,9 +332,9 @@ const FleetForm = ({
                             >
                               <span
                                 className={styles.detailedDescriptionTitleSelf}
-                                style={{
-                                  color: fontColor,
-                                }}
+                                // style={{
+                                //   color: fontColor,
+                                // }}
                               >
                                 Capacity
                               </span>
@@ -376,9 +377,9 @@ const FleetForm = ({
                             >
                               <span
                                 className={styles.detailedDescriptionTitleSelf}
-                                style={{
-                                  color: fontColor,
-                                }}
+                                // style={{
+                                //   color: fontColor,
+                                // }}
                               >
                                 Color
                               </span>
@@ -421,9 +422,9 @@ const FleetForm = ({
                             >
                               <span
                                 className={styles.detailedDescriptionTitleSelf}
-                                style={{
-                                  color: fontColor,
-                                }}
+                                // style={{
+                                //   color: fontColor,
+                                // }}
                               >
                                 Amount
                               </span>

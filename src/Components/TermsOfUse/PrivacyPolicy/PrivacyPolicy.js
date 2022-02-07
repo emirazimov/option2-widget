@@ -43,7 +43,7 @@ export default function PrivacyPolicy() {
           id='scroll-dialog-title'
           style={{ height: '55px', backgroundColor: 'black' }}
         > */}
-        <div style={{ width: "600px", height: "100%" }}>
+        <div className={styles.privacyPolicyOpenedModalWindow}>
           <span>Privacy Policy</span>
           {/* </DialogTitle> */}
           {/* <DialogContent style={{ backgroundColor: 'black' }}>

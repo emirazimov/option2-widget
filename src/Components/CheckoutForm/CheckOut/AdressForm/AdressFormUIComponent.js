@@ -121,7 +121,7 @@ const AdressFormwithoutReactMemo = ({
 
   ...props
 }) => {
-  const isMobile = useMediaQuery("(max-width:530px)")
+  const isMobile = useMediaQuery("(max-width:1024px)")
 
   const {
     ThemeProviderAppBackgroundColor,
@@ -338,7 +338,7 @@ const AdressFormwithoutReactMemo = ({
                     <div className={styles.dateTimeBlockContainer}>
                       <div className={styles.datePicker}>
                         {/* <DateIcon color={fontColor} /> */}
-                        <input
+                        <div
                           onClick={() => setShow(true)}
                           className={
                             redBorderOnSubmitForDate
@@ -358,7 +358,18 @@ const AdressFormwithoutReactMemo = ({
                               : `1px solid red`,
                             background: inputsBackground,
                           }}
-                        ></input>
+                        >
+                          {formData.dateForDefaultValue && !resetInputs
+                            ? formData.dateForDefaultValue
+                            : date?.toLocaleDateString("en-US")}
+
+                          {!formData.dateForDefaultValue ||
+                          !date?.toLocaleDateString("en-US") ? (
+                            <span style={{ color: "grey", paddingTop: "10px" }}>
+                              Pick up Date
+                            </span>
+                          ) : null}
+                        </div>
 
                         <Modal onClose={() => setShow(false)} show={show}>
                           <LocalizationProvider dateAdapter={AdapterDateFns}>
@@ -374,6 +385,9 @@ const AdressFormwithoutReactMemo = ({
                                     newDate.toLocaleDateString("en-US")
                                   )
                                   setDate(newDate)
+                                }}
+                                InputProps={{
+                                  readOnly: true,
                                 }}
                               />
                             </div>
@@ -598,7 +612,7 @@ const AdressFormwithoutReactMemo = ({
                     >
                       <Carousel
                         renderArrow={myArrow}
-                        itemsToShow={3}
+                        itemsToShow={isMobile ? 3 : 4}
                         pagination={false}
                         transitionMs={300}
                       >

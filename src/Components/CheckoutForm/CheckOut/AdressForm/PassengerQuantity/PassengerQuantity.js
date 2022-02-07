@@ -171,9 +171,24 @@ export default React.memo(function PassengerQuantity({
           <input
             ref={register}
             name="passengersQuantity"
+            onClick={(event) => {
+              event.currentTarget.type = "text"
+              const { value } = event.target
+              const position = value.length
+              event.target.setSelectionRange(position, position)
+              event.currentTarget.type = "number"
+            }}
             onChange={(e) => {
               setPassengers(e.target.value)
               setPassengersQuantityForBackStep(e.target.value)
+            }}
+            onFocus={(e) => {
+              passengersQuantityForBackStep == 0 &&
+                setPassengersQuantityForBackStep("")
+            }}
+            onBlur={() => {
+              passengersQuantityForBackStep == "" &&
+                setPassengersQuantityForBackStep(0)
             }}
             className="passenger"
             value={passengersQuantityForBackStep}

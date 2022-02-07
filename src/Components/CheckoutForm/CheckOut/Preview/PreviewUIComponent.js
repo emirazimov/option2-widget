@@ -74,7 +74,10 @@ const PreviewUIComponent = ({
         </span>
       </div>
       <div className={styles.previewRowPos}>
-        <div className={styles.directionsContainer}>
+        <div
+          className={styles.directionsContainer}
+          // style={{ border: `1px solid ${fontColor}`, borderRadius: "10px" }}
+        >
           <div className={styles.directionsSelf}>
             <Directions
               destinations={formData.orderAddressDetails}
@@ -84,7 +87,7 @@ const PreviewUIComponent = ({
         </div>
         <div
           className={styles.reservationDetailsWrapper}
-          style={{ border: `1px solid ${fontColor}` }}
+          style={{ border: `1px solid ${fontColor}`, borderRadius: `10px` }}
         >
           <PreviewReusableUIComponent
             carId={carId}

@@ -250,8 +250,21 @@ const Luggage = ({ luggage, setLuggage }) => {
             ref={register}
             name="hours"
             // className="luggage"
+            onClick={(event) => {
+              event.currentTarget.type = "text"
+              const { value } = event.target
+              const position = value.length
+              event.target.setSelectionRange(position, position)
+              event.currentTarget.type = "number"
+            }}
             onChange={(e) => {
               setLuggage(e.target.value)
+            }}
+            onFocus={(e) => {
+              luggage == 0 && setLuggage("")
+            }}
+            onBlur={() => {
+              luggage == "" && setLuggage(0)
             }}
             value={luggage}
             size="1"

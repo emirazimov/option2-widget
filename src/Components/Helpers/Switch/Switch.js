@@ -124,7 +124,7 @@ const SwitchWrapper = styled.div`
         & + label:before {
           width: 100%;
           height: 100%;
-          background: #2ecc71; // Active Color
+          background: grey; // Active Color
           transition: width 0.2s cubic-bezier(0, 0, 0, 0.1);
         }
 

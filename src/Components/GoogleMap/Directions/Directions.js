@@ -3,7 +3,8 @@ import { useMediaQuery } from "@material-ui/core"
 // import { makeStyles } from "@material-ui/core/styles"
 // import { styles } from "@material-ui/pickers/views/Calendar/Calendar"
 import { GoogleApiWrapper, Map } from "google-maps-react"
-import React from "react"
+import React, { useContext } from "react"
+import ThemeContext from "../../../context"
 import MapStyles from "../mapStyles"
 import styles from "./Directions.module.scss"
 
@@ -68,6 +69,18 @@ const Directions = ({ destinations, setDistance, ...props }) => {
   }
 
   const isMobile = useMediaQuery("(max-width:650px)")
+
+  const {
+    ThemeProviderAppBackgroundColor,
+    fontColor,
+    borderRadiuses,
+    carsTypeColor,
+    hoverColor,
+    iconsColor,
+    backAndNextButtonsColor,
+    innerTextOnHover,
+    inputsFontColor,
+  } = useContext(ThemeContext)
 
   return (
     <>

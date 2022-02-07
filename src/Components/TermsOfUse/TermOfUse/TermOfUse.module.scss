@@ -9,3 +9,10 @@
   background: transparent;
   font-size: 15px;
 }
+.termOfUseOpenedModalWindow {
+  width: 600px;
+  height: 100%;
+  @media (max-width: 600px) {
+    width: 100%;
+  }
+}

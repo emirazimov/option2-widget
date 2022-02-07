@@ -414,9 +414,10 @@ const AdressFormContainerComponent = ({
         // }}
         backAndNextButtonsColor={backAndNextButtonsColor}
         borderColorForInnerElements={borderColorForInnerElements}
-        style={{
-          color: "black",
-        }}
+        fontColor={fontColor}
+        // style={{
+        //   color: "black",
+        // }}
         //  styles.carouselButtonsActive
       >
         {pointer}
@@ -718,13 +719,15 @@ export default connect(mapStateToProps, {
 const Button = styled.button`
   width: 30px;
   height: 100%;
-  background: ${(props) => props.backAndNextButtonsColor};
+  background: transparent;
   /* color: $font-color; */
-  border: 1px solid ${(props) => props.borderColorForInnerElements};
+  border: none;
+  font-size: 19px;
   border-radius: $inputs-border-radius;
   border-radius: $inputs-border-radius;
   cursor: pointer;
   transition: 0.2s;
+  color: ${(props) => props.fontColor};
   &:hover {
     background: $hover-color;
     color: $inner-text-on-hover;

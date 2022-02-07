@@ -164,7 +164,7 @@ const PreviewReusableUIComponent = ({
                       // }}
                       className={styles.orSimiliar}
                       style={{
-                        background: backAndNextButtonsColor,
+                        background: ThemeProviderAppBackgroundColor,
                         color: fontColor,
                       }}
                     >
@@ -298,9 +298,9 @@ const PreviewReusableUIComponent = ({
                 <div className={styles.detailedDescriptionTitleContainer}>
                   <span
                     className={styles.detailedDescriptionTitleSelf}
-                    style={{
-                      color: fontColor,
-                    }}
+                    // style={{
+                    //   color: fontColor,
+                    // }}
                   >
                     Type
                   </span>
@@ -331,9 +331,9 @@ const PreviewReusableUIComponent = ({
                 <div className={styles.detailedDescriptionTitleContainer}>
                   <span
                     className={styles.detailedDescriptionTitleSelf}
-                    style={{
-                      color: fontColor,
-                    }}
+                    // style={{
+                    //   color: fontColor,
+                    // }}
                   >
                     Capacity
                   </span>
@@ -364,9 +364,9 @@ const PreviewReusableUIComponent = ({
                 <div className={styles.detailedDescriptionTitleContainer}>
                   <span
                     className={styles.detailedDescriptionTitleSelf}
-                    style={{
-                      color: fontColor,
-                    }}
+                    // style={{
+                    //   color: fontColor,
+                    // }}
                   >
                     Color
                   </span>
@@ -397,9 +397,9 @@ const PreviewReusableUIComponent = ({
                 <div className={styles.detailedDescriptionTitleContainer}>
                   <span
                     className={styles.detailedDescriptionTitleSelf}
-                    style={{
-                      color: fontColor,
-                    }}
+                    // style={{
+                    //   color: fontColor,
+                    // }}
                   >
                     Amount
                   </span>
@@ -448,9 +448,9 @@ const PreviewReusableUIComponent = ({
               <div className={styles.reservationDetailsItemTitleContainer}>
                 <span
                   className={styles.reservationDetailsItemTitleSelf}
-                  style={{
-                    color: fontColor,
-                  }}
+                  //   style={{
+                  //     color: fontColor,
+                  //   }}
                 >
                   Date:
                 </span>
@@ -485,9 +485,9 @@ const PreviewReusableUIComponent = ({
               <div className={styles.reservationDetailsItemTitleContainer}>
                 <span
                   className={styles.reservationDetailsItemTitleSelf}
-                  style={{
-                    color: fontColor,
-                  }}
+                  //   style={{
+                  //     color: fontColor,
+                  //   }}
                 >
                   Time:
                 </span>
@@ -526,9 +526,9 @@ const PreviewReusableUIComponent = ({
               <div className={styles.reservationDetailsItemTitleContainer}>
                 <span
                   className={styles.reservationDetailsItemTitleSelf}
-                  style={{
-                    color: fontColor,
-                  }}
+                  //   style={{
+                  //     color: fontColor,
+                  //   }}
                 >
                   From:
                 </span>
@@ -561,9 +561,9 @@ const PreviewReusableUIComponent = ({
               <div className={styles.reservationDetailsItemTitleContainer}>
                 <span
                   className={styles.reservationDetailsItemTitleSelf}
-                  style={{
-                    color: fontColor,
-                  }}
+                  //   style={{
+                  //     color: fontColor,
+                  //   }}
                 >
                   To:
                 </span>
@@ -600,9 +600,9 @@ const PreviewReusableUIComponent = ({
               <div className={styles.reservationDetailsItemTitleContainer}>
                 <span
                   className={styles.reservationDetailsItemTitleSelf}
-                  style={{
-                    color: fontColor,
-                  }}
+                  //   style={{
+                  //     color: fontColor,
+                  //   }}
                 >
                   Vehicle:
                 </span>
@@ -635,9 +635,9 @@ const PreviewReusableUIComponent = ({
               <div className={styles.reservationDetailsItemTitleContainer}>
                 <span
                   className={styles.reservationDetailsItemTitleSelf}
-                  style={{
-                    color: fontColor,
-                  }}
+                  //   style={{
+                  //     color: fontColor,
+                  //   }}
                 >
                   Total distance:
                 </span>
@@ -670,10 +670,9 @@ const PreviewReusableUIComponent = ({
               <div className={styles.reservationDetailsItemTitleContainer}>
                 <span
                   className={styles.reservationDetailsItemTitleSelf}
-                  style={{
-                    color: fontColor,
-                    whiteSpace: "normal",
-                  }}
+                  //   style={{
+                  //     color: fontColor,
+                  //   }}
                 >
                   Number of Passengers:
                 </span>
@@ -707,9 +706,9 @@ const PreviewReusableUIComponent = ({
                 <div className={styles.reservationDetailsItemTitleContainer}>
                   <span
                     className={styles.reservationDetailsItemTitleSelf}
-                    style={{
-                      color: fontColor,
-                    }}
+                    // style={{
+                    //   color: fontColor,
+                    // }}
                   >
                     Hours:
                   </span>
@@ -749,9 +748,9 @@ const PreviewReusableUIComponent = ({
                       >
                         <span
                           className={styles.reservationDetailsItemTitleSelf}
-                          style={{
-                            color: fontColor,
-                          }}
+                          //   style={{
+                          //     color: fontColor,
+                          //   }}
                         >
                           Youth Booster Seat:
                         </span>
@@ -801,9 +800,9 @@ const PreviewReusableUIComponent = ({
                       >
                         <span
                           className={styles.reservationDetailsItemTitleSelf}
-                          style={{
-                            color: fontColor,
-                          }}
+                          //   style={{
+                          //     color: fontColor,
+                          //   }}
                         >
                           {"Infant & Child Safety Seat:"}
                         </span>
@@ -849,9 +848,9 @@ const PreviewReusableUIComponent = ({
                   <div className={styles.reservationDetailsItemTitleContainer}>
                     <span
                       className={styles.reservationDetailsItemTitleSelf}
-                      style={{
-                        color: fontColor,
-                      }}
+                      //   style={{
+                      //     color: fontColor,
+                      //   }}
                     >
                       {"Meet & Greet/Luggage Assist:"}
                     </span>
@@ -885,9 +884,9 @@ const PreviewReusableUIComponent = ({
                   <div className={styles.reservationDetailsItemTitleContainer}>
                     <span
                       className={styles.reservationDetailsItemTitleSelf}
-                      style={{
-                        color: fontColor,
-                      }}
+                      //   style={{
+                      //     color: fontColor,
+                      //   }}
                     >
                       Luggage count:
                     </span>
@@ -944,7 +943,13 @@ const PreviewReusableUIComponent = ({
               </div>
             </div>
           </div> */}
-
+        <div className={styles.notesTextFieldContainer}>
+          <Textarea
+            id="outlined-multiline-flexible"
+            placeholder="Notes / Itinerary"
+            fontColor={fontColor}
+          />
+        </div>
         <div
           className={styles.detailedDescriptionWrapperTotal}
           style={{
@@ -957,9 +962,9 @@ const PreviewReusableUIComponent = ({
               <span
                 className={styles.detailedDescriptionTitleSelf}
                 style={{
-                  color: fontColor,
-                  fontSize: "18px",
+                  fontSize: "19px",
                   marginRight: "25px",
+                  fontWeight: "700",
                 }}
               >
                 Total:
@@ -980,7 +985,7 @@ const PreviewReusableUIComponent = ({
                 className={styles.detailedDescriptionValueAmountSelf}
                 style={{
                   color: fontColor,
-                  fontSize: "18px",
+                  fontSize: "19px",
                 }}
               >
                 {`$${round(selectedCar.price, 2)}`}
@@ -1014,13 +1019,6 @@ const PreviewReusableUIComponent = ({
             </div>
           </div> */}
       </div>
-      <div className={styles.notesTextFieldContainer}>
-        <Textarea
-          id="outlined-multiline-flexible"
-          placeholder="Notes / Itinerary"
-          fontColor={fontColor}
-        />
-      </div>
     </>
   )
 }
@@ -1031,6 +1029,7 @@ const Textarea = styled.textarea`
   width: 100%;
   // display: block;
   height: 45px;
+  padding-top: 10px;
   color: ${(props) => props.fontColor};
   font-family: "Vazir", sans-serif;
   font-size: 14px;

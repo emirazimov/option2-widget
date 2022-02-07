@@ -294,8 +294,21 @@ export default React.memo(function SafetySeat({
               <input
                 ref={register}
                 name="Youth Booster Seat"
+                onClick={(event) => {
+                  event.currentTarget.type = "text"
+                  const { value } = event.target
+                  const position = value.length
+                  event.target.setSelectionRange(position, position)
+                  event.currentTarget.type = "number"
+                }}
                 onChange={(e) => {
                   setBoosterSeat(e.target.value)
+                }}
+                onFocus={(e) => {
+                  boosterSeat == 0 && setBoosterSeat("")
+                }}
+                onBlur={() => {
+                  boosterSeat == "" && setBoosterSeat(0)
                 }}
                 // className="boosterSeat"
                 value={boosterSeat}
@@ -435,8 +448,21 @@ export default React.memo(function SafetySeat({
               <input
                 ref={register}
                 name={`Infant & Child Safety Seat`}
+                onClick={(event) => {
+                  event.currentTarget.type = "text"
+                  const { value } = event.target
+                  const position = value.length
+                  event.target.setSelectionRange(position, position)
+                  event.currentTarget.type = "number"
+                }}
                 onChange={(e) => {
                   setChildSafetySeat(e.target.value)
+                }}
+                onFocus={(e) => {
+                  childSafetySeat == 0 && setChildSafetySeat("")
+                }}
+                onBlur={() => {
+                  childSafetySeat == "" && setChildSafetySeat(0)
                 }}
                 // className="passenger"
                 value={childSafetySeat}

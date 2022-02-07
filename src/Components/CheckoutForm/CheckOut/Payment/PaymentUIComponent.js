@@ -146,7 +146,7 @@ const PaymentUIComponent = ({
                     <div className={styles.cardholderInformationInputsWrapper}>
                       <div
                         className={
-                          styles.cardholderInformationInputSelfContainerJustForFirstAndLastName
+                          styles.cardholderInformationInputSelfContainer1
                         }
                       >
                         <input
@@ -154,9 +154,7 @@ const PaymentUIComponent = ({
                           autoComplete="off"
                           placeholder="First Name"
                           defaultValue={formSummary.greetClientInfo.firstName}
-                          className={
-                            styles.cardholderInformationInputSelfFirstName
-                          }
+                          className={styles.cardholderInformationInputSelf}
                           style={{
                             color: inputsFontColor,
                             // border: `1px solid ${borderColorForInnerElements}`,
@@ -175,9 +173,7 @@ const PaymentUIComponent = ({
                           autoComplete="off"
                           defaultValue={formSummary.greetClientInfo.lastName}
                           placeholder="Last Name"
-                          className={
-                            styles.cardholderInformationInputSelfLastName
-                          }
+                          className={styles.cardholderInformationInputSelf}
                           style={{
                             color: inputsFontColor,
                             // border: `1px solid ${borderColorForInnerElements}`,
@@ -240,33 +236,25 @@ const PaymentUIComponent = ({
                   </div>
                   <div className={styles.cardholderInformationInputsWrapper}>
                     <div
-                      className={styles.cardholderInformationInputSelfContainer}
-                      style={{ width: "50%" }}
+                      className={
+                        styles.cardholderInformationInputSelfContainer1
+                      }
                     >
-                      <div
-                        className={
-                          styles.cardholderInformationInputSelfContainerJustForFirstAndLastName
-                        }
-                        style={{ width: "100%" }}
-                      >
-                        <input
-                          name="client.firstName"
-                          autoComplete="off"
-                          defaultValue={formSummary.client.firstName}
-                          placeholder="First Name"
-                          error={errors.client?.firstName ? true : false}
-                          className={
-                            styles.cardholderInformationInputSelfFirstName
-                          }
-                          ref={register}
-                          style={{
-                            width: "100%",
-                            color: inputsFontColor,
-                            // border: `1px solid ${borderColorForInnerElements}`,
-                            background: inputsBackground,
-                          }}
-                        />
-                      </div>
+                      <input
+                        name="client.firstName"
+                        autoComplete="off"
+                        defaultValue={formSummary.client.firstName}
+                        placeholder="First Name"
+                        error={errors.client?.firstName ? true : false}
+                        className={styles.cardholderInformationInputSelf}
+                        ref={register}
+                        style={{
+                          color: inputsFontColor,
+                          // border: `1px solid ${borderColorForInnerElements}`,
+                          background: inputsBackground,
+                        }}
+                      />
+
                       {errors.client?.firstName && (
                         <p className={styles.errorInputs}>
                           {errors.client?.firstName.message}
@@ -274,8 +262,9 @@ const PaymentUIComponent = ({
                       )}
                     </div>
                     <div
-                      className={styles.cardholderInformationInputSelfContainer}
-                      style={{ width: "50%" }}
+                      className={
+                        styles.cardholderInformationInputSelfContainer2
+                      }
                     >
                       <input
                         name="client.lastName"
@@ -283,12 +272,9 @@ const PaymentUIComponent = ({
                         placeholder="Last Name"
                         defaultValue={formSummary.client.lastName}
                         error={errors.client?.lastName ? true : false}
-                        className={
-                          styles.cardholderInformationInputSelfLastName
-                        }
+                        className={styles.cardholderInformationInputSelf}
                         ref={register}
                         style={{
-                          width: "100%",
                           color: inputsFontColor,
                           // border: `1px solid ${borderColorForInnerElements}`,
                           background: inputsBackground,
@@ -614,7 +600,13 @@ const PaymentUIComponent = ({
                   <PrivacyPolicy />
                 </div>
               </div>
-              <div className={styles.paymentPreviewWrapper}>
+              <div
+                className={styles.paymentPreviewWrapper}
+                style={{
+                  border: `1px solid ${fontColor}`,
+                  borderRadius: "10px",
+                }}
+              >
                 <PreviewReusableUIComponent
                   formData={formData}
                   hourlyAndSeatsRedux={hourlyAndSeatsRedux}
