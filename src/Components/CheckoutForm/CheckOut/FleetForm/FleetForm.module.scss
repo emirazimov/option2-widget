@@ -1,9 +1,9 @@
-@use '../../../MAINCSSFORWHOLECOMPONENTS/AppBackgroundColor.module' as *;
-@use '../../../MAINCSSFORWHOLECOMPONENTS/FontColor.module' as *;
-@use '../../../MAINCSSFORWHOLECOMPONENTS/SidePaddings.module' as *;
-@use '../../../MAINCSSFORWHOLECOMPONENTS/_ButtonsGroupBackAndNext.module.scss'
+@use "../../../MAINCSSFORWHOLECOMPONENTS/AppBackgroundColor.module" as *;
+@use "../../../MAINCSSFORWHOLECOMPONENTS/FontColor.module" as *;
+@use "../../../MAINCSSFORWHOLECOMPONENTS/SidePaddings.module" as *;
+@use "../../../MAINCSSFORWHOLECOMPONENTS/_ButtonsGroupBackAndNext.module.scss"
   as *;
-@use '../../../MAINCSSFORWHOLECOMPONENTS/_CarDescription.module.scss' as *;
+@use "../../../MAINCSSFORWHOLECOMPONENTS/_CarDescription.module.scss" as *;
 // car-description-model-name
 
 // car-description-specifications
@@ -74,9 +74,13 @@
     border: 1px solid orange;
     background: grey;
     position: absolute;
-    top: 36%;
-    left: 12%;
+    top: 46%;
+    left: 30%;
     z-index: 3;
+    @media (max-width: 500px) {
+      top: 43%;
+      left: 22%;
+    }
   }
   .carImageSelf {
     position: relative;
@@ -265,7 +269,7 @@
 }
 
 .carouselModal {
-  width: '100%';
+  width: "100%";
 }
 .bookinglanes_fleet_cars_carousel_dots {
 }

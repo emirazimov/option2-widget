@@ -139,7 +139,10 @@ const FleetForm = ({
               {showSafetySeatIsNotAvailable && (
                 <div
                   className={styles.showSafetySeatIsNotAvailable}
-                  style={{ background: ThemeProviderAppBackgroundColor }}
+                  style={{
+                    background: ThemeProviderAppBackgroundColor,
+                    border: `1px solid white`,
+                  }}
                 >
                   <span
                     style={{
@@ -262,6 +265,10 @@ const FleetForm = ({
                                 src={
                                   "https://fl-1.cdn.flockler.com/embed/not-found.png"
                                 }
+                                style={{
+                                  width: !isMobile ? "100%" : "100%",
+                                  height: !isMobile ? "220px" : "116px",
+                                }}
                                 className={styles.carImageSelf}
                                 alt="car"
                               />

@@ -3,36 +3,36 @@
 // import AccordionSummary from "@material-ui/core/AccordionSummary"
 // import Card from "@material-ui/core/Card"
 // import CssBaseline from "@material-ui/core/CssBaseline"
-import Slide from '@material-ui/core/Slide'
+import Slide from "@material-ui/core/Slide"
 // import { ThemeProvider } from "@material-ui/styles"
 // import { isMobile } from 'react-device-detect';
-import React, { useContext, useEffect, useState } from 'react'
-import Draggable from 'react-draggable'
-import { connect } from 'react-redux'
+import React, { useContext, useEffect, useState } from "react"
+import Draggable from "react-draggable"
+import { connect } from "react-redux"
 import {
   BookNowIcon,
   BookNowIconForMobile,
   // CloseWidgetIcon,
-} from './assets/icons'
-import CheckOut from './Components/CheckoutForm/CheckOut/CheckOut'
-import CompanyProfile from './Components/CompanyProfile/CompanyProfile'
+} from "./assets/icons"
+import CheckOut from "./Components/CheckoutForm/CheckOut/CheckOut"
+import CompanyProfile from "./Components/CompanyProfile/CompanyProfile"
 import {
   getCompanyProfile,
   initializing,
-} from './Redux/company-profile-reducer'
-import { getCompanyToken } from './Redux/company-token-reducer'
+} from "./Redux/company-profile-reducer"
+// import { getCompanyToken } from "./Redux/company-token-reducer"
 // import theme from "./Theme"
 
-import { userScreenHeight, userScreenWidth, useStyles } from './AppStyles'
-import { AppBar, useMediaQuery } from '@material-ui/core'
-import { useRef } from 'react'
+import { userScreenHeight, userScreenWidth, useStyles } from "./AppStyles"
+import { AppBar, useMediaQuery } from "@material-ui/core"
+import { useRef } from "react"
 // import Slide1 from "@mui/material/Slide"
-import { Preloader } from './Components/Helpers/Preloader/Preloader'
-import styles from './AppStyles.module.scss'
-import ThemeContext from './context'
-import styled from 'styled-components'
-import StepsIndicator from './Components/CompanyProfile/StepsIndicator'
-import poweredByBookinglane from './assets/PoweredByBookinglane.png'
+import { Preloader } from "./Components/Helpers/Preloader/Preloader"
+import styles from "./AppStyles.module.scss"
+import ThemeContext from "./context"
+import styled from "styled-components"
+import StepsIndicator from "./Components/CompanyProfile/StepsIndicator"
+import poweredByBookinglane from "./assets/PoweredByBookinglane.png"
 // import { DragDropContext, Droppable, Draggable } from "react-beautiful-dnd"
 
 let xOrdinate = 0
@@ -74,7 +74,7 @@ const App = (props) => {
 
   const handleClose = () => {
     setExpanded(false)
-    document.body.style.overflowY = 'unset'
+    document.body.style.overflowY = "unset"
     // position.current.y = 10
 
     if (userScreenWidth - xOrdinate < 500) {
@@ -146,9 +146,9 @@ const App = (props) => {
 
   React.useEffect(() => {
     if (backgroundScrollStop) {
-      document.body.style.overflow = 'hidden'
+      document.body.style.overflow = "hidden"
     } else {
-      document.body.style.overflow = 'unset'
+      document.body.style.overflow = "unset"
     }
   }, [backgroundScrollStop])
 
@@ -160,14 +160,14 @@ const App = (props) => {
     settingHeight()
     // setHeightOfBookNow(refOfBookNow.current.clientHeight)
   }, [heightOfBookNow])
-  props.getCompanyToken()
-  React.useEffect(() => {
-    if (props.loading) {
-      setDisabled(true)
-    } else {
-      setDisabled(false)
-    }
-  }, [props.loading])
+  // props.getCompanyToken()
+  // React.useEffect(() => {
+  //   if (props.loading) {
+  //     setDisabled(true)
+  //   } else {
+  //     setDisabled(false)
+  //   }
+  // }, [props.loading])
   const handleDrag = (e, ui) => {
     position.current.x = ui.x
     position.current.y = ui.y
@@ -180,24 +180,24 @@ const App = (props) => {
   const nextStep = () => setActiveStep((prevActiveStep) => prevActiveStep + 1)
   const backStep = () => setActiveStep((prevActiveStep) => prevActiveStep - 1)
 
-  const jwtToken = localStorage.getItem('Authorization')
+  const jwtToken = localStorage.getItem("Authorization")
 
-  // useEffect(() => {
-  //   if (jwtToken) {
-  //     return
-  //   }
+  useEffect(() => {
+    if (jwtToken) {
+      return
+    }
 
-  //   props.getCompanyToken()
-  // }, [jwtToken])
+    props.getCompanyProfile()
+  }, [jwtToken])
 
   const Transition = React.forwardRef(function Transition(props, ref) {
-    return <Slide direction='up' ref={ref} {...props} />
+    return <Slide direction="up" ref={ref} {...props} />
   })
 
-  const isMobile = useMediaQuery('(max-width:530px)')
-  const biggerBackgroundImage = useMediaQuery('(max-width:1033px)')
+  const isMobile = useMediaQuery("(max-width:530px)")
+  const biggerBackgroundImage = useMediaQuery("(max-width:1033px)")
   const forBostonLimousineToDisplayIconOnTheLeft =
-    useMediaQuery('(max-width:500px)')
+    useMediaQuery("(max-width:500px)")
 
   // let stylesForBody = `
   //   z-index: 1000000000;
@@ -293,84 +293,79 @@ const App = (props) => {
                     <BookNowIcon color={bookNowIconFontAndCircleBorderColor} />
                     <span className={styles.bookNow}>BOOK NOW!</span>
                   </BookNowIconBlock> */}
-      {jwtToken && (
-        <div className={styles.cardContainerShow} ref={refOfCard}>
-          {/* <div
+
+      <div className={styles.cardContainerShow} ref={refOfCard}>
+        {/* <div
             // position="sticky"
             className={styles.divForStickyHeader}
           >
             <div className="companyProfileClassForDrag"> */}
-          {/* этот класс c div-oм для реакт драга чтобы можно было перетаскивать по шапке виджета*/}
-          <div className={styles.companyProfile}>
-            {/* это для pointer cursora */}
-            <CompanyProfile
-              setExpanded={handleClose}
-              initializing={props.initializing}
-              expanded={expanded}
-              setActiveStep={setActiveStep}
-              setBackgroundScrollStop={setBackgroundScrollStop}
-            />
+        {/* этот класс c div-oм для реакт драга чтобы можно было перетаскивать по шапке виджета*/}
+        <div className={styles.companyProfile}>
+          {/* это для pointer cursora */}
+          <CompanyProfile
+            setExpanded={handleClose}
+            initializing={props.initializing}
+            expanded={expanded}
+            setActiveStep={setActiveStep}
+            setBackgroundScrollStop={setBackgroundScrollStop}
+          />
+        </div>
+        <div
+          style={{
+            width: "100%",
+            height: "100%",
+            background: `url(${BackgroundImage}) center no-repeat`,
+            backgroundPositionY: "0",
+            backgroundSize: !biggerBackgroundImage ? "100%" : "390%",
+          }}
+        >
+          <div className={styles.stepsIndicatorContainer}>
+            <StepsIndicator activeStep={activeStep} />
           </div>
-          <div
-            style={{
-              width: '100%',
-              height: '100%',
-              background: `url(${BackgroundImage}) center no-repeat`,
-              backgroundPositionY: '0',
-              backgroundSize: !biggerBackgroundImage ? '100%' : '390%',
-            }}
-          >
-            <div className={styles.stepsIndicatorContainer}>
-              <StepsIndicator activeStep={activeStep} />
-            </div>
 
-            {/* </div>
+          {/* </div>
           </div> */}
 
-            <div
-              // ref={refOfCard}
-              // style={{ borderRadius: "10px" }}
-              className={styles.contentContainer}
-              // style={{
-              //   background: ThemeProviderAppBackgroundColor,
-              // }}
-            >
-              {props.initializing ? (
-                <CheckOut
-                  isFetching={props.isFetching}
-                  setExpanded={handleClose}
-                  activeStep={activeStep}
-                  setActiveStep={setActiveStep}
-                  nextStep={nextStep}
-                  backStep={backStep}
-                  setBackgroundScrollStop={setBackgroundScrollStop}
-                />
-              ) : (
-                <Preloader />
-              )}
-            </div>
-          </div>
           <div
-            style={{
-              width: '100%',
-              height: '50px',
-              textAlign: 'center',
-              paddingTop: '20px',
-            }}
+            // ref={refOfCard}
+            // style={{ borderRadius: "10px" }}
+            className={styles.contentContainer}
+            // style={{
+            //   background: ThemeProviderAppBackgroundColor,
+            // }}
           >
-            <a
-              style={{ textDecoration: 'none' }}
-              href='https://bookinglane.com/'
-            >
-              <img
-                src={poweredByBookinglane}
-                style={{ width: '150px', height: '34px' }}
-              ></img>
-            </a>
+            {props.initializing ? (
+              <CheckOut
+                isFetching={props.isFetching}
+                setExpanded={handleClose}
+                activeStep={activeStep}
+                setActiveStep={setActiveStep}
+                nextStep={nextStep}
+                backStep={backStep}
+                setBackgroundScrollStop={setBackgroundScrollStop}
+              />
+            ) : (
+              <Preloader />
+            )}
           </div>
         </div>
-      )}
-      {!jwtToken && null}
+        <div
+          style={{
+            width: "100%",
+            height: "50px",
+            textAlign: "center",
+            paddingTop: "20px",
+          }}
+        >
+          <a style={{ textDecoration: "none" }} href="https://bookinglane.com/">
+            <img
+              src={poweredByBookinglane}
+              style={{ width: "150px", height: "34px" }}
+            ></img>
+          </a>
+        </div>
+      </div>
     </div>
     // </Draggable>
   )
@@ -381,23 +376,21 @@ const mapStateToProps = (state) => {
     isFetching: state.cars.isFetching,
     companyName: state.companyProfile.profile.companyName,
     initializing: state.companyProfile.initializing,
-    loading: state.companyToken.loading,
+    // loading: state.companyToken.loading,
   }
 }
 
-export default connect(mapStateToProps, { getCompanyProfile, getCompanyToken })(
-  App
-)
+export default connect(mapStateToProps, { getCompanyProfile })(App)
 
 const BookNowIconBlock = styled.div`
   pointer-events: ${(props) => {
     if (props.disabled) {
-      return 'none'
+      return "none"
     }
   }};
   opacity: ${(props) => {
     if (props.disabled) {
-      return ' 0.5'
+      return " 0.5"
     }
   }};
   @keyframes pulse {

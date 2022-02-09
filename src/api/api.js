@@ -1,6 +1,6 @@
-import * as axios from 'axios'
+import * as axios from "axios"
 
-const jwtToken = localStorage.getItem('Authorization')
+const jwtToken = localStorage.getItem("Authorization")
 
 console.log(window)
 
@@ -9,37 +9,36 @@ const accessKeyFromWinow = window.accessKeyForBookinglane
 const axiosInstance = axios.create({
   baseURL: `https://api.bookinglane.com/api/`,
   headers: {
-    Authorization: 'Bearer ' + jwtToken,
-    'App-Version': '1.2.18',
+    "App-Version": "1.2.29",
   },
 })
 
 export const authApi = {
   getToken() {
-    const company0Key = '14862f6b-0e7a-47d0-810a-06a348fd9ec1'
-    return axios
-      .post(
-        'https://api.bookinglane.com/api/companywidget/company-widget-auth',
-        {
-          accessKey: 'bdbfac5b-4b1a-4109-8ab5-01cabebe26e3',
-        }
-      )
-      .then((response) => {
-        return response
-      })
+    // const company0Key = '14862f6b-0e7a-47d0-810a-06a348fd9ec1'
+    // return axios
+    //   .post(
+    //     'https://api.bookinglane.com/api/companywidget/company-widget-auth',
+    //     {
+    //       accessKey: 'bdbfac5b-4b1a-4109-8ab5-01cabebe26e3',
+    //     }
+    //   )
+    //   .then((response) => {
+    //     return response
+    //   })
   },
 
   getCompanyProfile() {
-    const jwtToken = localStorage.getItem('Authorization')
-
     const headers = {
-      Authorization: 'Bearer ' + jwtToken,
-      'App-Version': '1.2.18',
+      "App-Version": "1.2.29",
     }
-
+    const friendlyKey = window.location.pathname
     return axiosInstance
-      .get('companywidget/company-widget-info', { headers: headers })
+      .get(`widget/company-profile${friendlyKey}`, {
+        headers: headers,
+      })
       .then((response) => {
+        window.localStorage.setItem("Authorization", response.data.accessKey)
         return response
       })
       .catch(function (error) {
@@ -51,24 +50,23 @@ export const authApi = {
 }
 
 export const fleetApi = {
-  getCarsByType(carType, pageSize) {
-    return axiosInstance
-      .get(`car/company-cars?typeId=${carType}&page=${pageSize}`)
-      .then((response) => {
-        return response.data
-      })
-  },
+  // getCarsByType(carType, pageSize) {
+  //   return axiosInstance
+  //     .get(`car/company-cars?typeId=${carType}&page=${pageSize}`)
+  //     .then((response) => {
+  //       return response.data
+  //     })
+  // },
 
   getCompanyCars(dataForm) {
-    const jwtToken = localStorage.getItem('Authorization')
+    const accessKey = localStorage.getItem("Authorization")
     return axiosInstance
       .post(
-        'car/companycars-withprice',
+        `widget/cars-with-price/${accessKey}`,
         { ...dataForm },
         {
           headers: {
-            Authorization: 'Bearer ' + jwtToken,
-            'App-Version': '1.2.18',
+            "App-Version": "1.2.29",
           },
         }
       )
@@ -106,15 +104,14 @@ export const placesApi = {
 
 export const formApi = {
   createReservation(form) {
-    const jwtToken = localStorage.getItem('Authorization')
+    const accessKey = localStorage.getItem("Authorization")
     return axiosInstance
       .post(
-        `reservation/web`,
+        `reservation/web/${accessKey}`,
         { ...form },
         {
           headers: {
-            Authorization: 'Bearer ' + jwtToken,
-            'App-Version': '1.2.18',
+            "App-Version": "1.2.29",
           },
         }
       )
@@ -129,15 +126,15 @@ export const formApi = {
   },
 }
 
-export const termsApi = {
-  getTermOfUse() {
-    return axiosInstance.get(`home/term-of-use`).then((response) => {
-      return response.data
-    })
-  },
-  getPrivacyPolicy() {
-    return axiosInstance.get(`home/privacy-policy`).then((response) => {
-      return response.data
-    })
-  },
-}
+// export const termsApi = {
+//   getTermOfUse() {
+//     return axiosInstance.get(`home/term-of-use`).then((response) => {
+//       return response.data
+//     })
+//   },
+//   getPrivacyPolicy() {
+//     return axiosInstance.get(`home/privacy-policy`).then((response) => {
+//       return response.data
+//     })
+//   },
+// }

@@ -9,7 +9,7 @@ const SET_CAR_ID = "./form-reducer/SET_CAR_ID"
 const SET_ORDER_SUM = "./form-reducer/SET_ORDER_SUM"
 const SET_PAYMENT_FORM = "./form-reducer/SET_PAYMENT_FORM"
 const SET_SAFETY_SEAT_COUNT = "./form-reducer/SET_SAFETY_SEAT_COUNT"
-const SET_BOOSTER_SEAT_COUNT = "./form-reducer/SET_SAFETY_SEAT_COUNT"
+const SET_BOOSTER_SEAT_COUNT = "./form-reducer/SET_BOOSTER_SEAT_COUNT"
 const SET_DATE_DEFAULT_VALUE = "./form-reducer/SET_DATE_DEFAULT_VALUE"
 const SET_TIME_DEFAULT_VALUE = "./form-reducer/SET_TIME_DEFAULT_VALUE"
 const SET_TIME_DEFAULT_VALUE_AMPM = "./form-reducer/SET_TIME_DEFAULT_VALUE_AMPM"
@@ -23,6 +23,8 @@ const SET_IS_AIRPORT_PICKUP_INCLUDED =
 
 const SET_SHOW_CARS_WITH_SAFETY_SEAT =
   "./form-reducer/SET_SHOW_CARS_WITH_SAFETY_SEAT"
+
+const SET_HOURS_COUNT = "./form-reducer/SET_HOURS_COUNT"
 
 let initialState = {
   orderType: 3,
@@ -235,6 +237,11 @@ const formReducer = (state = initialState, action) => {
         ...state,
         showCarsWithSafetySeat: action.payload,
       }
+    case SET_HOURS_COUNT:
+      return {
+        ...state,
+        hours: action.payload,
+      }
 
     default:
       return state
@@ -254,6 +261,11 @@ export const setOrderSum = (sum) => ({ type: SET_ORDER_SUM, sum })
 export const setDateForDefaultValue = (date) => ({
   type: SET_DATE_DEFAULT_VALUE,
   payload: date,
+})
+
+export const setHoursRedux = (count) => ({
+  type: SET_HOURS_COUNT,
+  payload: count,
 })
 
 export const setTimeForDefaultValue = (time) => ({

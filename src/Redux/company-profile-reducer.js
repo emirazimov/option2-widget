@@ -117,7 +117,7 @@ export const setIsSafetySeatExistOnBackend = (flag) => ({
 export const getCompanyProfile = () => {
   return async (dispatch) => {
     let response = await authApi.getCompanyProfile()
-    console.log(response)
+
     if (response === 401) {
       window.localStorage.clear()
     } else {

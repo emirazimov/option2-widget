@@ -227,8 +227,9 @@ const PreviewReusableUIComponent = ({
                     // ratio="560/315"
                     style={{
                       display: "block",
+
                       width: !isMobile ? "100%" : "100%",
-                      height: !isMobile ? "112px" : "116px",
+                      height: !isMobile ? "220px" : "116px",
 
                       cursor: "zoom-in",
                     }}

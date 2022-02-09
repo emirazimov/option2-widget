@@ -5,17 +5,20 @@ import App from "./App"
 import ThemeContext from "./context"
 import store from "./Redux/redux-store"
 import reportWebVitals from "./reportWebVitals"
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom"
 
-var divForReact = document.createElement("div")
+// var divForReact = document.createElement("div")
 
-divForReact.setAttribute("id", "widget-by-bookinglane")
-document.getElementsByTagName("body")[0].appendChild(divForReact)
-var head = document.getElementsByTagName("head")[0]
+// divForReact.setAttribute("id", "widget-by-bookinglane")
+// document.getElementsByTagName("body")[0].appendChild(divForReact)
+// var head = document.getElementsByTagName("head")[0]
 
-head.innerHTML += `<link
-      rel="stylesheet"
-      href="https://bookinglane-widgets.s3.us-east-2.amazonaws.com/Global-widget-files/widget.css"
-    />`
+// head.innerHTML += `<link
+//       rel="stylesheet"
+//       href="https://bookinglane-widgets.s3.us-east-2.amazonaws.com/Global-widget-files/widget.css"
+//     />`
+
+// console.log(window.location.pathname)
 
 var ThemeProviderAppBackgroundColor = "black"
 
@@ -80,3 +83,9 @@ function Main() {
 ReactDOM.render(<Main />, document.getElementById("widget-by-bookinglane"))
 
 reportWebVitals()
+
+// <Router>
+//     <Routes>
+//       <Route path="/" element={<Main />}></Route>
+//     </Routes>
+//   </Router>
