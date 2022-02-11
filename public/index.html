@@ -1,10 +1,50 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <script
+    <!-- <script>
+      // var linkEl = document.createElement("link")
+      // linkEl.href =
+      //   "https://bookinglane-widgets.s3.us-east-2.amazonaws.com/just-for-test/Global.js"
+      // linkEl.as = "script"
+      // linkEl.rel = "preload"
+      // document.head.appendChild(linkEl)
+      console.log(window.location.pathname)
+      function loadScript() {
+        if (window.location.pathname == "/company0") {
+          var scriptEl = document.createElement("script")
+          scriptEl.src =
+            "https://bookinglane-widgets.s3.us-east-2.amazonaws.com/just-for-test/Global.js"
+          scriptEl.type = "text/javascript"
+          document.head.appendChild(scriptEl)
+        }
+      }
+      console.log(window)
+    </script> -->
+
+    <script>
+      ;(function () {
+        // Scoping function to avoid globals
+        switch (window.location.pathname) {
+          case "/lynk-limo":
+            document.write(
+              '<script src="https://bookinglane-widgets.s3.us-east-2.amazonaws.com/lynk-limo/Lynk-limo-styles.js"><\/script>'
+            )
+          // case "/lynk-limo":
+          //   document.write(
+          //     '<script src="https://bookinglane-widgets.s3.us-east-2.amazonaws.com/just-for-test/Global.js"><\/script>'
+          //   )
+        }
+
+        // if (window.location.pathname == "/lynk-limo") {
+
+        // }
+      })()
+    </script>
+
+    <!-- <script
       src="https://bookinglane-widgets.s3.us-east-2.amazonaws.com/just-for-test/Global.js"
       type="text/javascript"
-    ></script>
+    ></script> -->
     <meta charset="utf-8" />
     <link rel="icon" href="%PUBLIC_URL%/favicon.ico" />
     <link

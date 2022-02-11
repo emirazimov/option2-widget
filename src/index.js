@@ -80,10 +80,27 @@ function Main() {
   )
 }
 
+// document.getElementById("widget-by-bookinglane")
+
+// // get our shadow HOST
+// const host = document.querySelector('#react-app');
+// // create a shadow root inside it
+// const shadow = host.attachShadow({ mode: 'open' });
+// // create the element where we would render our app
+// const renderIn = document.createElement('div');
+// // append the renderIn element inside the shadow
+// shadow.appendChild(renderIn);
+
+// document.querySelector("#widget-by-bookinglane")
+
+// const root = document.querySelector("#widget-by-bookinglane")
+// root.attachShadow({ mode: "open" })
+
 ReactDOM.render(<Main />, document.getElementById("widget-by-bookinglane"))
 
 reportWebVitals()
 
+// render(<Main />, root.shadowRoot)
 // <Router>
 //     <Routes>
 //       <Route path="/" element={<Main />}></Route>

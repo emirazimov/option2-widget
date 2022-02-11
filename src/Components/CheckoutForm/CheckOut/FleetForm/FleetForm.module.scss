@@ -11,7 +11,7 @@
 @mixin car-descriptions {
   .carContainerColumnPos {
     width: 500px;
-    height: 100%;
+    height: auto;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -31,7 +31,7 @@
 
   .carContainerColumnPosSelected {
     width: 500px;
-    height: 100%;
+    height: auto;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -179,10 +179,9 @@
   @include whole-app-background;
   @include side-paddings-for-whole-widget-page;
   // width: 100%;
-  // height: 100%;
 
   position: relative;
-  padding-bottom: 66px;
+  // padding-bottom: 66px;
   // @media (max-width: 500px) {
   //   padding-top: 75px;
   // }
@@ -207,10 +206,12 @@
 }
 .carListContainer {
   width: 100%;
+  height: 60vh;
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
   justify-content: center;
+  overflow-y: scroll;
 }
 
 // .detailedDescriptionTitleContainer {

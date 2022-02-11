@@ -32,7 +32,7 @@ $background-position-x-for-date-time-picker: 3%;
 }
 .mapContainer {
   // @include side-paddings-for-whole-widget-page;
-  position: relative;
+
   // z-index: 10;
   display: flex;
   align-items: center;
@@ -51,7 +51,8 @@ $background-position-x-for-date-time-picker: 3%;
   // z-index: 5;
 }
 .mapContainerForHideMapsTagsPositioning {
-  position: absolute;
+  // position: absolute;
+  position: relative;
   z-index: 1;
   width: 90%;
   height: 90%;
@@ -65,7 +66,6 @@ $background-position-x-for-date-time-picker: 3%;
   width: 100%;
   height: 100%;
   padding: 20px;
-
   border-radius: 15px;
   box-shadow: 0px 8px 30px rgba(0, 0, 0, 0.1);
   @media (max-width: 867px) {
@@ -412,6 +412,9 @@ $background-position-x-for-date-time-picker: 3%;
   @include buttons-margin-bottom;
   display: flex;
   justify-content: center;
+  padding-top: 25px;
+  padding-bottom: 15px;
+
   // margin: 20px auto;
 }
 

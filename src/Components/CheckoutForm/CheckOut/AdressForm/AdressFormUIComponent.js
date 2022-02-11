@@ -224,6 +224,7 @@ const AdressFormwithoutReactMemo = ({
     lng: -96.8236,
   })
   const [markers, setMarkers] = useState([])
+
   return (
     <div
       className={styles.mainWrapper}
@@ -263,6 +264,17 @@ const AdressFormwithoutReactMemo = ({
                       />
                     ))}
                   </Map>
+                  {/* <div
+                    style={{
+                      width: "100%",
+                      height: "30px",
+                      background: "black",
+                      position: "absolute",
+                      bottom: "-20px",
+                      borderBottomLeftRadius: "10px",
+                      borderBottomRightRadius: "10px",
+                    }}
+                  ></div> */}
                 </div>
               </div>
             </div>
