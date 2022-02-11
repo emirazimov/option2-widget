@@ -25,10 +25,15 @@
       ;(function () {
         // Scoping function to avoid globals
         switch (window.location.pathname) {
+          case "/company0":
+            document.write(
+              '<script src="https://bookinglane-widgets.s3.us-east-2.amazonaws.com/lynk-limo/Lynk-limo-styles.js"><\/script>'
+            )
           case "/lynk-limo":
             document.write(
               '<script src="https://bookinglane-widgets.s3.us-east-2.amazonaws.com/lynk-limo/Lynk-limo-styles.js"><\/script>'
             )
+
           // case "/lynk-limo":
           //   document.write(
           //     '<script src="https://bookinglane-widgets.s3.us-east-2.amazonaws.com/just-for-test/Global.js"><\/script>'
