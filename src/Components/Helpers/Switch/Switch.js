@@ -22,7 +22,7 @@ export const Switch = (props) => {
     bookNowIconBackgroundColor,
   } = useContext(ThemeContext)
   return (
-    <SwitchWrapper borderColorForInnerElements={borderColorForInnerElements}>
+    <SwitchWrapper fontColor={fontColor} inputsFontColor={inputsFontColor}>
       <SwitchInput
         type="checkbox"
         name={`switch${props.numberToIdentify}`}
@@ -66,7 +66,7 @@ const SwitchWrapper = styled.div`
         transition: 0.4s ease;
         height: 20px;
         width: 32px;
-        border: 1px solid ${(props) => props.borderColorForInnerElements};
+        border: 1px solid ${(props) => props.fontColor};
         border-radius: 11px;
 
         &:hover {
@@ -107,7 +107,7 @@ const SwitchWrapper = styled.div`
         &:hover::after {
           // @include inactiveMixin;
           // @include afterAnimation;
-          background: white;
+          background: ${(props) => props.fontColor};
           // height: 15px;
           // width: 15px;
           // top: 1px;
@@ -130,7 +130,7 @@ const SwitchWrapper = styled.div`
 
         & + label:after {
           left: 51%;
-          background: white;
+          background: ${(props) => props.fontColor};
         }
       }
     }

@@ -140,6 +140,8 @@ export default React.memo(function SafetySeat({
                 style={{
                   background: backAndNextButtonsColor,
                   color: inputsFontColor,
+                  borderRadius: borderRadiusesForInnerElements,
+                  border: `1px solid ${borderColorForInnerElements}`,
                 }}
               />
             </div>
@@ -186,6 +188,8 @@ export default React.memo(function SafetySeat({
                 style={{
                   background: backAndNextButtonsColor,
                   color: inputsFontColor,
+                  borderRadius: borderRadiusesForInnerElements,
+                  border: `1px solid ${borderColorForInnerElements}`,
                 }}
               />
             </div>

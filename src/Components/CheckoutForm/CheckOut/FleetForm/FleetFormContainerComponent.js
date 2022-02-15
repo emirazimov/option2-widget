@@ -46,10 +46,10 @@ const FleetFormContainerComponent = ({
     result = cars.find((cars) => carModal === cars.id)
   }
   const [show, setShow] = React.useState(false)
-  // React.useEffect(() => {
-  //   setCarCard(carCard)
-  // }, [carCard])
-  // const cars2 = { ...cars }
+  React.useEffect(() => {
+    localStorage.removeItem("captcha")
+  }, [])
+  const cars2 = { ...cars }
   const round = (n, dp) => {
     const h = +"1".padEnd(dp + 1, "0") // 10 or 100 or 1000 or etc
     return Math.round(n * h) / h

@@ -140,6 +140,7 @@ const FleetForm = ({
                 <div
                   className={styles.showSafetySeatIsNotAvailable}
                   style={{
+                    borderRadius: borderRadiusesForInnerElements,
                     background: ThemeProviderAppBackgroundColor,
                     border: `1px solid white`,
                   }}
@@ -201,7 +202,7 @@ const FleetForm = ({
                     style={{
                       background: `${ThemeProviderAppBackgroundColor}`,
                       border: `1px solid ${borderColorForInnerElements}`,
-                      borderRadius: "10px",
+                      borderRadius: borderRadiusesForInnerElements,
                     }}
                   >
                     <div
@@ -230,6 +231,8 @@ const FleetForm = ({
                                   style={{
                                     background: ThemeProviderAppBackgroundColor,
                                     color: fontColor,
+                                    borderTopLeftRadius:
+                                      borderRadiusesForInnerElements,
                                   }}
                                 >
                                   or similar
@@ -245,6 +248,8 @@ const FleetForm = ({
                                   style={{
                                     width: !isMobile ? "100%" : "100%",
                                     height: !isMobile ? "220px" : "116px",
+                                    borderRadius:
+                                      borderRadiusesForInnerElements,
                                   }}
                                 />
                               </span>
@@ -256,6 +261,8 @@ const FleetForm = ({
                                 style={{
                                   background: backAndNextButtonsColor,
                                   color: fontColor,
+                                  borderTopLeftRadius:
+                                    borderRadiusesForInnerElements,
                                 }}
                               >
                                 or similar
@@ -268,6 +275,7 @@ const FleetForm = ({
                                 style={{
                                   width: !isMobile ? "100%" : "100%",
                                   height: !isMobile ? "220px" : "116px",
+                                  borderRadius: borderRadiusesForInnerElements,
                                 }}
                                 className={styles.carImageSelf}
                                 alt="car"
@@ -546,6 +554,7 @@ const FleetForm = ({
                     background: backAndNextButtonsColor,
                     color: "black",
                     border: `1px solid ${borderColorForInnerElements}`,
+                    borderRadius: borderRadiusesForInnerElements,
                   }}
                 >
                   Back
@@ -562,6 +571,7 @@ const FleetForm = ({
                     background: backAndNextButtonsColor,
                     color: "black",
                     border: `1px solid ${borderColorForInnerElements}`,
+                    borderRadius: borderRadiusesForInnerElements,
                   }}
                 >
                   Next

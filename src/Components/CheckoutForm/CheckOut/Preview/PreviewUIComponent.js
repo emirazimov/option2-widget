@@ -74,11 +74,14 @@ const PreviewUIComponent = ({
         </span>
       </div>
       <div className={styles.previewRowPos}>
-        <div
-          className={styles.directionsContainer}
-          // style={{ border: `1px solid ${fontColor}`, borderRadius: "10px" }}
-        >
-          <div className={styles.directionsSelf}>
+        <div className={styles.directionsContainer}>
+          <div
+            className={styles.directionsSelf}
+            style={{
+              border: `1px solid  ${fontColor}`,
+              borderRadius: borderRadiusesForInnerElements,
+            }}
+          >
             <Directions
               destinations={formData.orderAddressDetails}
               setDistance={setDistance}
@@ -87,7 +90,10 @@ const PreviewUIComponent = ({
         </div>
         <div
           className={styles.reservationDetailsWrapper}
-          style={{ border: `1px solid ${fontColor}`, borderRadius: `10px` }}
+          style={{
+            border: `1px solid ${fontColor}`,
+            borderRadius: borderRadiusesForInnerElements,
+          }}
         >
           <PreviewReusableUIComponent
             carId={carId}
@@ -135,6 +141,7 @@ const PreviewUIComponent = ({
               background: backAndNextButtonsColor,
               color: "black",
               border: `1px solid ${borderColorForInnerElements}`,
+              borderRadius: borderRadiusesForInnerElements,
             }}
           >
             Back
@@ -154,6 +161,7 @@ const PreviewUIComponent = ({
               background: backAndNextButtonsColor,
               color: "black",
               border: `1px solid ${borderColorForInnerElements}`,
+              borderRadius: borderRadiusesForInnerElements,
             }}
           >
             Next

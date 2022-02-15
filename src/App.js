@@ -33,6 +33,7 @@ import ThemeContext from "./context"
 import styled from "styled-components"
 import StepsIndicator from "./Components/CompanyProfile/StepsIndicator"
 import poweredByBookinglane from "./assets/PoweredByBookinglane.png"
+// import ReCAPTCHA from "react-google-recaptcha"
 // import { DragDropContext, Droppable, Draggable } from "react-beautiful-dnd"
 
 let xOrdinate = 0
@@ -157,9 +158,9 @@ const App = (props) => {
   }
 
   React.useEffect(() => {
-    settingHeight()
+    localStorage.removeItem("captcha")
     // setHeightOfBookNow(refOfBookNow.current.clientHeight)
-  }, [heightOfBookNow])
+  }, [])
   // props.getCompanyToken()
   // React.useEffect(() => {
   //   if (props.loading) {
@@ -219,22 +220,11 @@ const App = (props) => {
     y: window.positionYforWithoutDraggableApp,
   })
   console.log(window)
-  // var iframe = document.createElement("iframe")
-  // // iframe.setAttribute("id", "widget-by-bookinglane")
-  // document.getElementsByTagName("h1").appendChild(iframe)
 
-  // var metaForScale = document.createElement("meta")
-  // metaForScale.setAttribute("name", "viewport")
-  // metaForScale.setAttribute(
-  //   "content",
-  //   "width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
-  // )
-  // useEffect(() => {}, [
-  //   document.getElementsByTagName("head")[0].appendChild(metaForScale),
-  // ])
-
-  // console.log("success")
-  // document.body.querySelector(".jss3").style.display = "block"
+  // function onChange(value) {
+  //   console.log("Captcha value:", value)
+  //   window.localStorage.setItem("captcha", value)
+  // }
 
   const {
     ThemeProviderAppBackgroundColor,
@@ -315,7 +305,9 @@ const App = (props) => {
           style={{
             width: "100%",
             height: "100%",
-            background: `url(${BackgroundImage}) center no-repeat`,
+            background: BackgroundImage
+              ? `url(${BackgroundImage}) center no-repeat`
+              : ThemeProviderAppBackgroundColor,
             backgroundPositionY: "0",
             backgroundSize: !biggerBackgroundImage ? "100%" : "390%",
           }}
@@ -365,6 +357,10 @@ const App = (props) => {
             ></img>
           </a>
         </div>
+        {/* <ReCAPTCHA
+          sitekey="6LeuP3weAAAAAHoe3aaP27xmYorD1s1vXK7XdlPk"
+          onChange={onChange}
+        /> */}
       </div>
     </div>
     // </Draggable>

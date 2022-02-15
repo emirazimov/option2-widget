@@ -133,6 +133,8 @@ const AdressFormContainerComponent = ({
 
   const [show, setShow] = useState(false)
 
+  const [showRecaptcha, setShowRecaptcha] = useState(false)
+
   // const { errors, register, handleSubmit, setValue, ...methods } = useForm({
   //   // mode: "onBlur",
   //   // resolver: yupResolver(schema),
@@ -219,7 +221,7 @@ const AdressFormContainerComponent = ({
       ""
     )
 
-    console.log(timeNumberIsFullZero)
+    console.log(localStorage.getItem("captcha"))
     if (
       destinations[0].rideCheckPoint &&
       destinations[1].rideCheckPoint &&
@@ -238,7 +240,8 @@ const AdressFormContainerComponent = ({
       // false &&
       carSelectionID &&
       (passengers || formData.passengersQuantityForBackStep) &&
-      (AMPM || formData?.timeForDefaultValueAMPM?.ampm)
+      (AMPM || formData?.timeForDefaultValueAMPM?.ampm) &&
+      Boolean(localStorage.getItem("captcha")) == true
     ) {
       if (isAirline) {
         if (!airlineId) {
@@ -256,6 +259,8 @@ const AdressFormContainerComponent = ({
         }
       }
     } else {
+      Boolean(localStorage.getItem("captcha")) !== true &&
+        setShowRecaptcha(true)
       if (!destinations[0].rideCheckPoint) {
         setRedBorderOnSubmit(true)
       } else {
@@ -430,6 +435,7 @@ const AdressFormContainerComponent = ({
         // }}
         backAndNextButtonsColor={backAndNextButtonsColor}
         borderColorForInnerElements={borderColorForInnerElements}
+        borderRadiusesForInnerElements={borderRadiusesForInnerElements}
         fontColor={fontColor}
         // style={{
         //   color: "black",
@@ -526,6 +532,7 @@ const AdressFormContainerComponent = ({
     //   carSelectionID &&
     //   passengers
     // ) {
+
     if (onSubmit2(data)) {
       getCompanyCars({
         hours: hourly ? hoursAddressForm : 0,
@@ -589,6 +596,7 @@ const AdressFormContainerComponent = ({
           boosterSeatCount: boosterSeat,
         }
       )
+
       next()
     }
   }
@@ -692,6 +700,8 @@ const AdressFormContainerComponent = ({
       setDate={setDate}
       show={show}
       setShow={setShow}
+      showRecaptcha={showRecaptcha}
+      setShowRecaptcha={setShowRecaptcha}
       AMPM={AMPM}
       setDateForDefaultValue={setDateForDefaultValue}
       control={control}
@@ -747,8 +757,8 @@ const Button = styled.button`
   /* color: $font-color; */
   border: none;
   font-size: 19px;
-  border-radius: $inputs-border-radius;
-  border-radius: $inputs-border-radius;
+  /* border-radius: $inputs-border-radius; */
+  border-radius: ${(props) => props.borderRadiusesForInnerElements};
   cursor: pointer;
   transition: 0.2s;
   color: ${(props) => props.fontColor};

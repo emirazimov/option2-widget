@@ -30,6 +30,7 @@ import Autocomplete from "@mui/material/Autocomplete"
 import styled from "styled-components"
 import MapStyles from "../../../GoogleMap/mapStyles"
 import { GoogleApiWrapper, Map, Marker } from "google-maps-react"
+import ReCAPTCHA from "react-google-recaptcha"
 
 {
   /*компонента перед экспортом обернута в react.memo*/
@@ -120,6 +121,8 @@ const AdressFormwithoutReactMemo = ({
   hoursCount,
   setSafetySeatCount,
   setBoosterSeatCount,
+  showRecaptcha,
+  setShowRecaptcha,
   ...props
 }) => {
   const isMobile = useMediaQuery("(max-width:1024px)")
@@ -216,6 +219,11 @@ const AdressFormwithoutReactMemo = ({
     </div>
   )
 
+  function onChange(value) {
+    console.log("Captcha value:", value)
+    window.localStorage.setItem("captcha", value)
+  }
+
   React.useEffect(() => {
     fetchAirlines()
   }, [])
@@ -240,7 +248,10 @@ const AdressFormwithoutReactMemo = ({
               className={styles.mapContainer}
             >
               <div className={styles.mapContainerForHideMapsTagsPositioning}>
-                <div className={styles.mapContainerForBorder}>
+                <div
+                  className={styles.mapContainerForBorder}
+                  style={{ borderRadius: borderRadiusesForInnerElements }}
+                >
                   <Map
                     google={props.google}
                     disableDefaultUI={true}
@@ -252,7 +263,9 @@ const AdressFormwithoutReactMemo = ({
                       lat: mapCenter.lat,
                       lng: mapCenter.lng,
                     }}
-                    style={{ borderRadius: "15px" }}
+                    style={{
+                      borderRadius: `${borderRadiusesForInnerElements}`,
+                    }}
                     styles={MapStyles}
                     zoom={12}
                   >
@@ -322,8 +335,10 @@ const AdressFormwithoutReactMemo = ({
                                   style={{
                                     width: "100%",
                                     color: inputsFontColor,
-                                    // border: `1px solid ${borderColorForInnerElements}`,
+                                    border: `1px solid ${borderColorForInnerElements}`,
                                     background: inputsBackground,
+                                    borderRadius:
+                                      borderRadiusesForInnerElements,
                                   }}
                                 />
                               </div>
@@ -340,7 +355,8 @@ const AdressFormwithoutReactMemo = ({
                               autoComplete="off"
                               style={{
                                 color: inputsFontColor,
-                                // border: `1px solid ${borderColorForInnerElements}`,
+                                border: `1px solid ${borderColorForInnerElements}`,
+                                borderRadius: borderRadiusesForInnerElements,
                                 background: inputsBackground,
                               }}
                               defaultValue={null}
@@ -371,8 +387,9 @@ const AdressFormwithoutReactMemo = ({
                           style={{
                             color: inputsFontColor,
                             border: !redBorderOnSubmitForDate
-                              ? `none`
+                              ? `1px solid ${borderColorForInnerElements}`
                               : `1px solid red`,
+                            borderRadius: borderRadiusesForInnerElements,
                             background: inputsBackground,
                           }}
                         >
@@ -437,7 +454,8 @@ const AdressFormwithoutReactMemo = ({
                                 redBorderOnSubmitForTime5 ||
                                 redBorderOnSubmitForTime6
                                   ? `1px solid red`
-                                  : `none`,
+                                  : `1px solid ${borderColorForInnerElements}`,
+                              borderRadius: borderRadiusesForInnerElements,
                               background: inputsBackground,
                               textAlign: "right",
                               paddingRight: "78px",
@@ -464,7 +482,7 @@ const AdressFormwithoutReactMemo = ({
                                     ? `${hoverColor}`
                                     : "transparent",
                                 opacity: AMPM == "AM" ? "1" : "0.5",
-                                borderRadius: "5px",
+                                borderRadius: borderRadiusesForInnerElements,
                               }}
                             >
                               AM
@@ -487,7 +505,7 @@ const AdressFormwithoutReactMemo = ({
                                     ? `${hoverColor}`
                                     : "transparent",
                                 opacity: AMPM == "PM" ? "1" : "0.5",
-                                borderRadius: "5px",
+                                borderRadius: borderRadiusesForInnerElements,
                               }}
                             >
                               PM
@@ -653,6 +671,9 @@ const AdressFormwithoutReactMemo = ({
                         {carTypes.map((car, indexOfEachCar) => (
                           <CarItemContainer
                             hoverColor={hoverColor}
+                            borderRadiusesForInnerElements={
+                              borderRadiusesForInnerElements
+                            }
                             carsTypeColor={carsTypeColor}
                             carSelected={car.id === carSelectionID}
                             fontColor={fontColor}
@@ -688,7 +709,21 @@ const AdressFormwithoutReactMemo = ({
               </div>
             </div>
           </div>
-          <div className={styles.buttonGroupBlockContainer}>
+          <Modal onClose={() => setShowRecaptcha(false)} show={showRecaptcha}>
+            <ReCAPTCHA
+              sitekey="6LeuP3weAAAAAHoe3aaP27xmYorD1s1vXK7XdlPk"
+              onChange={onChange}
+            />
+          </Modal>
+          <div
+            className={styles.buttonGroupBlockContainer}
+            // onClick={(event) => {
+            //   // event.stopPropagation()
+            //   console.log(localStorage.getItem("captcha") !== true)
+            //   Boolean(localStorage.getItem("captcha")) !== true &&
+            //     setShowRecaptcha(true)
+            // }}
+          >
             <button
               type="submit"
               className={styles.buttonNextSelf}
@@ -696,6 +731,7 @@ const AdressFormwithoutReactMemo = ({
                 background: backAndNextButtonsColor,
                 color: "black",
                 border: `1px solid ${borderColorForInnerElements}`,
+                borderRadius: borderRadiusesForInnerElements,
               }}
             >
               Next
@@ -727,7 +763,7 @@ const CarItemContainer = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  border-radius:5px ;
+  border-radius:${(props) => props.borderRadiusesForInnerElements};
   padding: 3px;
   outline: none;
   background: ${(props) => {

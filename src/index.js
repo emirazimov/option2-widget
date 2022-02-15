@@ -24,11 +24,11 @@ var ThemeProviderAppBackgroundColor = "black"
 
 var fontColor = "white"
 
-var borderRadiusesForInnerElements = window.borderRadiusesForInnerElements
+var borderRadiusesForInnerElements = "5px"
 
 var borderRadiusesForWholeApp = window.borderRadiusesForWholeApp
 
-var borderColorForInnerElements = "white"
+var borderColorForInnerElements = "none"
 
 var borderColorForOuterApp = window.borderColorForOuterApp
 

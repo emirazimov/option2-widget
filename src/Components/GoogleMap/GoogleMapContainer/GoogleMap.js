@@ -398,8 +398,9 @@ const GoogleMap = React.memo(
                                   border:
                                     redBorderOnSubmit || redBorderOnSubmit2
                                       ? `1px solid red`
-                                      : `none`,
+                                      : `1px solid ${borderColorForInnerElements}`,
                                   background: inputsBackground,
+                                  borderRadius: borderRadiusesForInnerElements,
                                 }}
                                 placeholder={id === 0 ? "From" : "To"}
                                 className={setDestinationsIcons(
@@ -413,7 +414,7 @@ const GoogleMap = React.memo(
                                   onClick={addEndPoint}
                                   className={styles.addLocationIcon}
                                 >
-                                  <AddLocIcon color={fontColor} />
+                                  <AddLocIcon color={inputsFontColor} />
                                 </span>
                               )}
                               {id > 0 && id < destinations.length - 1 && (
@@ -421,7 +422,7 @@ const GoogleMap = React.memo(
                                   onClick={() => removeEndPoint(id)}
                                   className={styles.deleteLocationIcon}
                                 >
-                                  <DeleteLocIcon color={fontColor} />
+                                  <DeleteLocIcon color={inputsFontColor} />
                                 </span>
                               )}
                               {/* </div> */}

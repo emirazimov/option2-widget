@@ -7,7 +7,7 @@ console.log(window)
 const accessKeyFromWinow = window.accessKeyForBookinglane
 
 const axiosInstance = axios.create({
-  baseURL: `https://api.bookinglane.com/api/`,
+  baseURL: `https://apidev.bookinglane.com/api/`,
   headers: {
     "App-Version": "1.2.29",
   },
@@ -67,6 +67,30 @@ export const fleetApi = {
         {
           headers: {
             "App-Version": "1.2.29",
+          },
+        }
+      )
+      .then((response) => {
+        console.log(response.data)
+        return response
+      })
+      .catch(function (error) {
+        if (error.response) {
+          return error.response
+        }
+      })
+  },
+  getCompanyCarsWithRecaptchaToken(dataForm) {
+    const accessKey = localStorage.getItem("Authorization")
+    const recaptchaToken = localStorage.getItem("captcha")
+    return axiosInstance
+      .post(
+        `https://apidev.bookinglane.com/api/widget/cars-with-price/${accessKey}`,
+        { ...dataForm },
+        {
+          headers: {
+            "App-Version": "1.2.29",
+            captcha: `${recaptchaToken}`,
           },
         }
       )

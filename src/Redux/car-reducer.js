@@ -63,7 +63,8 @@ export const getCompanyCars = (dataForm) => {
   return async (dispatch) => {
     dispatch(toggleIsFetching(true))
     console.log(dataForm)
-    let data = await fleetApi.getCompanyCars(dataForm)
+    // let data = await fleetApi.getCompanyCars(dataForm)
+    let data = await fleetApi.getCompanyCarsWithRecaptchaToken(dataForm)
     console.log(data)
     if (data.status == 400) {
       dispatch(setError(data.data[0]))
