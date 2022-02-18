@@ -55,6 +55,7 @@ const PreviewUIComponent = ({
     hoverColor,
     iconsColor,
     backAndNextButtonsColor,
+    backAndNextButtonsFontColor,
     innerTextOnHover,
     inputsFontColor,
     borderRadiusesForInnerElements,
@@ -139,7 +140,7 @@ const PreviewUIComponent = ({
             className={styles.buttonBackSelf}
             style={{
               background: backAndNextButtonsColor,
-              color: "black",
+              color: backAndNextButtonsFontColor,
               border: `1px solid ${borderColorForInnerElements}`,
               borderRadius: borderRadiusesForInnerElements,
             }}
@@ -159,7 +160,7 @@ const PreviewUIComponent = ({
             className={styles.buttonNextSelf}
             style={{
               background: backAndNextButtonsColor,
-              color: "black",
+              color: backAndNextButtonsFontColor,
               border: `1px solid ${borderColorForInnerElements}`,
               borderRadius: borderRadiusesForInnerElements,
             }}

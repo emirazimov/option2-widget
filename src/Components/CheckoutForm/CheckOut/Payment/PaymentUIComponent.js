@@ -81,6 +81,7 @@ const PaymentUIComponent = ({
     hoverColor,
     iconsColor,
     backAndNextButtonsColor,
+    backAndNextButtonsFontColor,
     innerTextOnHover,
     inputsFontColor,
     borderRadiusesForInnerElements,
@@ -645,7 +646,7 @@ const PaymentUIComponent = ({
                   className={styles.buttonBackSelf}
                   style={{
                     background: backAndNextButtonsColor,
-                    color: "black",
+                    color: backAndNextButtonsFontColor,
                     border: `1px solid ${borderColorForInnerElements}`,
                     borderRadius: borderRadiusesForInnerElements,
                   }}
@@ -659,7 +660,7 @@ const PaymentUIComponent = ({
                   style={{
                     opacity: !checked ? "0.5" : "1",
                     background: backAndNextButtonsColor,
-                    color: "black",
+                    color: backAndNextButtonsFontColor,
                     border: `1px solid ${borderColorForInnerElements}`,
                     borderRadius: borderRadiusesForInnerElements,
                   }}

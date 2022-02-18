@@ -135,11 +135,6 @@ const AdressFormContainerComponent = ({
 
   const [showRecaptcha, setShowRecaptcha] = useState(false)
 
-  // const { errors, register, handleSubmit, setValue, ...methods } = useForm({
-  //   // mode: "onBlur",
-  //   // resolver: yupResolver(schema),
-  // })
-
   const extractAirlineId = (name) => {
     const res = airlines.find((element, index, array) => {
       return element.name == name
@@ -157,46 +152,95 @@ const AdressFormContainerComponent = ({
     ...methods
   } = useForm({})
 
-  const schema = yup.object().shape({
-    destinations: yup.object().shape({
-      rideCheckPoint: yup.object().required(),
-    }),
-    // carsValidation: yup.number().required(),
-  })
-
   const handleClick = (id) => {
     setCarSelectionID(id)
   }
 
-  const handleDateChangeFunc = (time) => {
-    handleDateChange(time)
+  const isHourlyEnabled = () => {
+    if (hourly || hourlyAndSeatsRedux) {
+      if (hoursCount) return true
+      else return false
+    } else {
+      return true
+    }
   }
 
-  var firstTimeHalf = time
-    .substr(0, time.indexOf(":"))
-    .match(/\d+/)
-    ?.join()
-    ?.split("")
-  var secondTimeHalf = time
-    .substr(time.indexOf(":"))
-    .match(/\d+/)
-    ?.join()
-    ?.split("")
-  var secondTimeHalf2 = time.substr(time.indexOf(":")).match(/\d+/)
+  let firstAirline =
+    destinations[0]?.rideCheckPoint.match(/(^|\W)Airport($|\W)/)
 
-  var firstTimeHalfRedux = formData?.timeForDefaultValue
-    ?.substr(0, formData?.timeForDefaultValue?.indexOf(":"))
-    ?.match(/\d+/)
-    ?.join()
-    ?.split("")
-  var secondTimeHalfRedux = formData?.timeForDefaultValue
-    ?.substr(formData?.timeForDefaultValue?.indexOf(":"))
-    ?.match(/\d+/)
-    ?.join()
-    ?.split("")
-  var secondTimeHalfRedux2 = formData?.timeForDefaultValue
-    ?.substr(formData?.timeForDefaultValue?.indexOf(":"))
-    ?.match(/\d+/)
+  const fetchAirlines = async () => {
+    const data = await placesApi.getAirlines()
+    const res = data.map((airline) => {
+      return {
+        id: `${airline.id}`,
+        name: `${airline.code} ` + `${airline.name}`,
+      }
+    })
+    setAirlines(res)
+  }
+
+  const [flightNumber, setFlightNumber] = useState(null)
+
+  const {
+    ThemeProviderAppBackgroundColor,
+    fontColor,
+    borderRadiuses,
+    carsTypeColor,
+    hoverColor,
+    iconsColor,
+    backAndNextButtonsColor,
+    innerTextOnHover,
+    borderRadiusesForInnerElements,
+    borderRadiusesForWholeApp,
+    borderColorForInnerElements,
+    borderColorForOuterApp,
+  } = useContext(ThemeContext)
+  const [fontColorState, setFontColorState] = useState(fontColor)
+  const myArrow = ({ type, onClick, isEdge }) => {
+    const pointer = type === consts.PREV ? "<" : ">"
+    // console.log(isEdge)
+
+    return (
+      <Button
+        onClick={() => {
+          onClick()
+          console.log(type)
+        }}
+        disabled={isEdge}
+        isEdge={isEdge}
+        backAndNextButtonsColor={backAndNextButtonsColor}
+        borderColorForInnerElements={borderColorForInnerElements}
+        borderRadiusesForInnerElements={borderRadiusesForInnerElements}
+        fontColor={fontColor}
+      >
+        {pointer}
+      </Button>
+    )
+  }
+  const [safetySeat, setSafetySeat] = useState(false)
+
+  const [boosterSeat, setBoosterSeat] = useState(0)
+  const [childSafetySeat, setChildSafetySeat] = useState(0)
+
+  const [alignment, setAlignment] = React.useState("web")
+  const [AMPM, setAMPM] = React.useState("")
+
+  const handleChangeAMPM = (event, newAlignment) => {
+    if (newAlignment !== null) {
+      setAlignment(newAlignment)
+      setTimeForDefaultValueAMPM(event.target.textContent)
+    }
+    setAMPM(event.target.textContent)
+
+    setTimeForDefaultValueAMPM(event.target.textContent)
+    console.log(event.target.textContent)
+  }
+  const inputStyle = {
+    WebkitBoxShadow: "0 0 0 1000px #282828 inset",
+    height: "0px",
+  }
+
+  const [luggage, setLuggage] = useState(0)
 
   const onSubmit2 = (data) => {
     const timeNumberAfterColon = time
@@ -233,15 +277,10 @@ const AdressFormContainerComponent = ({
       timeNumberIsFullZero !== "000" &&
       timeNumberIsFullZeroRedux !== "0000" &&
       timeNumberIsFullZeroRedux !== "000" &&
-      // (firstTimeHalf?.[0] >= "0" || formData.timeForDefaultValue) &&
-      // (firstTimeHalf?.[1] >= "0" || formData.timeForDefaultValue) &&
-      // (secondTimeHalf?.[0] >= "0" || formData.timeForDefaultValue) &&
-      // (secondTimeHalf?.[1] >= "0" || formData.timeForDefaultValue) &&
-      // false &&
       carSelectionID &&
       (passengers || formData.passengersQuantityForBackStep) &&
       (AMPM || formData?.timeForDefaultValueAMPM?.ampm) &&
-      Boolean(localStorage.getItem("captcha")) == true
+      isHourlyEnabled()
     ) {
       if (isAirline) {
         if (!airlineId) {
@@ -253,14 +292,7 @@ const AdressFormContainerComponent = ({
       } else {
         return true
       }
-      if (hourly || hourlyAndSeatsRedux) {
-        if (hoursCount) {
-          return true
-        }
-      }
     } else {
-      Boolean(localStorage.getItem("captcha")) !== true &&
-        setShowRecaptcha(true)
       if (!destinations[0].rideCheckPoint) {
         setRedBorderOnSubmit(true)
       } else {
@@ -307,52 +339,6 @@ const AdressFormContainerComponent = ({
       } else {
         setRedBorderOnSubmitForTime4(false)
       }
-      // if (
-      //   timeNumberIsThreeNumberZero == "000" ||
-      //   timeNumberIsThreeNumberZeroRedux == "000"
-      // ) {
-      //   setRedBorderOnSubmitForTime5(true)
-      // } else {
-      //   setRedBorderOnSubmitForTime5(false)
-      // }
-
-      // if (
-      //   (firstTimeHalf?.[1] <= "0" && firstTimeHalfRedux?.[1] <= "0") ||
-      //   (firstTimeHalf?.[1] <= "" && firstTimeHalfRedux?.[1] <= "") ||
-      //   (firstTimeHalf?.[1] == undefined &&
-      //     firstTimeHalfRedux?.[1] <= undefined)
-      // ) {
-      //   setRedBorderOnSubmitForTime6(true)
-      // } else {
-      //   setRedBorderOnSubmitForTime6(false)
-      // }
-      // if (
-      //   (secondTimeHalf2 <= "0" && secondTimeHalfRedux2 <= "0") ||
-      //   (secondTimeHalf2 <= "" && secondTimeHalfRedux2 <= "")
-      // ) {
-      //   setRedBorderOnSubmitForTime3(true)
-      // } else {
-      //   setRedBorderOnSubmitForTime3(false)
-      // }
-
-      // if (
-      //   (secondTimeHalf?.[0] <= "0" && secondTimeHalfRedux?.[0] <= "0") ||
-      //   (secondTimeHalf?.[0] <= "" && secondTimeHalfRedux?.[0] <= "")
-      // ) {
-      //   setRedBorderOnSubmitForTime4(true)
-      // } else {
-      //   setRedBorderOnSubmitForTime4(false)
-      // }
-      // if (
-      //   (secondTimeHalf?.[1] <= "0" && secondTimeHalfRedux?.[1] <= "0") ||
-      //   (secondTimeHalf?.[1] <= "" && secondTimeHalfRedux?.[1] <= "") ||
-      //   (secondTimeHalf?.[1] == undefined &&
-      //     secondTimeHalfRedux?.[1] <= undefined)
-      // ) {
-      //   setRedBorderOnSubmitForTime5(true)
-      // } else {
-      //   setRedBorderOnSubmitForTime5(false)
-      // }
       if (!AMPM && !formData?.timeForDefaultValueAMPM?.ampm) {
         setRedBorderOnSubmitForTime(true)
       } else {
@@ -371,155 +357,6 @@ const AdressFormContainerComponent = ({
     }
   }
 
-  // onSubmit2 = onSubmit2
-
-  const [openTimePicker, setOpenTimePicker] = useState(false)
-  let firstAirline =
-    destinations[0]?.rideCheckPoint.match(/(^|\W)Airport($|\W)/)
-  // if (destinations[0]?.rideCheckPoint.match(/(^|\W)Airport($|\W)/)) {
-  //   console.log("true")
-  // } else {
-  //   console.log("false")
-  // }
-
-  const fetchAirlines = async () => {
-    const data = await placesApi.getAirlines()
-    const res = data.map((airline) => {
-      return {
-        id: `${airline.id}`,
-        name: `${airline.code} ` + `${airline.name}`,
-      }
-    })
-    setAirlines(res)
-  }
-
-  const [flightNumber, setFlightNumber] = useState(null)
-
-  const {
-    ThemeProviderAppBackgroundColor,
-    fontColor,
-    borderRadiuses,
-    carsTypeColor,
-    hoverColor,
-    iconsColor,
-    backAndNextButtonsColor,
-    innerTextOnHover,
-    borderRadiusesForInnerElements,
-    borderRadiusesForWholeApp,
-    borderColorForInnerElements,
-    borderColorForOuterApp,
-  } = useContext(ThemeContext)
-  const [fontColorState, setFontColorState] = useState(fontColor)
-  const myArrow = ({ type, onClick, isEdge }) => {
-    const pointer = type === consts.PREV ? "<" : ">"
-    // console.log(isEdge)
-
-    return (
-      <Button
-        onClick={() => {
-          onClick()
-          console.log(type)
-        }}
-        disabled={isEdge}
-        // className={
-        //   isEdge ? styles.carouselButtonsDisabled : styles.carouselButtonsActive
-        // }
-        isEdge={isEdge}
-        // onMouseEnter={() => {
-        //   if (isEdge == false && type === consts.PREV) {
-        //     setFontColorState(innerTextOnHover)
-        //   }
-        // }}
-        // onMouseLeave={() => {
-        //   setFontColorState(fontColor)
-        // }}
-        backAndNextButtonsColor={backAndNextButtonsColor}
-        borderColorForInnerElements={borderColorForInnerElements}
-        borderRadiusesForInnerElements={borderRadiusesForInnerElements}
-        fontColor={fontColor}
-        // style={{
-        //   color: "black",
-        // }}
-        //  styles.carouselButtonsActive
-      >
-        {pointer}
-      </Button>
-    )
-  }
-  const [safetySeat, setSafetySeat] = useState(false)
-
-  const [boosterSeat, setBoosterSeat] = useState(0)
-  const [childSafetySeat, setChildSafetySeat] = useState(0)
-
-  const [alignment, setAlignment] = React.useState("web")
-  const [AMPM, setAMPM] = React.useState("")
-
-  const handleChangeAMPM = (event, newAlignment) => {
-    if (newAlignment !== null) {
-      setAlignment(newAlignment)
-      setTimeForDefaultValueAMPM(event.target.textContent)
-    }
-    setAMPM(event.target.textContent)
-
-    setTimeForDefaultValueAMPM(event.target.textContent)
-    console.log(event.target.textContent)
-  }
-
-  const [triggerToTimePicker, setTriggerToTimePicker] = useState(false)
-  var eventCount = 0
-  const inputStyle = {
-    WebkitBoxShadow: "0 0 0 1000px #282828 inset",
-    height: "0px",
-  }
-  // console.log(hourlyRedux)
-
-  const mask = [
-    /[0-2]/,
-    startsWithTwo ? /[0-3]/ : /[0-9]/,
-    ":",
-    /[0-5]/,
-    /[0-9]/,
-  ]
-
-  let formatChars = {
-    7: "[0-1]",
-    8: "[0-9]",
-    9: "[0-5]",
-    1: !timeMask ? "[0-9]" : "[0-2]",
-    a: "[A-Za-z]",
-    "*": "[A-Za-z0-9]",
-  }
-  let formatChars2 = {
-    7: "[0-1]",
-    8: "[0-2]",
-    9: "[0-5]",
-    1: "[0-2]",
-    a: "[A-Za-z]",
-    "*": "[A-Za-z0-9]",
-  }
-
-  const handleInput = (event) => {
-    if (event.target.value == "0_:__") {
-      setTimeMask(false)
-    }
-    if (event.target.value == "1_:__") {
-      setTimeMask(true)
-    }
-    console.log("This is: " + setTimeForDefaultValue)
-    setTimeForDefaultValue(event.target.value)
-    setTime(event.target.value)
-    // const emir = "00:10"
-    // console.log(event.target.value)
-    // console.log(time)
-    // console.log(regexp.test(emir))
-    console.log(
-      event.target.value.match(/\d+/),
-      event.target.value.substr(event.target.value.indexOf(":")).match(/\d+/)
-    )
-  }
-
-  const [luggage, setLuggage] = useState(0)
-
   const onSubmit = (data) => {
     console.log(data)
     // console.log(data.orderStartDate, data.orderStartTime)
@@ -534,56 +371,11 @@ const AdressFormContainerComponent = ({
     // ) {
 
     if (onSubmit2(data)) {
-      getCompanyCars({
-        hours: hourly ? hoursAddressForm : 0,
-        isGateMeeting: isGateMeeting,
-        airlines: { id: airlineId },
-        orderAddressDetails: [...destinations],
-        flightNumber: data.flightNumber,
-        page: pageSize,
-        typeId: carSelectionID,
-        bookingType: bookingType,
-        passengersQuantity: formData.passengersQuantityForBackStep,
-        isAirportPickupIncluded: isAirportPickupIncludedLocalState,
-        boosterSeatCount: boosterSeat,
-        safetySeatCount: childSafetySeat,
-        luggageCount: luggage,
-      })
-      setSafetySeatCount(childSafetySeat)
-      setBoosterSeatCount(boosterSeat)
-      setDateForDefaultValue(date?.toLocaleDateString("en-US"))
-
-      const forRes = date?.toLocaleDateString("en-US")
-      const forRes2 = time + ` ${AMPM}`
-      // console.log(
-      //   event.target.value.match(/\d+/),
-      //   event.target.value.substr(event.target.value.indexOf(":")).match(/\d+/)
-      // )
-
-      // ._d.toLocaleTimeString("en-US", {
-      //   hour: "numeric",
-      //   minute: "numeric",
-      // })
-
-      // + ` ${AMPM}`
-      const resData = {
-        orderStartDate: `${forRes}`,
-        orderStartTime: `${forRes2}`,
-      }
-      const resData2 = {
-        orderStartDateTime: `${forRes} ` + `${forRes2}`,
-      }
-
-      if (date) {
-        setFormData(resData2)
-      }
-
-      console.log(
-        destinations[0].rideCheckPoint,
-        destinations[1].rideCheckPoint,
-        data?.orderStartDate,
-        data?.orderStartTime + ` ${AMPM}`,
-        {
+      if (Boolean(localStorage.getItem("captcha")) == false) {
+        // Boolean(localStorage.getItem("captcha")) !== true &&
+        setShowRecaptcha(true)
+      } else {
+        getCompanyCars({
           hours: hourly ? hoursAddressForm : 0,
           isGateMeeting: isGateMeeting,
           airlines: { id: airlineId },
@@ -592,12 +384,62 @@ const AdressFormContainerComponent = ({
           page: pageSize,
           typeId: carSelectionID,
           bookingType: bookingType,
-          passengersQuantity: passengers,
+          passengersQuantity: formData.passengersQuantityForBackStep,
+          isAirportPickupIncluded: isAirportPickupIncludedLocalState,
           boosterSeatCount: boosterSeat,
-        }
-      )
+          safetySeatCount: childSafetySeat,
+          luggageCount: luggage,
+        })
+        setSafetySeatCount(childSafetySeat)
+        setBoosterSeatCount(boosterSeat)
+        setDateForDefaultValue(date?.toLocaleDateString("en-US"))
 
-      next()
+        const forRes = date?.toLocaleDateString("en-US")
+        const forRes2 = time + ` ${AMPM}`
+        // console.log(
+        //   event.target.value.match(/\d+/),
+        //   event.target.value.substr(event.target.value.indexOf(":")).match(/\d+/)
+        // )
+
+        // ._d.toLocaleTimeString("en-US", {
+        //   hour: "numeric",
+        //   minute: "numeric",
+        // })
+
+        // + ` ${AMPM}`
+        const resData = {
+          orderStartDate: `${forRes}`,
+          orderStartTime: `${forRes2}`,
+        }
+        const resData2 = {
+          orderStartDateTime: `${forRes} ` + `${forRes2}`,
+        }
+
+        if (date) {
+          setFormData(resData2)
+        }
+
+        console.log(
+          destinations[0].rideCheckPoint,
+          destinations[1].rideCheckPoint,
+          data?.orderStartDate,
+          data?.orderStartTime + ` ${AMPM}`,
+          {
+            hours: hourly ? hoursAddressForm : 0,
+            isGateMeeting: isGateMeeting,
+            airlines: { id: airlineId },
+            orderAddressDetails: [...destinations],
+            flightNumber: data.flightNumber,
+            page: pageSize,
+            typeId: carSelectionID,
+            bookingType: bookingType,
+            passengersQuantity: passengers,
+            boosterSeatCount: boosterSeat,
+          }
+        )
+
+        next()
+      }
     }
   }
 
@@ -651,7 +493,6 @@ const AdressFormContainerComponent = ({
       childSafetySeat={childSafetySeat}
       destinations={destinations}
       flightNumber={flightNumber}
-      formatChars={formatChars}
       handleChangeAMPM={handleChangeAMPM}
       handleClick={handleClick}
       // handleInput={handleInput}
@@ -758,6 +599,7 @@ const Button = styled.button`
   border: none;
   font-size: 19px;
   /* border-radius: $inputs-border-radius; */
+  border: 1px solid ${(props) => props.borderColorForInnerElements};
   border-radius: ${(props) => props.borderRadiusesForInnerElements};
   cursor: pointer;
   transition: 0.2s;

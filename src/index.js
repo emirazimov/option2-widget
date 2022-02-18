@@ -41,6 +41,7 @@ var iconsColor = window.iconsColor
 var inputsFontColor = "black"
 
 var backAndNextButtonsColor = "white"
+var backAndNextButtonsFontColor = window.backAndNextButtonsFontColor
 var innerTextOnHover = window.innerTextOnHover
 var inputsBackground = "white"
 
@@ -66,6 +67,7 @@ function Main() {
           hoverColor,
           iconsColor,
           backAndNextButtonsColor,
+          backAndNextButtonsFontColor,
           innerTextOnHover,
           inputsFontColor,
           inputsBackground,

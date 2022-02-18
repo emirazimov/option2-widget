@@ -65,7 +65,6 @@ const AdressFormwithoutReactMemo = ({
   childSafetySeat,
   destinations,
   flightNumber,
-  formatChars,
   handleChangeAMPM,
   handleClick,
   handleSubmit,
@@ -135,6 +134,7 @@ const AdressFormwithoutReactMemo = ({
     hoverColor,
     iconsColor,
     backAndNextButtonsColor,
+    backAndNextButtonsFontColor,
     innerTextOnHover,
     inputsFontColor,
     inputsBackground,
@@ -397,8 +397,7 @@ const AdressFormwithoutReactMemo = ({
                             ? formData.dateForDefaultValue
                             : date?.toLocaleDateString("en-US")}
 
-                          {!formData.dateForDefaultValue ||
-                          !date?.toLocaleDateString("en-US") ? (
+                          {!formData.dateForDefaultValue ? (
                             <span style={{ color: "grey", paddingTop: "10px" }}>
                               Pick up Date
                             </span>
@@ -729,7 +728,7 @@ const AdressFormwithoutReactMemo = ({
               className={styles.buttonNextSelf}
               style={{
                 background: backAndNextButtonsColor,
-                color: "black",
+                color: backAndNextButtonsFontColor,
                 border: `1px solid ${borderColorForInnerElements}`,
                 borderRadius: borderRadiusesForInnerElements,
               }}

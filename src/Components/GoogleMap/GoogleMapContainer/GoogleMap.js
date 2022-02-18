@@ -171,9 +171,9 @@ const GoogleMap = React.memo(
       }
       const getDestinationsIcons = (id, destinations) => {
         if (id === 0) {
-          return <StartLocationIcon color={fontColor} />
+          return <StartLocationIcon color={inputsFontColor} />
         } else if (id === destinations.length - 1) {
-          return <EndLocationIcon color={fontColor} />
+          return <EndLocationIcon color={inputsFontColor} />
         }
       }
 
