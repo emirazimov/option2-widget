@@ -22,6 +22,8 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom"
 
 var ThemeProviderAppBackgroundColor = "black"
 
+var bodyBackgroundColor = "white"
+
 var fontColor = "white"
 
 var borderRadiusesForInnerElements = "5px"
@@ -50,7 +52,19 @@ var bookNowIconFontAndCircleBorderColor =
 
 var bookNowIconBackgroundColor = window.bookNowIconBackgroundColor
 var BackgroundImage = window.BackgroundImage
+var backAndNextButtonsBorderColor = window.backAndNextButtonsBorderColor
+var fleetCarsBackgroundColor = window.fleetCarsBackgroundColor
+var logoAndCompanynameBackgroundColor = "white"
+var logoAndCompanynameFontColor = "black"
+var stepsIndicatorBackgroundColor = "white"
+var stepsIndicatorFontColor = "black"
+var poweredByBookinglaneBackgroundColor = "white"
+var poweredByBookinglaneFontColor = "black"
+var mapBackground = "black"
 // font-color-for-customize
+
+var body = document.getElementsByTagName("body")[0]
+body.style = `background: ${bodyBackgroundColor}; margin: 0;`
 
 function Main() {
   return (
@@ -58,6 +72,7 @@ function Main() {
       <ThemeContext.Provider
         value={{
           ThemeProviderAppBackgroundColor,
+          BackgroundImage,
           fontColor,
           borderRadiusesForInnerElements,
           borderRadiusesForWholeApp,
@@ -67,13 +82,22 @@ function Main() {
           hoverColor,
           iconsColor,
           backAndNextButtonsColor,
-          backAndNextButtonsFontColor,
           innerTextOnHover,
           inputsFontColor,
           inputsBackground,
           bookNowIconFontAndCircleBorderColor,
           bookNowIconBackgroundColor,
-          BackgroundImage,
+          backAndNextButtonsFontColor,
+          backAndNextButtonsBorderColor,
+          fleetCarsBackgroundColor,
+          stepsIndicatorBackgroundColor,
+          stepsIndicatorFontColor,
+          logoAndCompanynameBackgroundColor,
+          logoAndCompanynameFontColor,
+          poweredByBookinglaneBackgroundColor,
+          poweredByBookinglaneFontColor,
+          mapBackground,
+          bodyBackgroundColor,
         }}
       >
         <App />

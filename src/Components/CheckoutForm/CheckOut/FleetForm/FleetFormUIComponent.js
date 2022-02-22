@@ -113,6 +113,7 @@ const FleetForm = ({
     iconsColor,
     backAndNextButtonsColor,
     backAndNextButtonsFontColor,
+    backAndNextButtonsBorderColor,
     innerTextOnHover,
     inputsFontColor,
     borderRadiusesForInnerElements,
@@ -554,7 +555,7 @@ const FleetForm = ({
                   style={{
                     background: backAndNextButtonsColor,
                     color: backAndNextButtonsFontColor,
-                    border: `1px solid ${borderColorForInnerElements}`,
+                    border: `1px solid ${backAndNextButtonsBorderColor}`,
                     borderRadius: borderRadiusesForInnerElements,
                   }}
                 >
@@ -571,7 +572,7 @@ const FleetForm = ({
                     opacity: carCard ? "1" : "0.5",
                     background: backAndNextButtonsColor,
                     color: backAndNextButtonsFontColor,
-                    border: `1px solid ${borderColorForInnerElements}`,
+                    border: `1px solid ${backAndNextButtonsBorderColor}`,
                     borderRadius: borderRadiusesForInnerElements,
                   }}
                 >

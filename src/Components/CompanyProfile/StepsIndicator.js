@@ -112,46 +112,69 @@ const StepsIndicator = ({
   // }, [])
   const {
     ThemeProviderAppBackgroundColor,
+    BackgroundImage,
     fontColor,
-    borderRadiuses,
+    borderRadiusesForInnerElements,
+    borderRadiusesForWholeApp,
+    borderColorForInnerElements,
+    borderColorForOuterApp,
     carsTypeColor,
     hoverColor,
     iconsColor,
     backAndNextButtonsColor,
     innerTextOnHover,
     inputsFontColor,
+    inputsBackground,
+    bookNowIconFontAndCircleBorderColor,
+    bookNowIconBackgroundColor,
+    backAndNextButtonsFontColor,
+    backAndNextButtonsBorderColor,
+    fleetCarsBackgroundColor,
+    stepsIndicatorBackgroundColor,
+    stepsIndicatorFontColor,
+    logoAndCompanynameBackgroundColor,
+    logoAndCompanynameFontColor,
+    poweredByBookinglaneBackgroundColor,
+    poweredByBookinglaneFontColor,
   } = useContext(ThemeContext)
 
   return (
-    <div className={styles.stepsIndicators} style={{ background: "white" }}>
+    <div
+      className={styles.stepsIndicators}
+      style={{ background: stepsIndicatorBackgroundColor }}
+    >
       <span
         style={{
-          opacity: activeStep == 0 ? "1" : "0.5",
+          opacity: activeStep == 0 ? "1" : "0.3",
           color: "black",
+          color: stepsIndicatorFontColor,
         }}
       >
         Price Quote
       </span>
       <span
         style={{
-          opacity: activeStep == 1 ? "1" : "0.5",
+          opacity: activeStep == 1 ? "1" : "0.3",
           color: "black",
+          color: stepsIndicatorFontColor,
         }}
       >
         Select Vehicle
       </span>
       <span
         style={{
-          opacity: activeStep == 2 ? "1" : "0.5",
+          opacity: activeStep == 2 ? "1" : "0.3",
           color: "black",
+          color: stepsIndicatorFontColor,
         }}
       >
         Preview
       </span>
       <span
         style={{
-          opacity: activeStep == 3 ? "1" : "0.5",
+          opacity: activeStep == 3 ? "1" : "0.3",
           color: "black",
+          color: stepsIndicatorFontColor,
         }}
       >
         Payment

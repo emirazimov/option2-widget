@@ -1,9 +1,9 @@
-import React, { useContext, useEffect } from 'react'
-import { connect } from 'react-redux'
+import React, { useContext, useEffect } from "react"
+import { connect } from "react-redux"
 import {
   getCompanyProfile,
   setGotAddressError,
-} from '../../Redux/company-profile-reducer'
+} from "../../Redux/company-profile-reducer"
 // import Grid from "@material-ui/core/Grid"
 // import Typography from "@material-ui/core/Typography"
 // import { makeStyles } from '@material-ui/core/styles'
@@ -12,20 +12,20 @@ import {
 // import { isMobile } from "react-device-detect"
 // import { Preloader } from "../Helpers/Preloader/Preloader"
 // import AppBar from "@material-ui/core/AppBar"
-import { useMediaQuery } from '@material-ui/core'
+import { useMediaQuery } from "@material-ui/core"
 import {
   setResetWidgetInputs,
   setResetWidgetInputsActionCreator,
-} from '../../Redux/reset-widget-inputs-reducer'
+} from "../../Redux/reset-widget-inputs-reducer"
 import {
   setIsAirportPickupIncluded,
   setShowCarsWithSafetySeat,
-} from '../../Redux/form-reducer'
-import { setGateMeetingRedux } from '../../Redux/gate-meeting-reducer'
-import styles from './CompanyProfile.module.scss'
-import ThemeContext from '../../context'
-import { CloseWidgetIcon } from '../../assets/icons'
-import { setHourlyRedux } from '../../Redux/hourly-reducer'
+} from "../../Redux/form-reducer"
+import { setGateMeetingRedux } from "../../Redux/gate-meeting-reducer"
+import styles from "./CompanyProfile.module.scss"
+import ThemeContext from "../../context"
+import { CloseWidgetIcon } from "../../assets/icons"
+import { setHourlyRedux } from "../../Redux/hourly-reducer"
 
 // const useStyles = makeStyles((theme) => ({
 //   companyContainer: {
@@ -96,8 +96,8 @@ const CompanyProfile = ({
 }) => {
   // const classes = useStyles()
 
-  const jwtToken = localStorage.getItem('Authorization')
-  const smallDevices = useMediaQuery('(max-width:768px)')
+  const jwtToken = localStorage.getItem("Authorization")
+  const smallDevices = useMediaQuery("(max-width:768px)")
 
   const resetWidgetInputs = (dispatch) => {
     dispatch(setResetWidgetInputsActionCreator(true))
@@ -112,14 +112,30 @@ const CompanyProfile = ({
   // }, [])
   const {
     ThemeProviderAppBackgroundColor,
+    BackgroundImage,
     fontColor,
-    borderRadiuses,
+    borderRadiusesForInnerElements,
+    borderRadiusesForWholeApp,
+    borderColorForInnerElements,
+    borderColorForOuterApp,
     carsTypeColor,
     hoverColor,
     iconsColor,
     backAndNextButtonsColor,
     innerTextOnHover,
     inputsFontColor,
+    inputsBackground,
+    bookNowIconFontAndCircleBorderColor,
+    bookNowIconBackgroundColor,
+    backAndNextButtonsFontColor,
+    backAndNextButtonsBorderColor,
+    fleetCarsBackgroundColor,
+    stepsIndicatorBackgroundColor,
+    stepsIndicatorFontColor,
+    logoAndCompanynameBackgroundColor,
+    logoAndCompanynameFontColor,
+    poweredByBookinglaneBackgroundColor,
+    poweredByBookinglaneFontColor,
   } = useContext(ThemeContext)
 
   return (
@@ -145,7 +161,7 @@ const CompanyProfile = ({
       {initializing ? (
         <div
           className={styles.companyProfileColumn}
-          style={{ background: 'transparent' }}
+          style={{ background: logoAndCompanynameBackgroundColor }}
         >
           <div
             // container
@@ -155,14 +171,14 @@ const CompanyProfile = ({
             // wrap="nowrap"
             // className={classes.companyContainer}
             className={styles.companyProfileWrapper}
-            style={{ background: 'white' }}
+            style={{ background: logoAndCompanynameBackgroundColor }}
           >
             {profile.companyLogoPath ? (
               <div className={styles.companyProfileImageContainer}>
                 <img
                   src={profile.companyLogoPath}
                   // className={classes.companyLogo}
-                  alt='companyLogo'
+                  alt="companyLogo"
                   className={styles.companyProfileImageSelf}
                 />
               </div>
@@ -177,7 +193,7 @@ const CompanyProfile = ({
             >
               <span
                 className={styles.companyProfileNameSelf}
-                style={{ color: 'black' }}
+                style={{ color: logoAndCompanynameFontColor }}
               >
                 {profile.companyName}
               </span>

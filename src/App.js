@@ -12,6 +12,7 @@ import { connect } from "react-redux"
 import {
   BookNowIcon,
   BookNowIconForMobile,
+  PoweredByBookinglane,
   // CloseWidgetIcon,
 } from "./assets/icons"
 import CheckOut from "./Components/CheckoutForm/CheckOut/CheckOut"
@@ -228,6 +229,7 @@ const App = (props) => {
 
   const {
     ThemeProviderAppBackgroundColor,
+    BackgroundImage,
     fontColor,
     borderRadiusesForInnerElements,
     borderRadiusesForWholeApp,
@@ -242,7 +244,15 @@ const App = (props) => {
     inputsBackground,
     bookNowIconFontAndCircleBorderColor,
     bookNowIconBackgroundColor,
-    BackgroundImage,
+    backAndNextButtonsFontColor,
+    backAndNextButtonsBorderColor,
+    fleetCarsBackgroundColor,
+    stepsIndicatorBackgroundColor,
+    stepsIndicatorFontColor,
+    logoAndCompanynameBackgroundColor,
+    logoAndCompanynameFontColor,
+    poweredByBookinglaneBackgroundColor,
+    poweredByBookinglaneFontColor,
   } = useContext(ThemeContext)
 
   return (
@@ -308,7 +318,7 @@ const App = (props) => {
             background: BackgroundImage
               ? `url(${BackgroundImage}) center no-repeat`
               : ThemeProviderAppBackgroundColor,
-            backgroundPositionY: "0",
+            backgroundPositionY: "23%",
             backgroundSize: !biggerBackgroundImage ? "100%" : "390%",
           }}
         >
@@ -348,13 +358,15 @@ const App = (props) => {
             height: "50px",
             textAlign: "center",
             paddingTop: "20px",
+            background: poweredByBookinglaneBackgroundColor,
           }}
         >
           <a style={{ textDecoration: "none" }} href="https://bookinglane.com/">
-            <img
+            {/* <img
               src={poweredByBookinglane}
               style={{ width: "150px", height: "34px" }}
-            ></img>
+            ></img> */}
+            <PoweredByBookinglane color={poweredByBookinglaneFontColor} />
           </a>
         </div>
         {/* <ReCAPTCHA

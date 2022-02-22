@@ -82,6 +82,7 @@ const PaymentUIComponent = ({
     iconsColor,
     backAndNextButtonsColor,
     backAndNextButtonsFontColor,
+    backAndNextButtonsBorderColor,
     innerTextOnHover,
     inputsFontColor,
     borderRadiusesForInnerElements,
@@ -647,7 +648,7 @@ const PaymentUIComponent = ({
                   style={{
                     background: backAndNextButtonsColor,
                     color: backAndNextButtonsFontColor,
-                    border: `1px solid ${borderColorForInnerElements}`,
+                    border: `1px solid ${backAndNextButtonsBorderColor}`,
                     borderRadius: borderRadiusesForInnerElements,
                   }}
                 >
@@ -661,7 +662,7 @@ const PaymentUIComponent = ({
                     opacity: !checked ? "0.5" : "1",
                     background: backAndNextButtonsColor,
                     color: backAndNextButtonsFontColor,
-                    border: `1px solid ${borderColorForInnerElements}`,
+                    border: `1px solid ${backAndNextButtonsBorderColor}`,
                     borderRadius: borderRadiusesForInnerElements,
                   }}
                 >

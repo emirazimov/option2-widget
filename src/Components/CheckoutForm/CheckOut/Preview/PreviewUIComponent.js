@@ -56,6 +56,7 @@ const PreviewUIComponent = ({
     iconsColor,
     backAndNextButtonsColor,
     backAndNextButtonsFontColor,
+    backAndNextButtonsBorderColor,
     innerTextOnHover,
     inputsFontColor,
     borderRadiusesForInnerElements,
@@ -141,7 +142,7 @@ const PreviewUIComponent = ({
             style={{
               background: backAndNextButtonsColor,
               color: backAndNextButtonsFontColor,
-              border: `1px solid ${borderColorForInnerElements}`,
+              border: `1px solid ${backAndNextButtonsBorderColor}`,
               borderRadius: borderRadiusesForInnerElements,
             }}
           >
@@ -161,7 +162,7 @@ const PreviewUIComponent = ({
             style={{
               background: backAndNextButtonsColor,
               color: backAndNextButtonsFontColor,
-              border: `1px solid ${borderColorForInnerElements}`,
+              border: `1px solid ${backAndNextButtonsBorderColor}`,
               borderRadius: borderRadiusesForInnerElements,
             }}
           >

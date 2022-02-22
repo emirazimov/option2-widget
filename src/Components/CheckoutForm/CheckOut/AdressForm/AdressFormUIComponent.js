@@ -135,6 +135,7 @@ const AdressFormwithoutReactMemo = ({
     iconsColor,
     backAndNextButtonsColor,
     backAndNextButtonsFontColor,
+    backAndNextButtonsBorderColor,
     innerTextOnHover,
     inputsFontColor,
     inputsBackground,
@@ -143,6 +144,7 @@ const AdressFormwithoutReactMemo = ({
     borderColorForInnerElements,
     borderColorForOuterApp,
     BackgroundImage,
+    mapBackground,
   } = useContext(ThemeContext)
 
   const [card, setCard] = useState()
@@ -247,7 +249,14 @@ const AdressFormwithoutReactMemo = ({
               // item
               className={styles.mapContainer}
             >
-              <div className={styles.mapContainerForHideMapsTagsPositioning}>
+              <div
+                className={styles.mapContainerForHideMapsTagsPositioning}
+                style={{
+                  border: `1px solid ${borderColorForInnerElements}`,
+                  borderRadius: borderRadiusesForInnerElements,
+                  background: mapBackground,
+                }}
+              >
                 <div
                   className={styles.mapContainerForBorder}
                   style={{ borderRadius: borderRadiusesForInnerElements }}
@@ -729,7 +738,7 @@ const AdressFormwithoutReactMemo = ({
               style={{
                 background: backAndNextButtonsColor,
                 color: backAndNextButtonsFontColor,
-                border: `1px solid ${borderColorForInnerElements}`,
+                border: `1px solid ${backAndNextButtonsBorderColor}`,
                 borderRadius: borderRadiusesForInnerElements,
               }}
             >
