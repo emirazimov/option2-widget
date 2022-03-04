@@ -133,8 +133,8 @@ const PreviewReusableUIComponent = ({
         style={{
           zIndex: "15",
           backgroundColor: fleetCarsBackgroundColor,
-          // border: `1px solid ${fleetCarsBorderColor}`,
-          // borderRadius: borderRadiusesForInnerElements,
+          border: `1px solid ${fleetCarsBorderColor}`,
+          borderRadius: borderRadiusesForInnerElements,
           //   paddingTop: "20px",
         }}
       >

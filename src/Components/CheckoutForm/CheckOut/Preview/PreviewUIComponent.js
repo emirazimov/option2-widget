@@ -95,10 +95,10 @@ const PreviewUIComponent = ({
         </div>
         <div
           className={styles.reservationDetailsWrapper}
-          style={{
-            border: `1px solid ${previewBlocksBorderColor}`,
-            borderRadius: borderRadiusesForInnerElements,
-          }}
+          // style={{
+          //   border: `1px solid ${previewBlocksBorderColor}`,
+          //   borderRadius: borderRadiusesForInnerElements,
+          // }}
         >
           <PreviewReusableUIComponent
             carId={carId}
