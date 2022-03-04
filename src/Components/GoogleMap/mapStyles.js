@@ -1,3 +1,3 @@
 // console.log(window)
 
-export default [...window.mapsStyles]
+export default window.mapsStyles ? [...window.mapsStyles] : []

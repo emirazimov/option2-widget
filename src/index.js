@@ -20,17 +20,17 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom"
 
 // console.log(window.location.pathname)
 
-var ThemeProviderAppBackgroundColor = "black"
+var ThemeProviderAppBackgroundColor = window.ThemeProviderAppBackgroundColor
 
-var bodyBackgroundColor = "white"
+var bodyBackgroundColor = window.bodyBackgroundColor
 
-var fontColor = "white"
+var fontColor = window.fontColor
 
-var borderRadiusesForInnerElements = "5px"
+var borderRadiusesForInnerElements = window.borderRadiusesForInnerElements
 
 var borderRadiusesForWholeApp = window.borderRadiusesForWholeApp
 
-var borderColorForInnerElements = "none"
+var borderColorForInnerElements = window.borderColorForInnerElements
 
 var borderColorForOuterApp = window.borderColorForOuterApp
 
@@ -40,27 +40,31 @@ var hoverColor = window.hoverColor
 
 var iconsColor = window.iconsColor
 
-var inputsFontColor = "black"
+var inputsFontColor = window.inputsFontColor
 
-var backAndNextButtonsColor = "white"
+var backAndNextButtonsColor = window.backAndNextButtonsColor
 var backAndNextButtonsFontColor = window.backAndNextButtonsFontColor
+var backAndNextButtonsBorderColor = window.backAndNextButtonsBorderColor
 var innerTextOnHover = window.innerTextOnHover
-var inputsBackground = "white"
+var inputsBackground = window.inputsBackground
 
 var bookNowIconFontAndCircleBorderColor =
   window.bookNowIconFontAndCircleBorderColor
 
 var bookNowIconBackgroundColor = window.bookNowIconBackgroundColor
 var BackgroundImage = window.BackgroundImage
-var backAndNextButtonsBorderColor = window.backAndNextButtonsBorderColor
+
 var fleetCarsBackgroundColor = window.fleetCarsBackgroundColor
-var logoAndCompanynameBackgroundColor = "white"
-var logoAndCompanynameFontColor = "black"
-var stepsIndicatorBackgroundColor = "white"
-var stepsIndicatorFontColor = "black"
-var poweredByBookinglaneBackgroundColor = "white"
-var poweredByBookinglaneFontColor = "black"
-var mapBackground = "black"
+var fleetCarsBorderColor = window.fleetCarsBorderColor
+var logoAndCompanynameBackgroundColor = window.logoAndCompanynameBackgroundColor
+var logoAndCompanynameFontColor = window.logoAndCompanynameFontColor
+var stepsIndicatorBackgroundColor = window.stepsIndicatorBackgroundColor
+var stepsIndicatorFontColor = window.stepsIndicatorFontColor
+var poweredByBookinglaneBackgroundColor =
+  window.poweredByBookinglaneBackgroundColor
+var poweredByBookinglaneFontColor = window.poweredByBookinglaneFontColor
+var mapBackground = window.mapBackground
+var previewBlocksBorderColor = window.previewBlocksBorderColor
 // font-color-for-customize
 
 var body = document.getElementsByTagName("body")[0]
@@ -90,6 +94,7 @@ function Main() {
           backAndNextButtonsFontColor,
           backAndNextButtonsBorderColor,
           fleetCarsBackgroundColor,
+          fleetCarsBorderColor,
           stepsIndicatorBackgroundColor,
           stepsIndicatorFontColor,
           logoAndCompanynameBackgroundColor,
@@ -98,6 +103,7 @@ function Main() {
           poweredByBookinglaneFontColor,
           mapBackground,
           bodyBackgroundColor,
+          previewBlocksBorderColor,
         }}
       >
         <App />

@@ -122,6 +122,8 @@ const PreviewReusableUIComponent = ({
     borderRadiusesForWholeApp,
     borderColorForInnerElements,
     borderColorForOuterApp,
+    fleetCarsBackgroundColor,
+    fleetCarsBorderColor,
   } = useContext(ThemeContext)
 
   return (
@@ -130,7 +132,9 @@ const PreviewReusableUIComponent = ({
         className={styles.reservationDetailsContainer}
         style={{
           zIndex: "15",
-          backgroundColor: ThemeProviderAppBackgroundColor,
+          backgroundColor: fleetCarsBackgroundColor,
+          // border: `1px solid ${fleetCarsBorderColor}`,
+          // borderRadius: borderRadiusesForInnerElements,
           //   paddingTop: "20px",
         }}
       >
@@ -164,7 +168,7 @@ const PreviewReusableUIComponent = ({
                       // }}
                       className={styles.orSimiliar}
                       style={{
-                        background: ThemeProviderAppBackgroundColor,
+                        background: fleetCarsBackgroundColor,
                         color: fontColor,
                       }}
                     >
@@ -955,7 +959,7 @@ const PreviewReusableUIComponent = ({
           className={styles.detailedDescriptionWrapperTotal}
           style={{
             borderTop: `1px solid grey`,
-            borderBottom: `1px solid grey`,
+            // borderBottom: `1px solid grey`,
           }}
         >
           <div className={styles.detailedDescriptionTotal}>

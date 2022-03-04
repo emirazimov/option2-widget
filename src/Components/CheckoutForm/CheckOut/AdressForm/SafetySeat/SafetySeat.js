@@ -138,7 +138,7 @@ export default React.memo(function SafetySeat({
                 type="number"
                 className={styles.boosterSeatCounterInputSelf}
                 style={{
-                  background: backAndNextButtonsColor,
+                  background: inputsBackground,
                   color: inputsFontColor,
                   borderRadius: borderRadiusesForInnerElements,
                   border: `1px solid ${borderColorForInnerElements}`,
@@ -186,7 +186,7 @@ export default React.memo(function SafetySeat({
                 type="number"
                 className={styles.safetySeatCounterInputSelf}
                 style={{
-                  background: backAndNextButtonsColor,
+                  background: inputsBackground,
                   color: inputsFontColor,
                   borderRadius: borderRadiusesForInnerElements,
                   border: `1px solid ${borderColorForInnerElements}`,

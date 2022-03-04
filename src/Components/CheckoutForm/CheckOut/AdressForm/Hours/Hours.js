@@ -184,7 +184,7 @@ const Hours = ({
             //   height: "100%",
             // }}
             style={{
-              background: backAndNextButtonsColor,
+              background: inputsBackground,
               border: `1px solid ${borderColorForInnerElements}`,
               // borderBottom: `1px solid ${borderColorForInnerElements}`,
               color: inputsFontColor,

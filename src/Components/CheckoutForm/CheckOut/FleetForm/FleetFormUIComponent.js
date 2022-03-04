@@ -120,6 +120,8 @@ const FleetForm = ({
     borderRadiusesForWholeApp,
     borderColorForInnerElements,
     borderColorForOuterApp,
+    fleetCarsBackgroundColor,
+    fleetCarsBorderColor,
   } = useContext(ThemeContext)
 
   const ifThereisError = () => {
@@ -143,7 +145,7 @@ const FleetForm = ({
                   className={styles.showSafetySeatIsNotAvailable}
                   style={{
                     borderRadius: borderRadiusesForInnerElements,
-                    background: ThemeProviderAppBackgroundColor,
+                    background: fleetCarsBackgroundColor,
                     border: `1px solid white`,
                   }}
                 >
@@ -163,7 +165,7 @@ const FleetForm = ({
                     style={{
                       width: "100%",
                       color: fontColor,
-                      background: ThemeProviderAppBackgroundColor,
+                      background: fleetCarsBackgroundColor,
                       border: "none",
                       borderTop: `1px solid ${fontColor}`,
                       cursor: "pointer",
@@ -202,8 +204,8 @@ const FleetForm = ({
                         : styles.carContainerColumnPos
                     }
                     style={{
-                      background: `${ThemeProviderAppBackgroundColor}`,
-                      border: `1px solid ${borderColorForInnerElements}`,
+                      background: `${fleetCarsBackgroundColor}`,
+                      border: `1px solid ${fleetCarsBorderColor}`,
                       borderRadius: borderRadiusesForInnerElements,
                     }}
                   >
@@ -231,7 +233,7 @@ const FleetForm = ({
                                 <div
                                   className={styles.orSimiliar}
                                   style={{
-                                    background: ThemeProviderAppBackgroundColor,
+                                    background: fleetCarsBackgroundColor,
                                     color: fontColor,
                                     borderTopLeftRadius:
                                       borderRadiusesForInnerElements,

@@ -63,6 +63,8 @@ const PreviewUIComponent = ({
     borderRadiusesForWholeApp,
     borderColorForInnerElements,
     borderColorForOuterApp,
+    fleetCarsBackgroundColor,
+    previewBlocksBorderColor,
   } = useContext(ThemeContext)
 
   return (
@@ -80,7 +82,8 @@ const PreviewUIComponent = ({
           <div
             className={styles.directionsSelf}
             style={{
-              border: `1px solid  ${fontColor}`,
+              background: fleetCarsBackgroundColor,
+              border: `1px solid  ${previewBlocksBorderColor}`,
               borderRadius: borderRadiusesForInnerElements,
             }}
           >
@@ -93,7 +96,7 @@ const PreviewUIComponent = ({
         <div
           className={styles.reservationDetailsWrapper}
           style={{
-            border: `1px solid ${fontColor}`,
+            border: `1px solid ${previewBlocksBorderColor}`,
             borderRadius: borderRadiusesForInnerElements,
           }}
         >

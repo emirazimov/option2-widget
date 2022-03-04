@@ -90,6 +90,7 @@ const PaymentUIComponent = ({
     borderColorForInnerElements,
     borderColorForOuterApp,
     inputsBackground,
+    previewBlocksBorderColor,
   } = useContext(ThemeContext)
 
   return (
@@ -620,7 +621,7 @@ const PaymentUIComponent = ({
               <div
                 className={styles.paymentPreviewWrapper}
                 style={{
-                  border: `1px solid ${fontColor}`,
+                  border: `1px solid ${previewBlocksBorderColor}`,
                   borderRadius: borderRadiusesForInnerElements,
                 }}
               >
