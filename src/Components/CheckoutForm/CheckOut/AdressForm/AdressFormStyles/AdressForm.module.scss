@@ -25,7 +25,7 @@ $background-position-x-for-date-time-picker: 3%;
 .adressFormWrapperToSetRowDirection {
   display: flex;
   flex-direction: row;
-  align-items: center;
+  align-items: flex-start;
   @media (max-width: 867px) {
     flex-direction: column;
   }

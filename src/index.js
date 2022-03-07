@@ -30,7 +30,7 @@ var borderRadiusesForInnerElements = window.borderRadiusesForInnerElements
 
 var borderRadiusesForWholeApp = window.borderRadiusesForWholeApp
 
-var borderColorForInnerElements = window.borderColorForInnerElements
+var borderColorForInnerElements = "#4A5576"
 
 var borderColorForOuterApp = window.borderColorForOuterApp
 
@@ -58,8 +58,10 @@ var fleetCarsBackgroundColor = window.fleetCarsBackgroundColor
 var fleetCarsBorderColor = window.fleetCarsBorderColor
 var logoAndCompanynameBackgroundColor = window.logoAndCompanynameBackgroundColor
 var logoAndCompanynameFontColor = window.logoAndCompanynameFontColor
+var logoAndCompanynameBorderColor = window.logoAndCompanynameBorderColor
 var stepsIndicatorBackgroundColor = window.stepsIndicatorBackgroundColor
 var stepsIndicatorFontColor = window.stepsIndicatorFontColor
+var stepsIndicatorBorderColor = "#4A5576"
 var poweredByBookinglaneBackgroundColor =
   window.poweredByBookinglaneBackgroundColor
 var poweredByBookinglaneFontColor = window.poweredByBookinglaneFontColor
@@ -97,8 +99,10 @@ function Main() {
           fleetCarsBorderColor,
           stepsIndicatorBackgroundColor,
           stepsIndicatorFontColor,
+          stepsIndicatorBorderColor,
           logoAndCompanynameBackgroundColor,
           logoAndCompanynameFontColor,
+          logoAndCompanynameBorderColor,
           poweredByBookinglaneBackgroundColor,
           poweredByBookinglaneFontColor,
           mapBackground,

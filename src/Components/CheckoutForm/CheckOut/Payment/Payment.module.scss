@@ -241,7 +241,7 @@ option {
 .paymentRowWithPreview {
   display: flex;
   justify-content: space-between;
-  align-items: center;
+  align-items: flex-start;
 }
 .paymentFormWrapper {
   width: 50%;

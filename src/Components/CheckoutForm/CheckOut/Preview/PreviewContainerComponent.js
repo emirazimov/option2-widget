@@ -104,6 +104,7 @@ const PreviewContainerComponent = ({
       showCarAmount={showCarAmount}
       show={show}
       setShow={setShow}
+      // orderNotesRedux={formData.orderNotes}
     />
   )
 }

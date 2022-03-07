@@ -132,6 +132,7 @@ const StepsIndicator = ({
     fleetCarsBackgroundColor,
     stepsIndicatorBackgroundColor,
     stepsIndicatorFontColor,
+    stepsIndicatorBorderColor,
     logoAndCompanynameBackgroundColor,
     logoAndCompanynameFontColor,
     poweredByBookinglaneBackgroundColor,
@@ -141,7 +142,10 @@ const StepsIndicator = ({
   return (
     <div
       className={styles.stepsIndicators}
-      style={{ background: stepsIndicatorBackgroundColor }}
+      style={{
+        background: stepsIndicatorBackgroundColor,
+        border: `1px solid ${stepsIndicatorBorderColor}`,
+      }}
     >
       <span
         style={{

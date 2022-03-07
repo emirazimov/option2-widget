@@ -134,6 +134,7 @@ const CompanyProfile = ({
     stepsIndicatorFontColor,
     logoAndCompanynameBackgroundColor,
     logoAndCompanynameFontColor,
+    logoAndCompanynameBorderColor,
     poweredByBookinglaneBackgroundColor,
     poweredByBookinglaneFontColor,
   } = useContext(ThemeContext)
@@ -161,7 +162,10 @@ const CompanyProfile = ({
       {initializing ? (
         <div
           className={styles.companyProfileColumn}
-          style={{ background: logoAndCompanynameBackgroundColor }}
+          style={{
+            background: logoAndCompanynameBackgroundColor,
+            borderBottom: `1px solid ${logoAndCompanynameBorderColor}`,
+          }}
         >
           <div
             // container

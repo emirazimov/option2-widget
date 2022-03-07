@@ -65,6 +65,7 @@ const PreviewReusableUIComponent = ({
   showCarAmount,
   show,
   setShow,
+  orderNotesRedux,
 }) => {
   const isMobile = useMediaQuery("(max-width:500px)")
 
@@ -125,6 +126,8 @@ const PreviewReusableUIComponent = ({
     fleetCarsBackgroundColor,
     fleetCarsBorderColor,
   } = useContext(ThemeContext)
+
+  console.log(formData.orderNotes)
 
   return (
     <>
@@ -949,11 +952,24 @@ const PreviewReusableUIComponent = ({
             </div>
           </div> */}
         <div className={styles.notesTextFieldContainer}>
-          <Textarea
-            id="outlined-multiline-flexible"
-            placeholder="Notes / Itinerary"
-            fontColor={fontColor}
-          />
+          {!orderNotesRedux ? (
+            <Textarea
+              id="outlined-multiline-flexible"
+              placeholder="Notes / Itinerary"
+              // value={orderNotesRedux}
+              onChange={(event) => {
+                setNoteRedux(event.target.value)
+              }}
+              fontColor={fontColor}
+            />
+          ) : (
+            <TextareaWithDefaultValue
+              // value={orderNotesRedux}
+              fontColor={fontColor}
+            >
+              {orderNotesRedux}
+            </TextareaWithDefaultValue>
+          )}
         </div>
         <div
           className={styles.detailedDescriptionWrapperTotal}
@@ -1045,6 +1061,7 @@ const Textarea = styled.textarea`
   background: transparent;
   box-shadow: 0px 8px 20px 4px rgba(0, 0, 0, 0.08);
   text-indent: 20px;
+
   /* border-bottom: 1px solid ${(props) => props.fontColor}; */
   border-radius: 15px;
   &::-webkit-input-placeholder {
@@ -1072,4 +1089,25 @@ const Textarea = styled.textarea`
   &:focus::placeholder {
     color: transparent;
   }
+`
+const TextareaWithDefaultValue = styled.div`
+  width: 100%;
+  // display: block;
+  box-sizing: border-box;
+  min-height: 45px;
+  padding: 10px 18px;
+  color: ${(props) => props.fontColor};
+  font-family: "Vazir", sans-serif;
+  font-size: 14px;
+  border: none;
+  outline: none;
+  resize: none;
+  /* padding: 0; */
+  background: transparent;
+  box-shadow: 0px 8px 20px 4px rgba(0, 0, 0, 0.08);
+  /* text-indent: 20px; */
+  word-break: break-all;
+  white-space: normal;
+  /* border-bottom: 1px solid ${(props) => props.fontColor}; */
+  border-radius: 15px;
 `

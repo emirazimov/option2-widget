@@ -599,7 +599,7 @@ const Button = styled.button`
   border: none;
   font-size: 19px;
   /* border-radius: $inputs-border-radius; */
-  border: 1px solid ${(props) => props.borderColorForInnerElements};
+  /* border: 1px solid ${(props) => props.borderColorForInnerElements}; */
   border-radius: ${(props) => props.borderRadiusesForInnerElements};
   cursor: pointer;
   transition: 0.2s;

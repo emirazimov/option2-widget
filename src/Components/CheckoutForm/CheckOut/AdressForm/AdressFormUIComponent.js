@@ -224,6 +224,9 @@ const AdressFormwithoutReactMemo = ({
   function onChange(value) {
     console.log("Captcha value:", value)
     window.localStorage.setItem("captcha", value)
+    if (Boolean(localStorage.getItem("captcha")) == true) {
+      setTimeout(() => setShowRecaptcha(false), 700)
+    }
   }
 
   React.useEffect(() => {

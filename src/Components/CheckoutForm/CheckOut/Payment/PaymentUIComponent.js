@@ -627,6 +627,7 @@ const PaymentUIComponent = ({
               >
                 <PreviewReusableUIComponent
                   formData={formData}
+                  orderNotesRedux={formData.orderNotes}
                   hourlyAndSeatsRedux={hourlyAndSeatsRedux}
                   gateMeeting={gateMeeting}
                   selectedCar={selectedCar}
