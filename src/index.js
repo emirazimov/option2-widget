@@ -19,8 +19,30 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom"
 //     />`
 
 // console.log(window.location.pathname)
+// ;(function loadStyles() {
+//   var script = document.createElement("script")
+//   script.type = "text/javascript"
+//   let path = window.location.pathname
+//   console.log(path)
+//   switch (path) {
+//     case "/lynk-limo":
+//       if (!window.ThemeProviderAppBackgroundColor) {
+//         script.src =
+//           "https://bookinglane-widgets.s3.us-east-2.amazonaws.com/option2-widget-files/Lynk-limo-styles.js"
+//         document.head.appendChild(script)
+//       }
+//     case "/swoop-elite":
+//       if (!window.ThemeProviderAppBackgroundColor) {
+//         script.src =
+//           "https://bookinglane-widgets.s3.us-east-2.amazonaws.com/option2-widget-files/swoop-elite.js"
+//         document.head.appendChild(script)
+//       }
+//   }
+// })()
 
 var ThemeProviderAppBackgroundColor = window.ThemeProviderAppBackgroundColor
+
+var contentBackgroundColor = window.contentBackgroundColor
 
 var bodyBackgroundColor = window.bodyBackgroundColor
 
@@ -30,7 +52,7 @@ var borderRadiusesForInnerElements = window.borderRadiusesForInnerElements
 
 var borderRadiusesForWholeApp = window.borderRadiusesForWholeApp
 
-var borderColorForInnerElements = "#4A5576"
+var borderColorForInnerElements = window.borderColorForInnerElements
 
 var borderColorForOuterApp = window.borderColorForOuterApp
 
@@ -61,59 +83,65 @@ var logoAndCompanynameFontColor = window.logoAndCompanynameFontColor
 var logoAndCompanynameBorderColor = window.logoAndCompanynameBorderColor
 var stepsIndicatorBackgroundColor = window.stepsIndicatorBackgroundColor
 var stepsIndicatorFontColor = window.stepsIndicatorFontColor
-var stepsIndicatorBorderColor = "#4A5576"
+var stepsIndicatorBorderColor = window.stepsIndicatorBorderColor
 var poweredByBookinglaneBackgroundColor =
   window.poweredByBookinglaneBackgroundColor
 var poweredByBookinglaneFontColor = window.poweredByBookinglaneFontColor
 var mapBackground = window.mapBackground
 var previewBlocksBorderColor = window.previewBlocksBorderColor
+
 // font-color-for-customize
 
-var body = document.getElementsByTagName("body")[0]
-body.style = `background: ${bodyBackgroundColor}; margin: 0;`
+// var body = document.getElementsByTagName("body")[0]
+// body.style = `background: ${bodyBackgroundColor}; margin: 0;`
 
 function Main() {
-  return (
-    <Provider store={store}>
-      <ThemeContext.Provider
-        value={{
-          ThemeProviderAppBackgroundColor,
-          BackgroundImage,
-          fontColor,
-          borderRadiusesForInnerElements,
-          borderRadiusesForWholeApp,
-          borderColorForInnerElements,
-          borderColorForOuterApp,
-          carsTypeColor,
-          hoverColor,
-          iconsColor,
-          backAndNextButtonsColor,
-          innerTextOnHover,
-          inputsFontColor,
-          inputsBackground,
-          bookNowIconFontAndCircleBorderColor,
-          bookNowIconBackgroundColor,
-          backAndNextButtonsFontColor,
-          backAndNextButtonsBorderColor,
-          fleetCarsBackgroundColor,
-          fleetCarsBorderColor,
-          stepsIndicatorBackgroundColor,
-          stepsIndicatorFontColor,
-          stepsIndicatorBorderColor,
-          logoAndCompanynameBackgroundColor,
-          logoAndCompanynameFontColor,
-          logoAndCompanynameBorderColor,
-          poweredByBookinglaneBackgroundColor,
-          poweredByBookinglaneFontColor,
-          mapBackground,
-          bodyBackgroundColor,
-          previewBlocksBorderColor,
-        }}
-      >
-        <App />
-      </ThemeContext.Provider>
-    </Provider>
-  )
+  if (window.ThemeProviderAppBackgroundColor) {
+    return (
+      <Provider store={store}>
+        <ThemeContext.Provider
+          value={{
+            ThemeProviderAppBackgroundColor,
+            contentBackgroundColor,
+            BackgroundImage,
+            fontColor,
+            borderRadiusesForInnerElements,
+            borderRadiusesForWholeApp,
+            borderColorForInnerElements,
+            borderColorForOuterApp,
+            carsTypeColor,
+            hoverColor,
+            iconsColor,
+            backAndNextButtonsColor,
+            innerTextOnHover,
+            inputsFontColor,
+            inputsBackground,
+            bookNowIconFontAndCircleBorderColor,
+            bookNowIconBackgroundColor,
+            backAndNextButtonsFontColor,
+            backAndNextButtonsBorderColor,
+            fleetCarsBackgroundColor,
+            fleetCarsBorderColor,
+            stepsIndicatorBackgroundColor,
+            stepsIndicatorFontColor,
+            stepsIndicatorBorderColor,
+            logoAndCompanynameBackgroundColor,
+            logoAndCompanynameFontColor,
+            logoAndCompanynameBorderColor,
+            poweredByBookinglaneBackgroundColor,
+            poweredByBookinglaneFontColor,
+            mapBackground,
+            bodyBackgroundColor,
+            previewBlocksBorderColor,
+          }}
+        >
+          <App />
+        </ThemeContext.Provider>
+      </Provider>
+    )
+  } else {
+    document.location.reload()
+  }
 }
 
 // document.getElementById("widget-by-bookinglane")

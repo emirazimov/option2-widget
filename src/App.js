@@ -87,65 +87,6 @@ const App = (props) => {
     /* Этот обработчик для того чтобы при закрытии виджета кнопка book now стояла в самом краю без этого она сдвигаетсяв лево */
   }
 
-  const handleChange = (panel) => (event, isExpanded) => {
-    yOrdinate = position.current.y
-    xOrdinate = position.current.x
-    position.current.y = -10
-    if (userScreenWidth - xOrdinate < 500) {
-      position.current.x = userScreenWidth - 390
-    }
-    if (xOrdinate < -20) {
-      position.current.x = 0
-    }
-    setExpanded(isExpanded ? panel : false)
-  }
-
-  const enableAccordionButton = (e) => {
-    setTimeout(() => {
-      setDisabled(false)
-    }, 200)
-
-    {
-      /*Этот обработчик чтобы сам раскрывшийся виджет не выходил за рамки экрана если перетаскивается за пределы то он возвращается */
-    }
-    if (expanded) {
-      yOrdinate = position.current.y
-      xOrdinate = position.current.x
-      if (xOrdinate + 500 > userScreenWidth) {
-        position.current.x = userScreenWidth - 380
-      }
-      if (xOrdinate < -20) {
-        position.current.x = 0
-      }
-      if (yOrdinate - (heightOfCard + 75) < -userScreenHeight) {
-        position.current.y = -userScreenHeight + (heightOfCard + 75)
-      }
-      if (yOrdinate > 0) {
-        position.current.y = 0
-      }
-    }
-    {
-      /*Тот же обратчик только для иконки Book Now! с пульсацией до раскрытой иконке*/
-    }
-    yOrdinate = position.current.y
-    xOrdinate = position.current.x
-    if (xOrdinate < 0) {
-      position.current.x = -60
-    }
-    if (xOrdinate + 300 > userScreenWidth) {
-      position.current.x = userScreenWidth - 400
-    }
-    if (yOrdinate - 215 < -userScreenHeight) {
-      position.current.y = -userScreenHeight + 240
-    }
-
-    if (yOrdinate > 0) {
-      position.current.y = 0
-    }
-    // console.log(position.current.y)
-    // console.log(userScreenHeight)
-  }
-
   React.useEffect(() => {
     if (backgroundScrollStop) {
       document.body.style.overflow = "hidden"
@@ -196,7 +137,7 @@ const App = (props) => {
     return <Slide direction="up" ref={ref} {...props} />
   })
 
-  const isMobile = useMediaQuery("(max-width:530px)")
+  const isMobile = useMediaQuery("(max-width:867px)")
   const biggerBackgroundImage = useMediaQuery("(max-width:1033px)")
   const forBostonLimousineToDisplayIconOnTheLeft =
     useMediaQuery("(max-width:500px)")
@@ -251,6 +192,7 @@ const App = (props) => {
     stepsIndicatorFontColor,
     logoAndCompanynameBackgroundColor,
     logoAndCompanynameFontColor,
+    logoAndCompanynameBorderColor,
     poweredByBookinglaneBackgroundColor,
     poweredByBookinglaneFontColor,
   } = useContext(ThemeContext)
@@ -267,6 +209,7 @@ const App = (props) => {
     //   handle=".companyProfileClassForDrag, #booknowIcon"
     // >
     <div ref={containerRef} className={styles.mainBookNowWrapper}>
+      <img src={BackgroundImage} className={styles.backgroundImage} />
       {/* <BookNowIconBlock
                     // elevation={0}
                     // disabled={disabled}
@@ -314,12 +257,14 @@ const App = (props) => {
         <div
           style={{
             width: "100%",
-            height: "100%",
-            background: BackgroundImage
-              ? `url(${BackgroundImage}) center no-repeat`
-              : ThemeProviderAppBackgroundColor,
-            backgroundPositionY: "23%",
-            backgroundSize: !biggerBackgroundImage ? "100%" : "390%",
+            height: !isMobile ? "100%" : "auto",
+            // overflowY: "auto",
+            // background: BackgroundImage
+            //   ? `url(${BackgroundImage}) center no-repeat`
+            //   : ThemeProviderAppBackgroundColor,
+            background: ThemeProviderAppBackgroundColor,
+            // backgroundPositionY: "23%",
+            // backgroundSize: !biggerBackgroundImage ? "100%" : "390%",
           }}
         >
           <div className={styles.stepsIndicatorContainer}>
@@ -357,8 +302,10 @@ const App = (props) => {
             width: "100%",
             height: "50px",
             textAlign: "center",
-            paddingTop: "20px",
+            paddingTop: "11px",
+            paddingBottom: "11px",
             background: poweredByBookinglaneBackgroundColor,
+            borderTop: `1px solid ${logoAndCompanynameBorderColor}`,
           }}
         >
           <a style={{ textDecoration: "none" }} href="https://bookinglane.com/">

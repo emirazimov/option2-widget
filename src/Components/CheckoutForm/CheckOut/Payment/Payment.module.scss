@@ -208,7 +208,12 @@ option {
 
 .formWrapper {
   width: 100%;
+  height: 57vh;
+  overflow-y: auto;
   @include whole-app-background;
+  @media (max-width: 867px) {
+    height: auto;
+  }
   // height: 100%;
   // @media (max-width: 500px) {
   //   padding-top: 75px;
@@ -242,6 +247,7 @@ option {
   display: flex;
   justify-content: space-between;
   align-items: flex-start;
+  margin-top: 14px;
 }
 .paymentFormWrapper {
   width: 50%;
@@ -252,7 +258,7 @@ option {
   }
 }
 .paymentPreviewWrapper {
-  width: 45%;
+  width: 48%;
   @media (max-width: 867px) {
     display: none;
   }

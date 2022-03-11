@@ -8,10 +8,21 @@ html {
 
 .mainBookNowWrapper {
   width: 100%;
-  height: 100%;
+  height: 100vh;
   overflow-x: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
   // overflow-y: auto;
-  background: white;
+}
+.backgroundImage {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  object-fit: cover;
 }
 
 .mainBookNowIconDisabledWhileDragging,
@@ -153,8 +164,8 @@ html {
 .cardContainerShow,
 .cardContainerShowMobile {
   position: relative;
-  height: 100%;
-  // padding: auto 200px;
+  width: 52%;
+  // height: 80vh;
   visibility: visible;
 
   opacity: 1;
@@ -162,6 +173,19 @@ html {
   -webkit-transform: translateY(0);
   transition: 0.4s;
   -webkit-transition: 0.4s;
+  @media (max-width: 1495px) {
+    width: 60%;
+  }
+  @media (max-width: 1311px) {
+    width: 70%;
+  }
+  @media (max-width: 1101px) {
+    width: 80%;
+  }
+  @media (max-width: 867px) {
+    width: 100%;
+    height: 100vh;
+  }
 }
 .cardContainerHidden,
 .cardContainerHiddenMobile {
@@ -193,7 +217,7 @@ html {
   // width: 356px;
   max-width: 1300px;
   margin: 0 auto;
-  height: 100%;
+  // height: 100%;
   // overflow-y: scroll;
   padding: 0px;
   border-bottom-left-radius: $whole-app-border-radius;
@@ -219,14 +243,14 @@ html {
   &::-webkit-scrollbar-thumb:hover {
     background: #bfaf82;
   }
-  @media (max-width: 1359px) {
-    padding-left: 40px;
-    padding-right: 40px;
-  }
-  @media (max-width: 868px) {
-    padding-left: 0px;
-    padding-right: 0px;
-  }
+  // @media (max-width: 1359px) {
+  //   padding-left: 40px;
+  //   padding-right: 40px;
+  // }
+  // @media (max-width: 868px) {
+  //   padding-left: 0px;
+  //   padding-right: 0px;
+  // }
 }
 $heightForMobile: 100%;
 .contentContainerMobile {
