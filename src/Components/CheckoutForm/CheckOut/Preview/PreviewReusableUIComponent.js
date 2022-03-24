@@ -708,6 +708,41 @@ const PreviewReusableUIComponent = ({
             </div>
           </div>
 
+          <div className={styles.reservationDetailsItem}>
+            <div className={styles.reservationDetailsItemContainer}>
+              <div className={styles.reservationDetailsItemTitleContainer}>
+                <span
+                  className={styles.reservationDetailsItemTitleSelf}
+                  //   style={{
+                  //     color: fontColor,
+                  //   }}
+                >
+                  Transaction Fee:
+                </span>
+              </div>
+              {/* <div
+                className={styles.reservationDetailsItemPointedLineContainer}
+              >
+                <div
+                  className={styles.reservationDetailsItemPointedLineSelf}
+                  style={{
+                    borderBottom: `2px dotted ${fontColor}`,
+                  }}
+                />
+              </div> */}
+              <div className={styles.reservationDetailsItemValueContainer}>
+                <span
+                  className={styles.reservationDetailsItemValueSelf}
+                  style={{
+                    color: fontColor,
+                  }}
+                >
+                  {`$${selectedCar.transactionFee}`}
+                </span>
+              </div>
+            </div>
+          </div>
+
           {hourlyAndSeatsRedux && (
             <div className={styles.reservationDetailsItem}>
               <div className={styles.reservationDetailsItemContainer}>
@@ -1009,7 +1044,7 @@ const PreviewReusableUIComponent = ({
                   fontSize: "19px",
                 }}
               >
-                {`$${round(selectedCar.price, 2)}`}
+                {`$${round(selectedCar.price + selectedCar.transactionFee, 2)}`}
               </span>
             </div>
           </div>
