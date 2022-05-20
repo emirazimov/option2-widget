@@ -126,12 +126,14 @@ const App = (props) => {
   const jwtToken = localStorage.getItem("Authorization")
 
   useEffect(() => {
+    // if (jwtToken) {
+    //   return
+    // }
     if (jwtToken) {
-      return
+      props.getCompanyProfile()
     }
-
-    props.getCompanyProfile()
-  }, [jwtToken])
+    // props.getCompanyProfile()
+  }, [props.getCompanyProfile, jwtToken])
 
   const Transition = React.forwardRef(function Transition(props, ref) {
     return <Slide direction="up" ref={ref} {...props} />
@@ -236,53 +238,53 @@ const App = (props) => {
                     <BookNowIcon color={bookNowIconFontAndCircleBorderColor} />
                     <span className={styles.bookNow}>BOOK NOW!</span>
                   </BookNowIconBlock> */}
-
-      <div className={styles.cardContainerShow} ref={refOfCard}>
-        {/* <div
+      {props.initializing ? (
+        <div className={styles.cardContainerShow} ref={refOfCard}>
+          {/* <div
             // position="sticky"
             className={styles.divForStickyHeader}
           >
             <div className="companyProfileClassForDrag"> */}
-        {/* этот класс c div-oм для реакт драга чтобы можно было перетаскивать по шапке виджета*/}
-        <div className={styles.companyProfile}>
-          {/* это для pointer cursora */}
-          <CompanyProfile
-            setExpanded={handleClose}
-            initializing={props.initializing}
-            expanded={expanded}
-            setActiveStep={setActiveStep}
-            setBackgroundScrollStop={setBackgroundScrollStop}
-          />
-        </div>
-        <div
-          style={{
-            width: "100%",
-            height: !isMobile ? "100%" : "auto",
-            // overflowY: "auto",
-            // background: BackgroundImage
-            //   ? `url(${BackgroundImage}) center no-repeat`
-            //   : ThemeProviderAppBackgroundColor,
-            background: ThemeProviderAppBackgroundColor,
-            // backgroundPositionY: "23%",
-            // backgroundSize: !biggerBackgroundImage ? "100%" : "390%",
-          }}
-        >
-          <div className={styles.stepsIndicatorContainer}>
-            <StepsIndicator activeStep={activeStep} />
+          {/* этот класс c div-oм для реакт драга чтобы можно было перетаскивать по шапке виджета*/}
+          <div className={styles.companyProfile}>
+            {/* это для pointer cursora */}
+            <CompanyProfile
+              setExpanded={handleClose}
+              initializing={props.initializing}
+              expanded={expanded}
+              setActiveStep={setActiveStep}
+              setBackgroundScrollStop={setBackgroundScrollStop}
+            />
           </div>
 
-          {/* </div>
+          <div
+            style={{
+              width: "100%",
+              height: !isMobile ? "100%" : "auto",
+              // overflowY: "auto",
+              // background: BackgroundImage
+              //   ? `url(${BackgroundImage}) center no-repeat`
+              //   : ThemeProviderAppBackgroundColor,
+              background: ThemeProviderAppBackgroundColor,
+              // backgroundPositionY: "23%",
+              // backgroundSize: !biggerBackgroundImage ? "100%" : "390%",
+            }}
+          >
+            <div className={styles.stepsIndicatorContainer}>
+              <StepsIndicator activeStep={activeStep} />
+            </div>
+
+            {/* </div>
           </div> */}
 
-          <div
-            // ref={refOfCard}
-            // style={{ borderRadius: "10px" }}
-            className={styles.contentContainer}
-            // style={{
-            //   background: ThemeProviderAppBackgroundColor,
-            // }}
-          >
-            {props.initializing ? (
+            <div
+              // ref={refOfCard}
+              // style={{ borderRadius: "10px" }}
+              className={styles.contentContainer}
+              // style={{
+              //   background: ThemeProviderAppBackgroundColor,
+              // }}
+            >
               <CheckOut
                 isFetching={props.isFetching}
                 setExpanded={handleClose}
@@ -292,35 +294,39 @@ const App = (props) => {
                 backStep={backStep}
                 setBackgroundScrollStop={setBackgroundScrollStop}
               />
-            ) : (
-              <Preloader />
-            )}
+            </div>
           </div>
-        </div>
-        <div
-          style={{
-            width: "100%",
-            height: "50px",
-            textAlign: "center",
-            paddingTop: "11px",
-            paddingBottom: "11px",
-            background: poweredByBookinglaneBackgroundColor,
-            borderTop: `1px solid ${logoAndCompanynameBorderColor}`,
-          }}
-        >
-          <a style={{ textDecoration: "none" }} href="https://bookinglane.com/">
-            {/* <img
+
+          <div
+            style={{
+              width: "100%",
+              height: "50px",
+              textAlign: "center",
+              paddingTop: "11px",
+              paddingBottom: "11px",
+              background: poweredByBookinglaneBackgroundColor,
+              borderTop: `1px solid ${logoAndCompanynameBorderColor}`,
+            }}
+          >
+            <a
+              style={{ textDecoration: "none" }}
+              href="https://bookinglane.com/"
+            >
+              {/* <img
               src={poweredByBookinglane}
               style={{ width: "150px", height: "34px" }}
             ></img> */}
-            <PoweredByBookinglane color={poweredByBookinglaneFontColor} />
-          </a>
-        </div>
-        {/* <ReCAPTCHA
+              <PoweredByBookinglane color={poweredByBookinglaneFontColor} />
+            </a>
+          </div>
+          {/* <ReCAPTCHA
           sitekey="6LeuP3weAAAAAHoe3aaP27xmYorD1s1vXK7XdlPk"
           onChange={onChange}
         /> */}
-      </div>
+        </div>
+      ) : (
+        <Preloader />
+      )}
     </div>
     // </Draggable>
   )
@@ -336,61 +342,3 @@ const mapStateToProps = (state) => {
 }
 
 export default connect(mapStateToProps, { getCompanyProfile })(App)
-
-const BookNowIconBlock = styled.div`
-  pointer-events: ${(props) => {
-    if (props.disabled) {
-      return "none"
-    }
-  }};
-  opacity: ${(props) => {
-    if (props.disabled) {
-      return " 0.5"
-    }
-  }};
-  @keyframes pulse {
-    10% {
-      -moz-box-shadow: 0 0 0 0
-        ${(props) => props.bookNowIconFontAndCircleBorderColor};
-      box-shadow: 0 0 0 0
-        ${(props) => props.bookNowIconFontAndCircleBorderColor};
-    }
-    38% {
-      -moz-box-shadow: 0 0 0 0
-        ${(props) => props.bookNowIconFontAndCircleBorderColor};
-      box-shadow: 0 0 3px 4.5px
-        ${(props) => props.bookNowIconFontAndCircleBorderColor};
-    }
-    100% {
-      -moz-box-shadow: 0 0 0 0
-        ${(props) => props.bookNowIconFontAndCircleBorderColor};
-      box-shadow: 0 0 0 0 tranparent;
-    }
-  }
-
-  // padding-left: 0px;
-  // &:before {
-  //   background-color: white;
-  // }
-
-  // padding: 0px;
-  width: 104px;
-  height: 104px;
-  position: fixed;
-  bottom: 0px;
-  left: 0;
-  cursor: pointer;
-  transition: 0ms;
-  animation-name: pulse;
-  animation-iteration-count: infinite;
-  animation-duration: 2s;
-  background-color: ${(props) => props.bookNowIconBackgroundColor};
-  filter: opacity(1);
-  -webkit-filter: opacity(1);
-  border-radius: 50%;
-
-  @media (max-width: 500px) {
-    width: 87px;
-    height: 87px;
-  }
-`

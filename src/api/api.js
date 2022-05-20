@@ -7,9 +7,9 @@ console.log(window)
 const accessKeyFromWinow = window.accessKeyForBookinglane
 
 const axiosInstance = axios.create({
-  baseURL: `https://api.bookinglane.com/api/`,
+  baseURL: `https://apidev.bookinglane.com/api/`,
   headers: {
-    "App-Version": "1.2.29",
+    "App-Version": "1.2.36",
   },
 })
 
@@ -30,7 +30,7 @@ export const authApi = {
 
   getCompanyProfile() {
     const headers = {
-      "App-Version": "1.2.29",
+      "App-Version": "1.2.36",
     }
     const friendlyKey = window.location.pathname
     return axiosInstance
@@ -89,7 +89,7 @@ export const fleetApi = {
         { ...dataForm },
         {
           headers: {
-            "App-Version": "1.2.29",
+            "App-Version": "1.2.36",
             captcha: `${recaptchaToken}`,
           },
         }
@@ -135,7 +135,7 @@ export const formApi = {
         { ...form },
         {
           headers: {
-            "App-Version": "1.2.29",
+            "App-Version": "1.2.36",
           },
         }
       )

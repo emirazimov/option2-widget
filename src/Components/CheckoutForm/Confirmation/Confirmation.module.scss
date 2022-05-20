@@ -8,6 +8,8 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  padding-top: 18%;
+  padding-bottom: 18%;
   @include side-paddings-for-whole-widget-page;
 }
 .confirmationTextContainer {

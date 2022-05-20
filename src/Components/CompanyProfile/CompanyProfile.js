@@ -102,14 +102,12 @@ const CompanyProfile = ({
   const resetWidgetInputs = (dispatch) => {
     dispatch(setResetWidgetInputsActionCreator(true))
   }
-  useEffect(() => {
-    if (jwtToken) {
-      getCompanyProfile()
-    }
-  }, [getCompanyProfile, jwtToken])
   // useEffect(() => {
-  //   setResetWidgetInputs()
-  // }, [])
+  //   if (jwtToken) {
+  //     getCompanyProfile()
+  //   }
+  // }, [getCompanyProfile, jwtToken])
+
   const {
     ThemeProviderAppBackgroundColor,
     BackgroundImage,
