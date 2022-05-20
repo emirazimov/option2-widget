@@ -7,7 +7,7 @@ console.log(window)
 const accessKeyFromWinow = window.accessKeyForBookinglane
 
 const axiosInstance = axios.create({
-  baseURL: `https://apidev.bookinglane.com/api/`,
+  baseURL: `https://api.bookinglane.com/api/`,
   headers: {
     "App-Version": "1.2.36",
   },
