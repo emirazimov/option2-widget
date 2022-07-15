@@ -211,7 +211,14 @@ const App = (props) => {
     //   handle=".companyProfileClassForDrag, #booknowIcon"
     // >
     <div ref={containerRef} className={styles.mainBookNowWrapper}>
-      <img src={BackgroundImage} className={styles.backgroundImage} />
+      {BackgroundImage ? (
+        <img src={BackgroundImage} className={styles.backgroundImage} />
+      ) : (
+        <div
+          className={styles.backgroundImage}
+          style={{ background: "black" }}
+        ></div>
+      )}
       {/* <BookNowIconBlock
                     // elevation={0}
                     // disabled={disabled}
