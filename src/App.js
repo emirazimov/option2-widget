@@ -3,37 +3,37 @@
 // import AccordionSummary from "@material-ui/core/AccordionSummary"
 // import Card from "@material-ui/core/Card"
 // import CssBaseline from "@material-ui/core/CssBaseline"
-import Slide from "@material-ui/core/Slide"
+import Slide from '@material-ui/core/Slide'
 // import { ThemeProvider } from "@material-ui/styles"
 // import { isMobile } from 'react-device-detect';
-import React, { useContext, useEffect, useState } from "react"
-import Draggable from "react-draggable"
-import { connect } from "react-redux"
+import React, { useContext, useEffect, useState } from 'react'
+import Draggable from 'react-draggable'
+import { connect } from 'react-redux'
 import {
   BookNowIcon,
   BookNowIconForMobile,
   PoweredByBookinglane,
   // CloseWidgetIcon,
-} from "./assets/icons"
-import CheckOut from "./Components/CheckoutForm/CheckOut/CheckOut"
-import CompanyProfile from "./Components/CompanyProfile/CompanyProfile"
+} from './assets/icons'
+import CheckOut from './Components/CheckoutForm/CheckOut/CheckOut'
+import CompanyProfile from './Components/CompanyProfile/CompanyProfile'
 import {
   getCompanyProfile,
   initializing,
-} from "./Redux/company-profile-reducer"
+} from './Redux/company-profile-reducer'
 // import { getCompanyToken } from "./Redux/company-token-reducer"
 // import theme from "./Theme"
 
-import { userScreenHeight, userScreenWidth, useStyles } from "./AppStyles"
-import { AppBar, useMediaQuery } from "@material-ui/core"
-import { useRef } from "react"
+import { userScreenHeight, userScreenWidth, useStyles } from './AppStyles'
+import { AppBar, useMediaQuery } from '@material-ui/core'
+import { useRef } from 'react'
 // import Slide1 from "@mui/material/Slide"
-import { Preloader } from "./Components/Helpers/Preloader/Preloader"
-import styles from "./AppStyles.module.scss"
-import ThemeContext from "./context"
-import styled from "styled-components"
-import StepsIndicator from "./Components/CompanyProfile/StepsIndicator"
-import poweredByBookinglane from "./assets/PoweredByBookinglane.png"
+import { Preloader } from './Components/Helpers/Preloader/Preloader'
+import styles from './AppStyles.module.scss'
+import ThemeContext from './context'
+import styled from 'styled-components'
+import StepsIndicator from './Components/CompanyProfile/StepsIndicator'
+import poweredByBookinglane from './assets/PoweredByBookinglane.png'
 // import ReCAPTCHA from "react-google-recaptcha"
 // import { DragDropContext, Droppable, Draggable } from "react-beautiful-dnd"
 
@@ -76,7 +76,7 @@ const App = (props) => {
 
   const handleClose = () => {
     setExpanded(false)
-    document.body.style.overflowY = "unset"
+    document.body.style.overflowY = 'unset'
     // position.current.y = 10
 
     if (userScreenWidth - xOrdinate < 500) {
@@ -89,9 +89,9 @@ const App = (props) => {
 
   React.useEffect(() => {
     if (backgroundScrollStop) {
-      document.body.style.overflow = "hidden"
+      document.body.style.overflow = 'hidden'
     } else {
-      document.body.style.overflow = "unset"
+      document.body.style.overflow = 'unset'
     }
   }, [backgroundScrollStop])
 
@@ -100,7 +100,7 @@ const App = (props) => {
   }
 
   React.useEffect(() => {
-    localStorage.removeItem("captcha")
+    localStorage.removeItem('captcha')
     // setHeightOfBookNow(refOfBookNow.current.clientHeight)
   }, [])
   // props.getCompanyToken()
@@ -123,26 +123,26 @@ const App = (props) => {
   const nextStep = () => setActiveStep((prevActiveStep) => prevActiveStep + 1)
   const backStep = () => setActiveStep((prevActiveStep) => prevActiveStep - 1)
 
-  const jwtToken = localStorage.getItem("Authorization")
+  const jwtToken = localStorage.getItem('Authorization')
 
   useEffect(() => {
     // if (jwtToken) {
     //   return
     // }
-    if (jwtToken) {
-      props.getCompanyProfile()
-    }
+    // if (jwtToken) {
+    props.getCompanyProfile()
+    // }
     // props.getCompanyProfile()
   }, [props.getCompanyProfile, jwtToken])
 
   const Transition = React.forwardRef(function Transition(props, ref) {
-    return <Slide direction="up" ref={ref} {...props} />
+    return <Slide direction='up' ref={ref} {...props} />
   })
 
-  const isMobile = useMediaQuery("(max-width:867px)")
-  const biggerBackgroundImage = useMediaQuery("(max-width:1033px)")
+  const isMobile = useMediaQuery('(max-width:867px)')
+  const biggerBackgroundImage = useMediaQuery('(max-width:1033px)')
   const forBostonLimousineToDisplayIconOnTheLeft =
-    useMediaQuery("(max-width:500px)")
+    useMediaQuery('(max-width:500px)')
 
   // let stylesForBody = `
   //   z-index: 1000000000;
@@ -266,8 +266,8 @@ const App = (props) => {
 
           <div
             style={{
-              width: "100%",
-              height: !isMobile ? "100%" : "auto",
+              width: '100%',
+              height: !isMobile ? '100%' : 'auto',
               // overflowY: "auto",
               // background: BackgroundImage
               //   ? `url(${BackgroundImage}) center no-repeat`
@@ -306,18 +306,18 @@ const App = (props) => {
 
           <div
             style={{
-              width: "100%",
-              height: "50px",
-              textAlign: "center",
-              paddingTop: "11px",
-              paddingBottom: "11px",
+              width: '100%',
+              height: '50px',
+              textAlign: 'center',
+              paddingTop: '11px',
+              paddingBottom: '11px',
               background: poweredByBookinglaneBackgroundColor,
               borderTop: `1px solid ${logoAndCompanynameBorderColor}`,
             }}
           >
             <a
-              style={{ textDecoration: "none" }}
-              href="https://bookinglane.com/"
+              style={{ textDecoration: 'none' }}
+              href='https://bookinglane.com/'
             >
               {/* <img
               src={poweredByBookinglane}
