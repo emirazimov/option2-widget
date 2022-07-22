@@ -648,9 +648,9 @@ const AdressFormwithoutReactMemo = ({
                           setBoosterSeatCount={setBoosterSeatCount}
                           safetySeatCountRedux={formData.safetySeatCount}
                           boosterSeatCountRedux={formData.boosterSeatCount}
-                          showCarsWithSafetySeat={
-                            formData.showCarsWithSafetySeat
-                          }
+                          // showCarsWithSafetySeat={
+                          //   formData.showCarsWithSafetySeat
+                          // }
                         />
                       </div>
                     </div>
@@ -707,7 +707,7 @@ const AdressFormwithoutReactMemo = ({
                                     : styles.carImage
                                 }
                                 item
-                                className={styles.carImage}
+                                // className={styles.carImage}
                               />
                               {console.log(indexOfEachCar == 2)}
                             </div>

@@ -34,9 +34,10 @@ const Confirmation = ({
   setResetWidgetInputs,
   setGotAddressError,
   setIsAirportPickupIncluded,
+  accessKey,
 }) => {
   useEffect(() => {
-    createReservation(formSummary)
+    createReservation(formSummary, accessKey)
   }, [])
   const textColor = "white"
 
@@ -113,6 +114,7 @@ const mapStateToProps = (state) => {
     formSummary: state.formData,
     email: state.formData.client.email,
     companyName: state.companyProfile.profile.companyName,
+    accessKey: state.companyProfile.accessKey,
   }
 }
 

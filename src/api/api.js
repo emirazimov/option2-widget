@@ -38,7 +38,7 @@ export const authApi = {
         headers: headers,
       })
       .then((response) => {
-        window.localStorage.setItem("Authorization", response.data.accessKey)
+        // window.localStorage.setItem("Authorization", response.data.accessKey)
         return response
       })
       .catch(function (error) {
@@ -80,8 +80,8 @@ export const fleetApi = {
   //       }
   //     })
   // },
-  getCompanyCarsWithRecaptchaToken(dataForm) {
-    const accessKey = localStorage.getItem("Authorization")
+  getCompanyCarsWithRecaptchaToken(dataForm, accessKey) {
+    // const accessKey = window.accessKey
     const recaptchaToken = localStorage.getItem("captcha")
     return axiosInstance
       .post(
@@ -127,8 +127,8 @@ export const placesApi = {
 }
 
 export const formApi = {
-  createReservation(form) {
-    const accessKey = localStorage.getItem("Authorization")
+  createReservation(form, accessKey) {
+    // const accessKey = window.accessKey
     return axiosInstance
       .post(
         `reservation/web/${accessKey}`,

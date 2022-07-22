@@ -93,20 +93,21 @@ const StepsIndicator = ({
   setShowCarsWithSafetySeat,
   setHourlyRedux,
   activeStep,
+  accessKey,
 }) => {
   // const classes = useStyles()
 
-  const jwtToken = localStorage.getItem("Authorization")
+  // const jwtToken = localStorage.getItem("Authorization")
   const smallDevices = useMediaQuery("(max-width:768px)")
 
   const resetWidgetInputs = (dispatch) => {
     dispatch(setResetWidgetInputsActionCreator(true))
   }
   useEffect(() => {
-    if (jwtToken) {
+    if (accessKey) {
       getCompanyProfile()
     }
-  }, [getCompanyProfile, jwtToken])
+  }, [])
   // useEffect(() => {
   //   setResetWidgetInputs()
   // }, [])
@@ -191,6 +192,7 @@ const mapStateToProps = (state) => {
   return {
     profile: state.companyProfile.profile,
     resetInputs: state.resetWidgetInputs.resetInputs,
+    accessKey: state.companyProfile.accessKey,
   }
 }
 

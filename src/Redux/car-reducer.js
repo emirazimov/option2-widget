@@ -59,12 +59,15 @@ export const getCarsByType = (carType, pageSize) => {
   }
 }
 
-export const getCompanyCars = (dataForm) => {
+export const getCompanyCars = (dataForm, accessKey) => {
   return async (dispatch) => {
     dispatch(toggleIsFetching(true))
     console.log(dataForm)
     // let data = await fleetApi.getCompanyCars(dataForm)
-    let data = await fleetApi.getCompanyCarsWithRecaptchaToken(dataForm)
+    let data = await fleetApi.getCompanyCarsWithRecaptchaToken(
+      dataForm,
+      accessKey
+    )
     console.log(data)
     if (data.status == 400) {
       dispatch(setError(data.data[0]))

@@ -8,8 +8,10 @@ const GOT_ADDRESS_ERROR = "/redux/companyProfileReducer/GOT_ADDRESS_ERROR"
 const IS_BOOSTER_SEAT_EXIST =
   "/redux/companyProfileReducer/IS_BOOSTER_SEAT_EXIST"
 const IS_SAFETY_SEAT_EXIST = "/redux/companyProfileReducer/IS_SAFETY_SEAT_EXIST"
+const SET_ACCESSKEY = "/redux/companyProfileReducer/SET_ACCESSKEY"
 
 let initialState = {
+  accessKey: "",
   profile: {
     companyName: "",
     companyLogoPath: "",
@@ -39,6 +41,12 @@ let initialState = {
 
 const companyProfileReducer = (state = initialState, action) => {
   switch (action.type) {
+    case SET_ACCESSKEY:
+      return {
+        ...state,
+        accessKey: action.payload,
+      }
+
     case SET_COMPANY_PROFILE:
       return {
         ...state,
@@ -82,6 +90,11 @@ const companyProfileReducer = (state = initialState, action) => {
   }
 }
 
+export const setAccessKey = (accessKey) => ({
+  type: SET_ACCESSKEY,
+  payload: accessKey,
+})
+
 export const setCompanyProfile = (profile) => ({
   type: SET_COMPANY_PROFILE,
   profile,
@@ -121,6 +134,7 @@ export const getCompanyProfile = () => {
     if (response === 401) {
       window.localStorage.clear()
     } else {
+      dispatch(setAccessKey(response.data.accessKey))
       dispatch(setCompanyProfile(response.data))
       dispatch(initializing(true))
       dispatch(setIsBoosterSeatExistOnBackend(response.data.isBoosterSeatExist))

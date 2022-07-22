@@ -315,10 +315,10 @@ export const setBoosterSeatCount = (count) => ({
   payload: count,
 })
 
-export const createReservation = (formSummary) => {
+export const createReservation = (formSummary, accessKey) => {
   return async (dispatch) => {
     dispatch(toggleIsFetching(true))
-    let response = await formApi.createReservation(formSummary)
+    let response = await formApi.createReservation(formSummary, accessKey)
 
     if (response.status === 200) {
       dispatch(isSuccess(true))
